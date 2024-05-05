@@ -7,16 +7,35 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CB4D2B802BDB44BC004FC20C /* iOS_Assignment3App.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4D2B7F2BDB44BC004FC20C /* iOS_Assignment3App.swift */; };
-		CB4D2B822BDB44BC004FC20C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4D2B812BDB44BC004FC20C /* ContentView.swift */; };
+		CB2F36422BE7ADB9005BCE7C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2F36412BE7ADB9005BCE7C /* HomeView.swift */; };
+		CB2F36442BE7ADC6005BCE7C /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2F36432BE7ADC6005BCE7C /* MapView.swift */; };
+		CB2F36482BE7ADF0005BCE7C /* CountryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2F36472BE7ADF0005BCE7C /* CountryListView.swift */; };
+		CB2F364A2BE7AE0D005BCE7C /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2F36492BE7AE0D005BCE7C /* TabBar.swift */; };
+		CB2F364C2BE7AE19005BCE7C /* TabButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2F364B2BE7AE19005BCE7C /* TabButton.swift */; };
+		CB2F364E2BE7AE29005BCE7C /* CountryInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2F364D2BE7AE29005BCE7C /* CountryInfoView.swift */; };
+		CB2F36502BE7AE41005BCE7C /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2F364F2BE7AE41005BCE7C /* ProfileView.swift */; };
+		CB2F36522BE7AE4A005BCE7C /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2F36512BE7AE4A005BCE7C /* EditProfileView.swift */; };
+		CB2F36542BE7AE71005BCE7C /* FavouriteCountryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2F36532BE7AE71005BCE7C /* FavouriteCountryView.swift */; };
+		CB2F36562BE7AE89005BCE7C /* MontserratAlternates-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB2F36552BE7AE89005BCE7C /* MontserratAlternates-SemiBold.ttf */; };
+		CB4D2B802BDB44BC004FC20C /* CountryDiscoveryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4D2B7F2BDB44BC004FC20C /* CountryDiscoveryApp.swift */; };
 		CB4D2B842BDB44BD004FC20C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB4D2B832BDB44BD004FC20C /* Assets.xcassets */; };
 		CB4D2B872BDB44BD004FC20C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB4D2B862BDB44BD004FC20C /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CB2F36412BE7ADB9005BCE7C /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		CB2F36432BE7ADC6005BCE7C /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		CB2F36472BE7ADF0005BCE7C /* CountryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryListView.swift; sourceTree = "<group>"; };
+		CB2F36492BE7AE0D005BCE7C /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
+		CB2F364B2BE7AE19005BCE7C /* TabButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabButton.swift; sourceTree = "<group>"; };
+		CB2F364D2BE7AE29005BCE7C /* CountryInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryInfoView.swift; sourceTree = "<group>"; };
+		CB2F364F2BE7AE41005BCE7C /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		CB2F36512BE7AE4A005BCE7C /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
+		CB2F36532BE7AE71005BCE7C /* FavouriteCountryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteCountryView.swift; sourceTree = "<group>"; };
+		CB2F36552BE7AE89005BCE7C /* MontserratAlternates-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MontserratAlternates-SemiBold.ttf"; sourceTree = "<group>"; };
+		CB2F36572BE7AE98005BCE7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		CB4D2B7C2BDB44BC004FC20C /* iOS-Assignment3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS-Assignment3.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		CB4D2B7F2BDB44BC004FC20C /* iOS_Assignment3App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_Assignment3App.swift; sourceTree = "<group>"; };
-		CB4D2B812BDB44BC004FC20C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		CB4D2B7F2BDB44BC004FC20C /* CountryDiscoveryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDiscoveryApp.swift; sourceTree = "<group>"; };
 		CB4D2B832BDB44BD004FC20C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CB4D2B862BDB44BD004FC20C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -32,6 +51,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CB2F363D2BE7AD5D005BCE7C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CB2F36412BE7ADB9005BCE7C /* HomeView.swift */,
+				CB2F364B2BE7AE19005BCE7C /* TabButton.swift */,
+				CB2F36492BE7AE0D005BCE7C /* TabBar.swift */,
+				CB2F36432BE7ADC6005BCE7C /* MapView.swift */,
+				CB2F36472BE7ADF0005BCE7C /* CountryListView.swift */,
+				CB2F364D2BE7AE29005BCE7C /* CountryInfoView.swift */,
+				CB2F364F2BE7AE41005BCE7C /* ProfileView.swift */,
+				CB2F36512BE7AE4A005BCE7C /* EditProfileView.swift */,
+				CB2F36532BE7AE71005BCE7C /* FavouriteCountryView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CB2F363E2BE7AD63005BCE7C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		CB2F363F2BE7AD69005BCE7C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CB2F36402BE7AD85005BCE7C /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				CB2F36552BE7AE89005BCE7C /* MontserratAlternates-SemiBold.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		CB4D2B732BDB44BC004FC20C = {
 			isa = PBXGroup;
 			children = (
@@ -51,8 +108,12 @@
 		CB4D2B7E2BDB44BC004FC20C /* iOS-Assignment3 */ = {
 			isa = PBXGroup;
 			children = (
-				CB4D2B7F2BDB44BC004FC20C /* iOS_Assignment3App.swift */,
-				CB4D2B812BDB44BC004FC20C /* ContentView.swift */,
+				CB2F36572BE7AE98005BCE7C /* Info.plist */,
+				CB4D2B7F2BDB44BC004FC20C /* CountryDiscoveryApp.swift */,
+				CB2F363D2BE7AD5D005BCE7C /* View */,
+				CB2F363E2BE7AD63005BCE7C /* ViewModel */,
+				CB2F363F2BE7AD69005BCE7C /* Model */,
+				CB2F36402BE7AD85005BCE7C /* Fonts */,
 				CB4D2B832BDB44BD004FC20C /* Assets.xcassets */,
 				CB4D2B852BDB44BD004FC20C /* Preview Content */,
 			);
@@ -125,6 +186,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB2F36562BE7AE89005BCE7C /* MontserratAlternates-SemiBold.ttf in Resources */,
 				CB4D2B872BDB44BD004FC20C /* Preview Assets.xcassets in Resources */,
 				CB4D2B842BDB44BD004FC20C /* Assets.xcassets in Resources */,
 			);
@@ -137,8 +199,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CB4D2B822BDB44BC004FC20C /* ContentView.swift in Sources */,
-				CB4D2B802BDB44BC004FC20C /* iOS_Assignment3App.swift in Sources */,
+				CB2F36522BE7AE4A005BCE7C /* EditProfileView.swift in Sources */,
+				CB2F36542BE7AE71005BCE7C /* FavouriteCountryView.swift in Sources */,
+				CB2F36502BE7AE41005BCE7C /* ProfileView.swift in Sources */,
+				CB4D2B802BDB44BC004FC20C /* CountryDiscoveryApp.swift in Sources */,
+				CB2F36442BE7ADC6005BCE7C /* MapView.swift in Sources */,
+				CB2F364E2BE7AE29005BCE7C /* CountryInfoView.swift in Sources */,
+				CB2F36422BE7ADB9005BCE7C /* HomeView.swift in Sources */,
+				CB2F364C2BE7AE19005BCE7C /* TabButton.swift in Sources */,
+				CB2F36482BE7ADF0005BCE7C /* CountryListView.swift in Sources */,
+				CB2F364A2BE7AE0D005BCE7C /* TabBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,6 +344,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"iOS-Assignment3/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "iOS-Assignment3/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -302,6 +373,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"iOS-Assignment3/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "iOS-Assignment3/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
