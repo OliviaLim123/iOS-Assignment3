@@ -93,20 +93,28 @@
 			path = Model/ViewModel;
 			sourceTree = "<group>";
 		};
-		CB2F363D2BE7AD5D005BCE7C /* View */ = {
+		CB1F32152BE8FCA50002CC14 /* SettingView */ = {
 			isa = PBXGroup;
 			children = (
-				4941DAA42BE8687B0096E706 /* AppEntry */,
-				4941DAE42BE88B080096E706 /* TabView */,
-				CB2F36432BE7ADC6005BCE7C /* MapView.swift */,
-				CB2F36412BE7ADB9005BCE7C /* HomeView.swift */,
-				CB2F36472BE7ADF0005BCE7C /* CountryListView.swift */,
-				CB2F364D2BE7AE29005BCE7C /* CountryInfoView.swift */,
-				CB1F320F2BE8F28E0002CC14 /* SecureTextField.swift */,
 				CB1F320B2BE8F21D0002CC14 /* SettingView.swift */,
 				CB1F320D2BE8F24F0002CC14 /* MyProfileView.swift */,
 				CB2F36512BE7AE4A005BCE7C /* EditProfileView.swift */,
 				CB2F36532BE7AE71005BCE7C /* FavouriteCountryView.swift */,
+			);
+			path = SettingView;
+			sourceTree = "<group>";
+		};
+		CB2F363D2BE7AD5D005BCE7C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4941DAA42BE8687B0096E706 /* AppEntry */,
+				CB2F36412BE7ADB9005BCE7C /* HomeView.swift */,
+				4941DAE42BE88B080096E706 /* TabView */,
+				CB2F36432BE7ADC6005BCE7C /* MapView.swift */,
+				CB2F36472BE7ADF0005BCE7C /* CountryListView.swift */,
+				CB2F364D2BE7AE29005BCE7C /* CountryInfoView.swift */,
+				CB1F320F2BE8F28E0002CC14 /* SecureTextField.swift */,
+				CB1F32152BE8FCA50002CC14 /* SettingView */,
 			);
 			path = View;
 			sourceTree = "<group>";
