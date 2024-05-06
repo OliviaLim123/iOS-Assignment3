@@ -112,7 +112,7 @@ struct AppEntry: View {
                 .foregroundStyle(.blackOpacity)
             
             HStack {
-                Text("Register here")
+                Text("Register HERE")
                 Image(systemName: "arrow.turn.right.up")
             }
             .foregroundStyle(.amethyst)

@@ -41,11 +41,11 @@ struct LoginView: View {
     //  INPUT USERNAME
     var userNameField: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 10.0)
-                .frame(maxWidth: .infinity)
-                .foregroundStyle(.lightPurple.opacity(0.5))
-                .frame(height: 65)
-                .padding(.horizontal)
+            //            RoundedRectangle(cornerRadius: 10.0)
+            //                .frame(maxWidth: .infinity)
+            //                .foregroundStyle(.lightPurple.opacity(0.5))
+            //                .frame(height: 65)
+            //                .padding(.horizontal)
             
             HStack {
                 Image(systemName: "person.crop.circle")
@@ -60,6 +60,29 @@ struct LoginView: View {
                     .cornerRadius(10.0)
                 
             } //HStack
+            //  INNER SHADOW (for TextField)
+            .background{
+                ZStack{
+                    RoundedRectangle(cornerRadius: 10.0)
+                        .frame(maxWidth: .infinity)
+                        .foregroundStyle(.lightPurple.opacity(0.5))
+                        .frame(height: 65)
+                        .padding(.horizontal, -15)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10) // The shape of the overlay should match the element
+                                .stroke(Color.gray, lineWidth: 4) // Border color and width
+                                .blur(radius: 3) // Blur the border to create a soft shadow effect
+                                .offset(x: 0, y: 2) // Offset of the shadow
+                                .mask(
+                                    RoundedRectangle(cornerRadius: 10) // Mask using the same shape as the element
+                                        .fill(
+                                            LinearGradient(gradient: Gradient(colors: [Color.black, Color.clear]), startPoint: .top, endPoint: .bottom)
+                                        )
+                                )
+                                .padding(.horizontal, -15)
+                        )
+                }
+            }
             .padding()
             .padding(.horizontal)
         }//ZStack S.
@@ -68,11 +91,11 @@ struct LoginView: View {
     //  INPUT PASSWORD
     var passwordField: some View {
         ZStack() {
-            RoundedRectangle(cornerRadius: 10.0)
-                .frame(maxWidth: .infinity)
-                .foregroundStyle(.lightPurple.opacity(0.5))
-                .frame(height: 65)
-                .padding(.horizontal)
+//            RoundedRectangle(cornerRadius: 10.0)
+//                .frame(maxWidth: .infinity)
+//                .foregroundStyle(.lightPurple.opacity(0.5))
+//                .frame(height: 65)
+//                .padding(.horizontal)
             
             HStack {
                 Image(systemName: "lock.circle.fill")
@@ -84,7 +107,7 @@ struct LoginView: View {
                         .font(.custom("MontserratAlternates-SemiBold", size: 20))
                         .foregroundStyle(.purple1)
                         .padding(.leading, 15)
-            
+                    
                     
                 } else {
                     SecureField("Password", text: $password)
@@ -104,9 +127,31 @@ struct LoginView: View {
                 .onLongPressGesture(minimumDuration: .infinity, pressing: { pressing in self.isPwdVisible = pressing}, perform: {}) //this one Press to hold
                 
             } //HStack
+            //  INNER SHADOW (for TextField)
+            .background{
+                ZStack{
+                    RoundedRectangle(cornerRadius: 10.0)
+                        .frame(maxWidth: .infinity)
+                        .foregroundStyle(.lightPurple.opacity(0.5))
+                        .frame(height: 65)
+                        .padding(.horizontal, -15)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10) // The shape of the overlay should match the element
+                                .stroke(Color.gray, lineWidth: 4) // Border color and width
+                                .blur(radius: 3) // Blur the border to create a soft shadow effect
+                                .offset(x: 0, y: 2) // Offset of the shadow
+                                .mask(
+                                    RoundedRectangle(cornerRadius: 10) // Mask using the same shape as the element
+                                        .fill(
+                                            LinearGradient(gradient: Gradient(colors: [Color.black, Color.clear]), startPoint: .top, endPoint: .bottom)
+                                        )
+                                )
+                                .padding(.horizontal, -15)
+                        )
+                }
+            }
             .padding()
             .padding(.horizontal)
-            
         }//ZStack S.
     }
     
@@ -152,7 +197,7 @@ struct LoginView: View {
                 .foregroundStyle(.blackOpacity)
             
             HStack {
-                Text("Register here")
+                Text("Register HERE")
                 Image(systemName: "arrow.turn.right.up")
             }
             .foregroundStyle(.amethyst)

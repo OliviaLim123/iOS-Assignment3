@@ -13,15 +13,21 @@ struct SignUpView: View {
     @State var username: String = ""
     @State var password: String = ""
     
+    //  CHECK visibility of the password
     @State var isPwdVisible: Bool = false
     @State var confirmPwd: String = ""
     
     
+    //  CHECK VALID INPUT
     @State var isCreatedAccount: Bool = false
-    // State to track password mismatch
+    //  State to track password mismatch
     @State var showPasswordMismatchError: Bool = false
-
-
+    //  State to track username error
+    @State var showUsernameError: Bool = false
+    //  State to track if User not fill all the form
+    @State var showIncompleteFormError: Bool = false
+    
+    
     //  MainView
     var body: some View {
         ZStack {
@@ -31,9 +37,15 @@ struct SignUpView: View {
                 Spacer()
                 userNameField
                 passwordField
+                
                 confirmPwdField
                 
-                passwordError // Display the error here
+                // Display form incomplete ERROR
+                incompleteFormError
+                // Display password mismatch ERROR
+                passwordError
+                // Display username ERROR
+                usernameError
                 
                 Spacer()
                 createAccountButton
@@ -48,7 +60,7 @@ struct SignUpView: View {
     
     //  WELCOME TITLE
     var welcomeTitle: some View {
-        Text("Register your account !")
+        Text("Register \nyour account !")
             .font(.custom("MontserratAlternates-SemiBold", size: 40))
             .multilineTextAlignment(.center)
     }
@@ -99,7 +111,7 @@ struct SignUpView: View {
                         .font(.custom("MontserratAlternates-SemiBold", size: 20))
                         .foregroundStyle(.purple1)
                         .padding(.leading, 15)
-            
+                    
                     
                 } else {
                     SecureField("Password", text: $password)
@@ -142,7 +154,7 @@ struct SignUpView: View {
                         .font(.custom("MontserratAlternates-SemiBold", size: 20))
                         .foregroundStyle(.purple1)
                         .padding(.leading, 15)
-            
+                    
                     
                 } else {
                     SecureField("Confirm Password", text: $confirmPwd)
@@ -172,12 +184,21 @@ struct SignUpView: View {
     var createAccountButton: some View {
         VStack {
             Button {
-                if isCheckedPassword() {
-                    isCreatedAccount = true //Set the isCreatedaccount to true is passwords matched
-                    showPasswordMismatchError = false
-                } else {
-                    showPasswordMismatchError = true
+                
+                if isFormValid() {
+                    if isValidUsername() {
+                        if isCheckedPassword() {
+                            isCreatedAccount = true
+                            showPasswordMismatchError = false
+                            showUsernameError = false
+                        } else {
+                            showPasswordMismatchError = true
+                        }
+                    } else {
+                        showUsernameError = true
+                    }
                 }
+                
             } label: {
                 ZStack {
                     RoundedRectangle(cornerRadius: 30.0)
@@ -211,9 +232,58 @@ struct SignUpView: View {
         }
     }
     
+    
+    //  CHECK Username Condition
+    var usernameError: some View {
+        VStack {
+            if showUsernameError {
+                Text("Username must be more than 3 characters")
+                    .font(.custom("MontserratAlternates-SemiBold", size: 20))
+                    .foregroundColor(.red)
+                //.padding(.top, 2)
+            }
+        }
+    }
+    
+    //  CHECK Username Condition
+    var incompleteFormError: some View {
+        VStack {
+            if showIncompleteFormError {
+                Text("Please fill in all fields to create an account.")
+                    .font(.custom("MontserratAlternates-SemiBold", size: 20))
+                    .foregroundColor(.red)
+                    .multilineTextAlignment(.center)
+                    .padding(.top, 2)
+            }
+        }
+    }
+    
+    
+    //
+    //  FUNCTION
+    //
     //  FUNCTION TO CHECKED PASSWORD
     func isCheckedPassword() -> Bool {
         return password == confirmPwd
+    }
+    
+    //  FUNCTION TO CHECKED Username
+    func isValidUsername() -> Bool {
+        return username.count >= 3
+    }
+    
+    //  FUNCTION TO CHECKED IF ANY FILL IS EMPTY \
+    func isFormValid() -> Bool {
+        //  Check if any fill is empty
+        if username.isEmpty || password.isEmpty || confirmPwd.isEmpty {
+            showIncompleteFormError = true
+            showPasswordMismatchError = false
+            showUsernameError = false
+            return false
+        } else {
+            showIncompleteFormError = false
+            return true
+        }
     }
 }
 
