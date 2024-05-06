@@ -9,8 +9,9 @@ import SwiftUI
 
 struct TabBar: View {
     @State var current = "Map"
+    
     var body: some View {
-        ZStack(alignment: Alignment(horizontal: .center, vertical: .bottom)){
+        ZStack(alignment: Alignment(horizontal: .leading, vertical: .bottom)){
             TabView(selection: $current){
                 MapView()
                     .tag("Map")
@@ -36,7 +37,7 @@ struct TabBar: View {
             }
             .padding(.vertical,12)
             .padding(.horizontal)
-            .background(.thinMaterial)
+            .background(.mauve.opacity(0.3))
             .clipShape(Capsule())
             .padding(.horizontal, 25)
         }
