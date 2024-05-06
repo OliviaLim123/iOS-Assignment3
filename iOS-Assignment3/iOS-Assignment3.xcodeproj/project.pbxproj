@@ -92,20 +92,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		CB2F363E2BE7AD63005BCE7C /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		CB2F363F2BE7AD69005BCE7C /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		CB2F36402BE7AD85005BCE7C /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -136,8 +122,6 @@
 				CB2F36572BE7AE98005BCE7C /* Info.plist */,
 				CB4D2B7F2BDB44BC004FC20C /* CountryDiscoveryApp.swift */,
 				CB2F363D2BE7AD5D005BCE7C /* View */,
-				CB2F363E2BE7AD63005BCE7C /* ViewModel */,
-				CB2F363F2BE7AD69005BCE7C /* Model */,
 				CB2F36402BE7AD85005BCE7C /* Fonts */,
 				CB4D2B832BDB44BD004FC20C /* Assets.xcassets */,
 				CB4D2B852BDB44BD004FC20C /* Preview Content */,
@@ -378,6 +362,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -407,6 +392,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
