@@ -136,7 +136,7 @@ struct SettingView: View {
     //The appearance and navigation behaviour of the favorite country button
     var myFavCountryButton: some View {
         NavigationLink {
-            FavouriteCountryView()
+            FavCountryView()
         } label: {
             myFavCountryLabel
         }
