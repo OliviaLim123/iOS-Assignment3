@@ -14,6 +14,10 @@ struct LoginView: View {
     @State var password: String = ""
     @State var isPwdVisible: Bool = false
     
+    //  CHECK VALID INPUT
+    @State var isFormValid = false // True >> Go to HomeView()
+    @State var showIncompleteFormError: Bool = false // True >> Show Alert of unfilled form
+    
     //  MainView
     var body: some View {
         ZStack {
@@ -24,11 +28,18 @@ struct LoginView: View {
                 userNameField
                 passwordField
                 
+                // Display form incompleted ERROR
+                incompleteFormError
+                
                 Spacer()
                 loginButton
+                signUpLink
                 Spacer()
             }
             .padding([.leading, .trailing], 10)
+        }
+        .navigationDestination(isPresented: $isFormValid) {
+            HomeView()
         }
     }
     
@@ -91,11 +102,11 @@ struct LoginView: View {
     //  INPUT PASSWORD
     var passwordField: some View {
         ZStack() {
-//            RoundedRectangle(cornerRadius: 10.0)
-//                .frame(maxWidth: .infinity)
-//                .foregroundStyle(.lightPurple.opacity(0.5))
-//                .frame(height: 65)
-//                .padding(.horizontal)
+            //            RoundedRectangle(cornerRadius: 10.0)
+            //                .frame(maxWidth: .infinity)
+            //                .foregroundStyle(.lightPurple.opacity(0.5))
+            //                .frame(height: 65)
+            //                .padding(.horizontal)
             
             HStack {
                 Image(systemName: "lock.circle.fill")
@@ -107,7 +118,6 @@ struct LoginView: View {
                         .font(.custom("MontserratAlternates-SemiBold", size: 20))
                         .foregroundStyle(.purple1)
                         .padding(.leading, 15)
-                    
                     
                 } else {
                     SecureField("Password", text: $password)
@@ -158,8 +168,10 @@ struct LoginView: View {
     //  LOGIN BUTTON
     var loginButton: some View {
         VStack {
-            NavigationLink {
-                HomeView()
+            Button {
+                if isLoginFormValid() {
+                    isFormValid = true //Navigate to "HomeView"
+                }
             } label: {
                 
                 ZStack {
@@ -177,20 +189,21 @@ struct LoginView: View {
                         .tracking(4.0)
                 }
             }
-            
-            //  SIGN UP LINK
-            NavigationLink {
-                SignUpView()
-            } label : {
-                VStack {
-                    RegisterLink
-                }
-            }
-            
         }// VSTACK E.
     }
     
-    //  NAVITAGE TO SIGN UP PAGE
+    //  NAVIGATE to "SignUp" Page
+    var signUpLink: some View {
+        NavigationLink {
+            SignUpView()
+        } label : {
+            VStack {
+                RegisterLink
+            }
+        }
+    }
+    
+    //  The View of Register Link to navigate to "SignUp" Page
     var RegisterLink: some View {
         HStack {
             Text("Don't have account ?")
@@ -204,6 +217,31 @@ struct LoginView: View {
         }
         .font(.custom("MontserratAlternates-SemiBold", size: 14))
         .padding()
+    }
+    
+    //  DISPLAY/CHECK when the form is incompleted
+    var incompleteFormError: some View {
+        VStack() {
+            if showIncompleteFormError {
+                Text("Please fill in all fields to create an account.")
+                    .font(.custom("MontserratAlternates-SemiBold", size: 20))
+                    .foregroundColor(.red)
+                    .multilineTextAlignment(.center)
+                    .padding(.top, 20)
+            }
+        }
+    }
+    
+    //  FUNCTION
+    //  FUNCTION TO VALIDATE THE FORM COMPLETENESS
+    func isLoginFormValid() -> Bool {
+        if username.isEmpty || password.isEmpty {
+            showIncompleteFormError = true
+            return false
+        } else {
+            showIncompleteFormError = false
+            return true
+        }
     }
 }
 

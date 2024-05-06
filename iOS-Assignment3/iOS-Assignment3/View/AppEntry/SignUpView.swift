@@ -40,7 +40,7 @@ struct SignUpView: View {
                 
                 confirmPwdField
                 
-                // Display form incomplete ERROR
+                // Display form incompleted ERROR
                 incompleteFormError
                 // Display password mismatch ERROR
                 passwordError
@@ -184,7 +184,6 @@ struct SignUpView: View {
     var createAccountButton: some View {
         VStack {
             Button {
-                
                 if isFormValid() {
                     if isValidUsername() {
                         if isCheckedPassword() {
@@ -245,7 +244,7 @@ struct SignUpView: View {
         }
     }
     
-    //  CHECK Username Condition
+    //  DISPLAY/CHECK when the Form is incompleted
     var incompleteFormError: some View {
         VStack {
             if showIncompleteFormError {
@@ -272,7 +271,7 @@ struct SignUpView: View {
         return username.count >= 3
     }
     
-    //  FUNCTION TO CHECKED IF ANY FILL IS EMPTY \
+    //  FUNCTION TO CHECKED IF ANY FILLED FORM IS EMPTY
     func isFormValid() -> Bool {
         //  Check if any fill is empty
         if username.isEmpty || password.isEmpty || confirmPwd.isEmpty {

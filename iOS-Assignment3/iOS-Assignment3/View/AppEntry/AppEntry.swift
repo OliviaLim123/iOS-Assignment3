@@ -96,7 +96,6 @@ struct AppEntry: View {
                 .foregroundStyle(.royalPurple)
                 .tracking(4.0)
             
-            
                 .frame(maxWidth: .infinity)
                 .frame(height: 55)
                 .background(.sweetCorn)
@@ -106,6 +105,7 @@ struct AppEntry: View {
                 .shadow(color: .gray.opacity(0.5), radius: 4, x: -4, y: -4)
     }
     
+    //  The View of Register Link to navigate to "SignUp" Page
     var RegisterLink: some View {
         HStack {
             Text("Don't have account ?")
@@ -117,7 +117,7 @@ struct AppEntry: View {
             }
             .foregroundStyle(.amethyst)
         }
-        .font    (.custom("MontserratAlternates-SemiBold", size: 14))
+        .font(.custom("MontserratAlternates-SemiBold", size: 14))
         .padding()
     }
     
