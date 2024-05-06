@@ -14,6 +14,7 @@
 		CB1F320E2BE8F24F0002CC14 /* MyProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1F320D2BE8F24F0002CC14 /* MyProfileView.swift */; };
 		CB1F32102BE8F28E0002CC14 /* SecureTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1F320F2BE8F28E0002CC14 /* SecureTextField.swift */; };
 		CB1F32142BE8F37F0002CC14 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1F32132BE8F37F0002CC14 /* ProfileViewModel.swift */; };
+		CB1F32172BE9075C0002CC14 /* FavCountryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1F32162BE9075C0002CC14 /* FavCountryView.swift */; };
 		CB2F36422BE7ADB9005BCE7C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2F36412BE7ADB9005BCE7C /* HomeView.swift */; };
 		CB2F36442BE7ADC6005BCE7C /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2F36432BE7ADC6005BCE7C /* MapView.swift */; };
 		CB2F36482BE7ADF0005BCE7C /* CountryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2F36472BE7ADF0005BCE7C /* CountryListView.swift */; };
@@ -21,7 +22,6 @@
 		CB2F364C2BE7AE19005BCE7C /* TabButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2F364B2BE7AE19005BCE7C /* TabButton.swift */; };
 		CB2F364E2BE7AE29005BCE7C /* CountryInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2F364D2BE7AE29005BCE7C /* CountryInfoView.swift */; };
 		CB2F36522BE7AE4A005BCE7C /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2F36512BE7AE4A005BCE7C /* EditProfileView.swift */; };
-		CB2F36542BE7AE71005BCE7C /* FavouriteCountryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2F36532BE7AE71005BCE7C /* FavouriteCountryView.swift */; };
 		CB2F36562BE7AE89005BCE7C /* MontserratAlternates-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB2F36552BE7AE89005BCE7C /* MontserratAlternates-SemiBold.ttf */; };
 		CB4D2B802BDB44BC004FC20C /* CountryDiscoveryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4D2B7F2BDB44BC004FC20C /* CountryDiscoveryApp.swift */; };
 		CB4D2B842BDB44BD004FC20C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB4D2B832BDB44BD004FC20C /* Assets.xcassets */; };
@@ -37,6 +37,7 @@
 		CB1F320D2BE8F24F0002CC14 /* MyProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileView.swift; sourceTree = "<group>"; };
 		CB1F320F2BE8F28E0002CC14 /* SecureTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureTextField.swift; sourceTree = "<group>"; };
 		CB1F32132BE8F37F0002CC14 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		CB1F32162BE9075C0002CC14 /* FavCountryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavCountryView.swift; sourceTree = "<group>"; };
 		CB2F36412BE7ADB9005BCE7C /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		CB2F36432BE7ADC6005BCE7C /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		CB2F36472BE7ADF0005BCE7C /* CountryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryListView.swift; sourceTree = "<group>"; };
@@ -44,7 +45,6 @@
 		CB2F364B2BE7AE19005BCE7C /* TabButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabButton.swift; sourceTree = "<group>"; };
 		CB2F364D2BE7AE29005BCE7C /* CountryInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryInfoView.swift; sourceTree = "<group>"; };
 		CB2F36512BE7AE4A005BCE7C /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
-		CB2F36532BE7AE71005BCE7C /* FavouriteCountryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteCountryView.swift; sourceTree = "<group>"; };
 		CB2F36552BE7AE89005BCE7C /* MontserratAlternates-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MontserratAlternates-SemiBold.ttf"; sourceTree = "<group>"; };
 		CB2F36572BE7AE98005BCE7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		CB4D2B7C2BDB44BC004FC20C /* iOS-Assignment3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS-Assignment3.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,20 +93,28 @@
 			path = Model/ViewModel;
 			sourceTree = "<group>";
 		};
+		CB1F32152BE8FCA50002CC14 /* SettingView */ = {
+			isa = PBXGroup;
+			children = (
+				CB1F320B2BE8F21D0002CC14 /* SettingView.swift */,
+				CB1F320D2BE8F24F0002CC14 /* MyProfileView.swift */,
+				CB2F36512BE7AE4A005BCE7C /* EditProfileView.swift */,
+				CB1F32162BE9075C0002CC14 /* FavCountryView.swift */,
+			);
+			path = SettingView;
+			sourceTree = "<group>";
+		};
 		CB2F363D2BE7AD5D005BCE7C /* View */ = {
 			isa = PBXGroup;
 			children = (
 				4941DAA42BE8687B0096E706 /* AppEntry */,
+				CB2F36412BE7ADB9005BCE7C /* HomeView.swift */,
 				4941DAE42BE88B080096E706 /* TabView */,
 				CB2F36432BE7ADC6005BCE7C /* MapView.swift */,
-				CB2F36412BE7ADB9005BCE7C /* HomeView.swift */,
 				CB2F36472BE7ADF0005BCE7C /* CountryListView.swift */,
 				CB2F364D2BE7AE29005BCE7C /* CountryInfoView.swift */,
 				CB1F320F2BE8F28E0002CC14 /* SecureTextField.swift */,
-				CB1F320B2BE8F21D0002CC14 /* SettingView.swift */,
-				CB1F320D2BE8F24F0002CC14 /* MyProfileView.swift */,
-				CB2F36512BE7AE4A005BCE7C /* EditProfileView.swift */,
-				CB2F36532BE7AE71005BCE7C /* FavouriteCountryView.swift */,
+				CB1F32152BE8FCA50002CC14 /* SettingView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -238,8 +246,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				CB1F32102BE8F28E0002CC14 /* SecureTextField.swift in Sources */,
+				CB1F32172BE9075C0002CC14 /* FavCountryView.swift in Sources */,
 				CB2F36522BE7AE4A005BCE7C /* EditProfileView.swift in Sources */,
-				CB2F36542BE7AE71005BCE7C /* FavouriteCountryView.swift in Sources */,
 				CB4D2B802BDB44BC004FC20C /* CountryDiscoveryApp.swift in Sources */,
 				CB1F320C2BE8F21D0002CC14 /* SettingView.swift in Sources */,
 				4941DAA32BE868740096E706 /* SignUpView.swift in Sources */,

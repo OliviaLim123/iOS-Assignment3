@@ -8,6 +8,8 @@
 import SwiftUI
 
 class ProfileViewModel: ObservableObject {
+    
+    //Published properties for handling the profile information
     @Published var avatarImage: UIImage?
     @Published var username: String = ""
     @Published var password: String = ""
