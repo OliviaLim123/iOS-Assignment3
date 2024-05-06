@@ -18,6 +18,7 @@ struct AppEntry: View {
                 AppEntry
             }
         }
+        .navigationBarBackButtonHidden(true)
     }
     
     //  APP TITTLE
@@ -51,7 +52,7 @@ struct AppEntry: View {
             
             //  LOGIN LINK
             NavigationLink {
-                HomeView()
+                LoginView()
             } label: {
                 LoginButton
             }
