@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4941DAA12BE85F0A0096E706 /* AppEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4941DAA02BE85F0A0096E706 /* AppEntry.swift */; };
+		4941DAA32BE868740096E706 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4941DAA22BE868740096E706 /* SignUpView.swift */; };
+		4941DAA62BE885980096E706 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4941DAA52BE885980096E706 /* LoginView.swift */; };
 		CB2F36422BE7ADB9005BCE7C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2F36412BE7ADB9005BCE7C /* HomeView.swift */; };
 		CB2F36442BE7ADC6005BCE7C /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2F36432BE7ADC6005BCE7C /* MapView.swift */; };
 		CB2F36482BE7ADF0005BCE7C /* CountryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2F36472BE7ADF0005BCE7C /* CountryListView.swift */; };
@@ -23,6 +26,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4941DAA02BE85F0A0096E706 /* AppEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEntry.swift; sourceTree = "<group>"; };
+		4941DAA22BE868740096E706 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		4941DAA52BE885980096E706 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		CB2F36412BE7ADB9005BCE7C /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		CB2F36432BE7ADC6005BCE7C /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		CB2F36472BE7ADF0005BCE7C /* CountryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryListView.swift; sourceTree = "<group>"; };
@@ -51,11 +57,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4941DAA42BE8687B0096E706 /* AppEntry */ = {
+			isa = PBXGroup;
+			children = (
+				4941DAA02BE85F0A0096E706 /* AppEntry.swift */,
+				4941DAA52BE885980096E706 /* LoginView.swift */,
+				4941DAA22BE868740096E706 /* SignUpView.swift */,
+			);
+			path = AppEntry;
+			sourceTree = "<group>";
+		};
+		4941DAE42BE88B080096E706 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
 		CB2F363D2BE7AD5D005BCE7C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4941DAA42BE8687B0096E706 /* AppEntry */,
 				CB2F36412BE7ADB9005BCE7C /* HomeView.swift */,
 				CB2F364B2BE7AE19005BCE7C /* TabButton.swift */,
+				4941DAE42BE88B080096E706 /* New Group */,
 				CB2F36492BE7AE0D005BCE7C /* TabBar.swift */,
 				CB2F36432BE7ADC6005BCE7C /* MapView.swift */,
 				CB2F36472BE7ADF0005BCE7C /* CountryListView.swift */,
@@ -203,10 +228,13 @@
 				CB2F36542BE7AE71005BCE7C /* FavouriteCountryView.swift in Sources */,
 				CB2F36502BE7AE41005BCE7C /* ProfileView.swift in Sources */,
 				CB4D2B802BDB44BC004FC20C /* CountryDiscoveryApp.swift in Sources */,
+				4941DAA32BE868740096E706 /* SignUpView.swift in Sources */,
 				CB2F36442BE7ADC6005BCE7C /* MapView.swift in Sources */,
 				CB2F364E2BE7AE29005BCE7C /* CountryInfoView.swift in Sources */,
 				CB2F36422BE7ADB9005BCE7C /* HomeView.swift in Sources */,
 				CB2F364C2BE7AE19005BCE7C /* TabButton.swift in Sources */,
+				4941DAA12BE85F0A0096E706 /* AppEntry.swift in Sources */,
+				4941DAA62BE885980096E706 /* LoginView.swift in Sources */,
 				CB2F36482BE7ADF0005BCE7C /* CountryListView.swift in Sources */,
 				CB2F364A2BE7AE0D005BCE7C /* TabBar.swift in Sources */,
 			);
