@@ -22,8 +22,8 @@ struct TabBar: View {
                 CountryInfoView()
                     .tag("Info")
                 
-                ProfileView()
-                    .tag("Profile")
+                SettingView()
+                    .tag("Setting")
                 
             }
             HStack(spacing: 0){

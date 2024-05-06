@@ -1,29 +1,29 @@
 //
-//  ProfileView.swift
+//  SettingView.swift
 //  iOS-Assignment3
 //
-//  Created by Olivia Gita Amanda Lim on 5/5/2024.
+//  Created by Olivia Gita Amanda Lim on 6/5/2024.
 //
 
 import SwiftUI
+import PhotosUI
 
-struct ProfileView: View {
+struct SettingView: View {
+    @ObservedObject var viewModel = ProfileViewModel.shared
     @State private var darkMode: Bool = false
     @State private var currentMode: ColorScheme = .light
     var body: some View {
         VStack{
-            Text("PROFILE")
+            Text("SETTING")
                 .font(.custom("MontserratAlternates-SemiBold", size: 50))
                 .foregroundStyle(.purple1)
 
-            ZStack{
-                Circle()
-                    .foregroundStyle(.purpleOpacity2)
-                    .frame(width: 200)
-                Image(systemName: "person.circle")
-                    .font(.system(size: 140))
-            }
-            .padding(.bottom)
+            Image(uiImage: viewModel.avatarImage ?? UIImage(resource: .defaultAvatar))
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: 150,height: 150)
+                .clipShape(Circle())
+                .padding(.bottom)
             HStack{
                 //will be linked with leonie's part
                 Text("ID001")
@@ -37,7 +37,7 @@ struct ProfileView: View {
             }
             Spacer()
             NavigationLink {
-                EditProfileView()
+                MyProfileView()
             } label: {
                 ZStack(alignment: .leading){
                     Rectangle()
@@ -51,7 +51,7 @@ struct ProfileView: View {
                             .foregroundStyle(.black)
                             .font(.title2)
                             
-                        Text("Edit my profile")
+                        Text("My Profile")
                             .font(.custom("MontserratAlternates-SemiBold", size: 18))
                             .foregroundStyle(.black)
                         
@@ -130,6 +130,6 @@ struct ProfileView: View {
 
 #Preview {
     NavigationStack {
-        ProfileView()
+        SettingView()
     }
 }

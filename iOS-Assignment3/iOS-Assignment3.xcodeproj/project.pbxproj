@@ -10,13 +10,16 @@
 		4941DAA12BE85F0A0096E706 /* AppEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4941DAA02BE85F0A0096E706 /* AppEntry.swift */; };
 		4941DAA32BE868740096E706 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4941DAA22BE868740096E706 /* SignUpView.swift */; };
 		4941DAA62BE885980096E706 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4941DAA52BE885980096E706 /* LoginView.swift */; };
+		CB1F320C2BE8F21D0002CC14 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1F320B2BE8F21D0002CC14 /* SettingView.swift */; };
+		CB1F320E2BE8F24F0002CC14 /* MyProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1F320D2BE8F24F0002CC14 /* MyProfileView.swift */; };
+		CB1F32102BE8F28E0002CC14 /* SecureTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1F320F2BE8F28E0002CC14 /* SecureTextField.swift */; };
+		CB1F32142BE8F37F0002CC14 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1F32132BE8F37F0002CC14 /* ProfileViewModel.swift */; };
 		CB2F36422BE7ADB9005BCE7C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2F36412BE7ADB9005BCE7C /* HomeView.swift */; };
 		CB2F36442BE7ADC6005BCE7C /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2F36432BE7ADC6005BCE7C /* MapView.swift */; };
 		CB2F36482BE7ADF0005BCE7C /* CountryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2F36472BE7ADF0005BCE7C /* CountryListView.swift */; };
 		CB2F364A2BE7AE0D005BCE7C /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2F36492BE7AE0D005BCE7C /* TabBar.swift */; };
 		CB2F364C2BE7AE19005BCE7C /* TabButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2F364B2BE7AE19005BCE7C /* TabButton.swift */; };
 		CB2F364E2BE7AE29005BCE7C /* CountryInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2F364D2BE7AE29005BCE7C /* CountryInfoView.swift */; };
-		CB2F36502BE7AE41005BCE7C /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2F364F2BE7AE41005BCE7C /* ProfileView.swift */; };
 		CB2F36522BE7AE4A005BCE7C /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2F36512BE7AE4A005BCE7C /* EditProfileView.swift */; };
 		CB2F36542BE7AE71005BCE7C /* FavouriteCountryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2F36532BE7AE71005BCE7C /* FavouriteCountryView.swift */; };
 		CB2F36562BE7AE89005BCE7C /* MontserratAlternates-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB2F36552BE7AE89005BCE7C /* MontserratAlternates-SemiBold.ttf */; };
@@ -30,13 +33,16 @@
 		4941DAA02BE85F0A0096E706 /* AppEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEntry.swift; sourceTree = "<group>"; };
 		4941DAA22BE868740096E706 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		4941DAA52BE885980096E706 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		CB1F320B2BE8F21D0002CC14 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		CB1F320D2BE8F24F0002CC14 /* MyProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileView.swift; sourceTree = "<group>"; };
+		CB1F320F2BE8F28E0002CC14 /* SecureTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureTextField.swift; sourceTree = "<group>"; };
+		CB1F32132BE8F37F0002CC14 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		CB2F36412BE7ADB9005BCE7C /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		CB2F36432BE7ADC6005BCE7C /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		CB2F36472BE7ADF0005BCE7C /* CountryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryListView.swift; sourceTree = "<group>"; };
 		CB2F36492BE7AE0D005BCE7C /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		CB2F364B2BE7AE19005BCE7C /* TabButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabButton.swift; sourceTree = "<group>"; };
 		CB2F364D2BE7AE29005BCE7C /* CountryInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryInfoView.swift; sourceTree = "<group>"; };
-		CB2F364F2BE7AE41005BCE7C /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		CB2F36512BE7AE4A005BCE7C /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		CB2F36532BE7AE71005BCE7C /* FavouriteCountryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteCountryView.swift; sourceTree = "<group>"; };
 		CB2F36552BE7AE89005BCE7C /* MontserratAlternates-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MontserratAlternates-SemiBold.ttf"; sourceTree = "<group>"; };
@@ -78,6 +84,15 @@
 			path = TabView;
 			sourceTree = "<group>";
 		};
+		CB1F32122BE8F3650002CC14 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				CB1F32132BE8F37F0002CC14 /* ProfileViewModel.swift */,
+			);
+			name = ViewModel;
+			path = Model/ViewModel;
+			sourceTree = "<group>";
+		};
 		CB2F363D2BE7AD5D005BCE7C /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -87,7 +102,9 @@
 				CB2F36412BE7ADB9005BCE7C /* HomeView.swift */,
 				CB2F36472BE7ADF0005BCE7C /* CountryListView.swift */,
 				CB2F364D2BE7AE29005BCE7C /* CountryInfoView.swift */,
-				CB2F364F2BE7AE41005BCE7C /* ProfileView.swift */,
+				CB1F320F2BE8F28E0002CC14 /* SecureTextField.swift */,
+				CB1F320B2BE8F21D0002CC14 /* SettingView.swift */,
+				CB1F320D2BE8F24F0002CC14 /* MyProfileView.swift */,
 				CB2F36512BE7AE4A005BCE7C /* EditProfileView.swift */,
 				CB2F36532BE7AE71005BCE7C /* FavouriteCountryView.swift */,
 			);
@@ -124,6 +141,7 @@
 				CB2F36572BE7AE98005BCE7C /* Info.plist */,
 				CB4D2B7F2BDB44BC004FC20C /* CountryDiscoveryApp.swift */,
 				DDC2E1C82BE8D552001EBC09 /* Model */,
+				CB1F32122BE8F3650002CC14 /* ViewModel */,
 				CB2F363D2BE7AD5D005BCE7C /* View */,
 				CB2F36402BE7AD85005BCE7C /* Fonts */,
 				CB4D2B832BDB44BD004FC20C /* Assets.xcassets */,
@@ -219,17 +237,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB1F32102BE8F28E0002CC14 /* SecureTextField.swift in Sources */,
 				CB2F36522BE7AE4A005BCE7C /* EditProfileView.swift in Sources */,
 				CB2F36542BE7AE71005BCE7C /* FavouriteCountryView.swift in Sources */,
-				CB2F36502BE7AE41005BCE7C /* ProfileView.swift in Sources */,
 				CB4D2B802BDB44BC004FC20C /* CountryDiscoveryApp.swift in Sources */,
+				CB1F320C2BE8F21D0002CC14 /* SettingView.swift in Sources */,
 				4941DAA32BE868740096E706 /* SignUpView.swift in Sources */,
 				CB2F36442BE7ADC6005BCE7C /* MapView.swift in Sources */,
 				CB2F364E2BE7AE29005BCE7C /* CountryInfoView.swift in Sources */,
 				CB2F36422BE7ADB9005BCE7C /* HomeView.swift in Sources */,
 				DDC2E1CA2BE8D577001EBC09 /* UserModel.swift in Sources */,
 				CB2F364C2BE7AE19005BCE7C /* TabButton.swift in Sources */,
+				CB1F320E2BE8F24F0002CC14 /* MyProfileView.swift in Sources */,
 				4941DAA12BE85F0A0096E706 /* AppEntry.swift in Sources */,
+				CB1F32142BE8F37F0002CC14 /* ProfileViewModel.swift in Sources */,
 				4941DAA62BE885980096E706 /* LoginView.swift in Sources */,
 				CB2F36482BE7ADF0005BCE7C /* CountryListView.swift in Sources */,
 				CB2F364A2BE7AE0D005BCE7C /* TabBar.swift in Sources */,
