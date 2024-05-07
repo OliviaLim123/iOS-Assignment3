@@ -10,8 +10,9 @@ import SwiftUI
 struct SignUpView: View {
     
     //  LOGIN CREDENTIALS
-    @State var username: String = ""
-    @State var password: String = ""
+//    @State var username: String = ""
+//    @State var password: String = ""
+    @StateObject var loginVM = LoginViewModel()
     
     //  CHECK visibility of the password
     @State var isPwdVisible: Bool = false
@@ -79,7 +80,7 @@ struct SignUpView: View {
                     .font(.system(size: 28))
                     .foregroundStyle(.purpleOpacity1.opacity(0.7))
                 
-                TextField("Username", text: $username)
+                TextField("Username", text: $loginVM.username)
                     .font(.custom("MontserratAlternates-SemiBold", size: 20))
                     .foregroundStyle(.purpleOpacity1)
                     .padding(.leading, 15)
@@ -107,14 +108,14 @@ struct SignUpView: View {
                     .foregroundStyle(.purpleOpacity1.opacity(0.7))
                 
                 if isPwdVisible {
-                    TextField("Password", text: $password)
+                    TextField("Password", text: $loginVM.password)
                         .font(.custom("MontserratAlternates-SemiBold", size: 20))
                         .foregroundStyle(.purple1)
                         .padding(.leading, 15)
                     
                     
                 } else {
-                    SecureField("Password", text: $password)
+                    SecureField("Password", text: $loginVM.password)
                         .font(.custom("MontserratAlternates-SemiBold", size: 20))
                         .foregroundStyle(.purple1)
                         .padding(.leading, 15)
@@ -263,18 +264,18 @@ struct SignUpView: View {
     //
     //  FUNCTION TO CHECKED PASSWORD
     func isCheckedPassword() -> Bool {
-        return password == confirmPwd
+        return loginVM.password == confirmPwd
     }
     
     //  FUNCTION TO CHECKED Username
     func isValidUsername() -> Bool {
-        return username.count >= 3
+        return loginVM.username.count >= 3
     }
     
     //  FUNCTION TO CHECKED IF ANY FILLED FORM IS EMPTY
     func isFormValid() -> Bool {
         //  Check if any fill is empty
-        if username.isEmpty || password.isEmpty || confirmPwd.isEmpty {
+        if loginVM.username.isEmpty || loginVM.password.isEmpty || confirmPwd.isEmpty {
             showIncompleteFormError = true
             showPasswordMismatchError = false
             showUsernameError = false

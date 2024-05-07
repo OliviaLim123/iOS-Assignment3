@@ -10,8 +10,11 @@ import SwiftUI
 struct LoginView: View {
     
     //  LOGIN CREDENTIALS
-    @State var username: String = ""
-    @State var password: String = ""
+//    @State var username: String = ""
+//    @State var password: String = ""
+    
+    @StateObject var loginVM = LoginViewModel()
+    
     @State var isPwdVisible: Bool = false
     
     //  CHECK VALID INPUT
@@ -64,7 +67,7 @@ struct LoginView: View {
                     .font(.system(size: 28))
                     .foregroundStyle(.purpleOpacity1.opacity(0.7))
                 
-                TextField("Username", text: $username)
+                TextField("Username", text: $loginVM.username)
                     .font(.custom("MontserratAlternates-SemiBold", size: 20))
                     .foregroundStyle(.purpleOpacity1)
                     .padding()
@@ -115,13 +118,13 @@ struct LoginView: View {
                     .foregroundStyle(.purpleOpacity1.opacity(0.7))
                 
                 if isPwdVisible {
-                    TextField("Password", text: $password)
+                    TextField("Password", text: $loginVM.password)
                         .font(.custom("MontserratAlternates-SemiBold", size: 20))
                         .foregroundStyle(.purple1)
                         .padding(.leading, 15)
                     
                 } else {
-                    SecureField("Password", text: $password)
+                    SecureField("Password", text: $loginVM.password)
                         .font(.custom("MontserratAlternates-SemiBold", size: 20))
                         .foregroundStyle(.purple1)
                         .padding(.leading, 15)
@@ -236,7 +239,7 @@ struct LoginView: View {
     //  FUNCTION
     //  FUNCTION TO VALIDATE THE FORM COMPLETENESS
     func isLoginFormValid() -> Bool {
-        if username.isEmpty || password.isEmpty {
+        if loginVM.username.isEmpty || loginVM.password.isEmpty {
             showIncompleteFormError = true
             return false
         } else {
