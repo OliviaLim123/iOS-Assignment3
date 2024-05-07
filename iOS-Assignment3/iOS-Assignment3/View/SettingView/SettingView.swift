@@ -12,7 +12,7 @@ import PhotosUI
 struct SettingView: View {
     
     @ObservedObject var viewModel = ProfileViewModel.shared
-    @StateObject var loginVM = LoginViewModel()
+    @StateObject var loginVM = UserCredentialViewModel()
     //State variables to handle the display mode function
     @State private var darkMode: Bool = false
     @State private var currentMode: ColorScheme = .light

@@ -10,16 +10,16 @@ import SwiftUI
 struct SignUpView: View {
     
     //  LOGIN CREDENTIALS
-//    @State var username: String = ""
-//    @State var password: String = ""
-    @StateObject var loginVM = LoginViewModel()
+    //    @State var username: String = ""
+    //    @State var password: String = ""
+    @StateObject var userCredentialVM = UserCredentialViewModel()
     
     //  CHECK visibility of the password
     @State var isPwdVisible: Bool = false
     @State var confirmPwd: String = ""
     
     
-    //  CHECK VALID INPUT
+    //  STATE FOR FORM VALIDATION - CHECK VALID INPUT
     @State var isCreatedAccount: Bool = false
     //  State to track password mismatch
     @State var showPasswordMismatchError: Bool = false
@@ -80,7 +80,7 @@ struct SignUpView: View {
                     .font(.system(size: 28))
                     .foregroundStyle(.purpleOpacity1.opacity(0.7))
                 
-                TextField("Username", text: $loginVM.usernameTextField) // the "usernameTextField" refresh field to blank after turn off the app; otherwise; "username" make the field still keep the previous username, not refresh it.
+                TextField("Username", text: $userCredentialVM.usernameTextField) // the "usernameTextField" refresh field to blank after turn off the app; otherwise; "username" make the field still keep the previous username, not refresh it.
                     .font(.custom("MontserratAlternates-SemiBold", size: 20))
                     .foregroundStyle(.purpleOpacity1)
                     .padding(.leading, 15)
@@ -108,14 +108,14 @@ struct SignUpView: View {
                     .foregroundStyle(.purpleOpacity1.opacity(0.7))
                 
                 if isPwdVisible {
-                    TextField("Password", text: $loginVM.passwordTextField)
+                    TextField("Password", text: $userCredentialVM.passwordTextField)
                         .font(.custom("MontserratAlternates-SemiBold", size: 20))
                         .foregroundStyle(.purple1)
                         .padding(.leading, 15)
                     
                     
                 } else {
-                    SecureField("Password", text: $loginVM.passwordTextField)
+                    SecureField("Password", text: $userCredentialVM.passwordTextField)
                         .font(.custom("MontserratAlternates-SemiBold", size: 20))
                         .foregroundStyle(.purple1)
                         .padding(.leading, 15)
@@ -188,8 +188,9 @@ struct SignUpView: View {
                 if isFormValid() {
                     if isValidUsername() {
                         if isCheckedPassword() {
-                            isCreatedAccount = true
-                            loginVM.signUp()
+                            //  STORE NEW CREDENTIAL
+                            userCredentialVM.signUp()
+                            isCreatedAccount = true // Navigate to LoginView
                             showPasswordMismatchError = false
                             showUsernameError = false
                         } else {
@@ -221,6 +222,7 @@ struct SignUpView: View {
     }
     
     //  CHECK MATCHED PASSWORD
+    //  & DISPLAY ERROR FOR PASSWORD MISMATCHED
     var passwordError: some View {
         VStack {
             // Conditional view for displaying password mismatch error
@@ -234,7 +236,7 @@ struct SignUpView: View {
     }
     
     
-    //  CHECK Username Condition
+    //  CHECK INVALID USERNAME
     var usernameError: some View {
         VStack {
             if showUsernameError {
@@ -246,7 +248,7 @@ struct SignUpView: View {
         }
     }
     
-    //  DISPLAY/CHECK when the Form is incompleted
+    //  DISPLAY/CHECK ERROR for incompleted form
     var incompleteFormError: some View {
         VStack {
             if showIncompleteFormError {
@@ -263,20 +265,20 @@ struct SignUpView: View {
     //
     //  FUNCTION
     //
-    //  FUNCTION TO CHECKED PASSWORD
+    //  FUNCTION TO VALIDATE if the PASSWORD & CONFIRM PWD fields match
     func isCheckedPassword() -> Bool {
-        return loginVM.password == confirmPwd
+        return userCredentialVM.passwordTextField == confirmPwd
     }
     
-    //  FUNCTION TO CHECKED Username
+    //  FUNCTION TO CHECKED if the Username is at least 3 characters long
     func isValidUsername() -> Bool {
-        return loginVM.username.count >= 3
+        return userCredentialVM.usernameTextField.count >= 3
     }
     
     //  FUNCTION TO CHECKED IF ANY FILLED FORM IS EMPTY
     func isFormValid() -> Bool {
         //  Check if any fill is empty
-        if loginVM.usernameTextField.isEmpty || loginVM.passwordTextField.isEmpty || confirmPwd.isEmpty {
+        if userCredentialVM.usernameTextField.isEmpty || userCredentialVM.passwordTextField.isEmpty || confirmPwd.isEmpty {
             showIncompleteFormError = true
             showPasswordMismatchError = false
             showUsernameError = false

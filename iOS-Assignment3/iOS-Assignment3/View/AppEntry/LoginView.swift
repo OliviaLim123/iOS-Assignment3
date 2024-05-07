@@ -10,16 +10,21 @@ import SwiftUI
 struct LoginView: View {
     
     //  LOGIN CREDENTIALS
-//    @State var username: String = ""
-//    @State var password: String = ""
+    //    @State var username: String = ""
+    //    @State var password: String = ""
     
-    @StateObject var loginVM = LoginViewModel()
+    @StateObject var userCredentialVM = UserCredentialViewModel()
     
+    //  STATE to check the password's visibility
     @State var isPwdVisible: Bool = false
     
-    //  CHECK VALID INPUT
+    //  STATE for navigate to HomeView() if the form is valid
     @State var isFormValid = false // True >> Go to HomeView()
+    
+    //  STATE FOR FORM VALIDATION - CHECK VALID INPUT
     @State var showIncompleteFormError: Bool = false // True >> Show Alert of unfilled form
+    @State var showInvalidCredentialsError: Bool = false // True >> Show Alert of incorrect credentials
+    
     
     //  MainView
     var body: some View {
@@ -33,6 +38,8 @@ struct LoginView: View {
                 
                 // Display form incompleted ERROR
                 incompleteFormError
+                // Display form invalid credentials ERRORS
+                invalidCredentialsError
                 
                 Spacer()
                 loginButton
@@ -56,18 +63,12 @@ struct LoginView: View {
     //  INPUT USERNAME
     var userNameField: some View {
         ZStack {
-            //            RoundedRectangle(cornerRadius: 10.0)
-            //                .frame(maxWidth: .infinity)
-            //                .foregroundStyle(.lightPurple.opacity(0.5))
-            //                .frame(height: 65)
-            //                .padding(.horizontal)
-            
             HStack {
                 Image(systemName: "person.crop.circle")
                     .font(.system(size: 28))
                     .foregroundStyle(.purpleOpacity1.opacity(0.7))
                 
-                TextField("Username", text: $loginVM.usernameTextField)
+                TextField("Username", text: $userCredentialVM.usernameTextField)
                     .font(.custom("MontserratAlternates-SemiBold", size: 20))
                     .foregroundStyle(.purpleOpacity1)
                     .padding()
@@ -118,13 +119,13 @@ struct LoginView: View {
                     .foregroundStyle(.purpleOpacity1.opacity(0.7))
                 
                 if isPwdVisible {
-                    TextField("Password", text: $loginVM.passwordTextField)
+                    TextField("Password", text: $userCredentialVM.passwordTextField)
                         .font(.custom("MontserratAlternates-SemiBold", size: 20))
                         .foregroundStyle(.purple1)
                         .padding(.leading, 15)
                     
                 } else {
-                    SecureField("Password", text: $loginVM.passwordTextField)
+                    SecureField("Password", text: $userCredentialVM.passwordTextField)
                         .font(.custom("MontserratAlternates-SemiBold", size: 20))
                         .foregroundStyle(.purple1)
                         .padding(.leading, 15)
@@ -173,9 +174,16 @@ struct LoginView: View {
     var loginButton: some View {
         VStack {
             Button {
-                if isLoginFormValid() {
-                    isFormValid = true
-                    loginVM.login()//Navigate to "HomeView"
+                if isLoginFormValid() { //check unfilled form
+                    
+                    // check is input matched with database of user credentials
+                    if (userCredentialVM.validateCredentials()) {
+                        
+                        isFormValid = true//Navigate to "HomeView"
+                        showInvalidCredentialsError = false
+                    } else {
+                        showInvalidCredentialsError = true
+                    }
                 }
             } label: {
                 
@@ -208,7 +216,7 @@ struct LoginView: View {
         }
     }
     
-    //  The View of Register Link to navigate to "SignUp" Page
+    //  DISPLAY the View of "SignUpLink" to navigate to "SignUp" Page
     var RegisterLink: some View {
         HStack {
             Text("Don't have account ?")
@@ -224,7 +232,7 @@ struct LoginView: View {
         .padding()
     }
     
-    //  DISPLAY/CHECK when the form is incompleted
+    //  DISPLAY the Error message when checked the form is incompleted
     var incompleteFormError: some View {
         VStack() {
             if showIncompleteFormError {
@@ -237,10 +245,23 @@ struct LoginView: View {
         }
     }
     
+    // DISPLAY the Error message for invalid credentials
+    var invalidCredentialsError: some View {
+        VStack {
+            if showInvalidCredentialsError {
+                Text("Invalid username or password.")
+                    .font(.custom("MontserratAlternates-SemiBold", size: 20))
+                    .foregroundColor(.red)
+                    .multilineTextAlignment(.center)
+                    .padding(.top, 20)
+            }
+        }
+    }
+    
     //  FUNCTION
-    //  FUNCTION TO VALIDATE THE FORM COMPLETENESS
+    //  FUNCTION TO CHECK if THE FORM is INCOMPLETED
     func isLoginFormValid() -> Bool {
-        if loginVM.usernameTextField.isEmpty || loginVM.passwordTextField.isEmpty {
+        if userCredentialVM.usernameTextField.isEmpty || userCredentialVM.passwordTextField.isEmpty {
             showIncompleteFormError = true
             return false
         } else {

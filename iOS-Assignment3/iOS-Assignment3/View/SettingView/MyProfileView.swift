@@ -12,7 +12,7 @@ import PhotosUI
 struct MyProfileView: View {
     
     @ObservedObject var viewModel = ProfileViewModel.shared
-    @StateObject var loginVM = LoginViewModel()
+    @StateObject var userCredentialVM = UserCredentialViewModel()
     
     //The body of view:
     //Represent how the profile looks like
@@ -82,7 +82,7 @@ struct MyProfileView: View {
                     .foregroundStyle(.black)
                     .font(.title2)
                 //should be linked with the leonie part
-                Text("\(loginVM.username)")
+                Text("\(userCredentialVM.username)")
                     .font(.custom("MontserratAlternates-SemiBold", size: 15))
                     .foregroundStyle(.black)
             }
@@ -112,7 +112,7 @@ struct MyProfileView: View {
                     .foregroundStyle(.black)
                     .font(.title2)
                 //should be linked with the leonie part
-                Text("\(loginVM.password)")
+                Text("\(userCredentialVM.password)")
                     .font(.custom("MontserratAlternates-SemiBold", size: 15))
                     .foregroundStyle(.black)
             }

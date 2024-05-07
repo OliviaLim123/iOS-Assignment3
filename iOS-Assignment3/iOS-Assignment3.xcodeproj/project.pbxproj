@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4921245D2BE9BF3600B83AA3 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4921245C2BE9BF3600B83AA3 /* LoginViewModel.swift */; };
+		4921245D2BE9BF3600B83AA3 /* UserCredentialViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4921245C2BE9BF3600B83AA3 /* UserCredentialViewModel.swift */; };
 		4941DAA12BE85F0A0096E706 /* AppEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4941DAA02BE85F0A0096E706 /* AppEntry.swift */; };
 		4941DAA32BE868740096E706 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4941DAA22BE868740096E706 /* SignUpView.swift */; };
 		4941DAA62BE885980096E706 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4941DAA52BE885980096E706 /* LoginView.swift */; };
@@ -31,7 +31,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4921245C2BE9BF3600B83AA3 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		4921245C2BE9BF3600B83AA3 /* UserCredentialViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCredentialViewModel.swift; sourceTree = "<group>"; };
 		4941DAA02BE85F0A0096E706 /* AppEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEntry.swift; sourceTree = "<group>"; };
 		4941DAA22BE868740096E706 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		4941DAA52BE885980096E706 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -90,7 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				CB1F32132BE8F37F0002CC14 /* ProfileViewModel.swift */,
-				4921245C2BE9BF3600B83AA3 /* LoginViewModel.swift */,
+				4921245C2BE9BF3600B83AA3 /* UserCredentialViewModel.swift */,
 			);
 			name = ViewModel;
 			path = Model/ViewModel;
@@ -264,7 +264,7 @@
 				CB1F32142BE8F37F0002CC14 /* ProfileViewModel.swift in Sources */,
 				4941DAA62BE885980096E706 /* LoginView.swift in Sources */,
 				CB2F36482BE7ADF0005BCE7C /* CountryListView.swift in Sources */,
-				4921245D2BE9BF3600B83AA3 /* LoginViewModel.swift in Sources */,
+				4921245D2BE9BF3600B83AA3 /* UserCredentialViewModel.swift in Sources */,
 				CB2F364A2BE7AE0D005BCE7C /* TabBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
