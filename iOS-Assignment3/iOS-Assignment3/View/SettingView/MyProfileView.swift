@@ -82,7 +82,6 @@ struct MyProfileView: View {
                 Image(systemName: "person.circle.fill")
                     .foregroundStyle(.black)
                     .font(.title2)
-                //should be linked with the leonie part
                 Text("\(userCredentialVM.username)")
                     .font(.custom("MontserratAlternates-SemiBold", size: 15))
                     .foregroundStyle(.black)

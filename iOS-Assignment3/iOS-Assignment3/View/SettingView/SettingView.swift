@@ -13,9 +13,8 @@ struct SettingView: View {
     
     @ObservedObject var profileVM = ProfileViewModel.shared
     @StateObject var userCredentialVM = UserCredentialViewModel()
-    //State variables to handle the display mode function
-    @State private var darkMode: Bool = false
-    @State private var currentMode: ColorScheme = .light
+    //AppStorage for handling the display mode function
+    @AppStorage("isDarkMode") private var isDarkMode = false
     
     //The body of view:
     //Represent how the setting View looks like
@@ -33,6 +32,7 @@ struct SettingView: View {
             Spacer()
             Spacer()
         }
+        .preferredColorScheme(isDarkMode ? .dark : .light)
     }
     
     //The appearance of "Setting" title
@@ -55,12 +55,10 @@ struct SettingView: View {
     //The appearance of ID and username of the user
     var profileInfo: some View {
         HStack{
-            //will be linked with leonie's part
             Text("ID\(userCredentialVM.id)")
                 .font(.custom("MontserratAlternates-SemiBold", size: 25))
                 .foregroundStyle(.purpleOpacity1)
                 .padding(.horizontal, 25)
-            //will be linked with leonie's part
             Text("\(userCredentialVM.username)")
                 .font(.custom("MontserratAlternates-SemiBold", size: 25))
                 .foregroundStyle(.purpleOpacity1)
@@ -116,8 +114,9 @@ struct SettingView: View {
                 Text("Dark Mode")
                     .font(.custom("MontserratAlternates-SemiBold", size: 18))
                     .foregroundStyle(.black)
+                Spacer()
                 darkModeToggle
-                Spacer(minLength: 30)
+                    .padding(.trailing,20)
             }
             .padding(.leading, 40)
         }
@@ -126,12 +125,10 @@ struct SettingView: View {
     
     //The appearance of dark mode toggle
     var darkModeToggle: some View {
-        Toggle("", isOn: $darkMode)
-            .onChange(of: darkMode){ newValue, _ in
-                currentMode = newValue ? .light : .dark
-            }
-            .preferredColorScheme(currentMode)
-            .toggleStyle(SwitchToggleStyle(tint: Color.purple))
+        Toggle("", isOn: $isDarkMode)
+            .toggleStyle(SwitchToggleStyle(tint: .purple))
+            .labelsHidden()
+            .padding(.trailing, 10)
     }
     
     //The appearance and navigation behaviour of the favorite country button
@@ -168,7 +165,8 @@ struct SettingView: View {
     //The appearance and navigation behaviour of log out button
     var logOutButton: some View {
         NavigationLink {
-            //logout function - linked with leonie's part
+            //Navigates to the AppEntry view
+            AppEntry()
         } label: {
             logOutLabel
         }

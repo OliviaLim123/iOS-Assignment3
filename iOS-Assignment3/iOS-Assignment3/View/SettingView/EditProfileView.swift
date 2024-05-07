@@ -14,6 +14,7 @@ struct EditProfileView: View {
     @ObservedObject var profileVM = ProfileViewModel.shared
     @StateObject var userCredentialVM = UserCredentialViewModel()
     @State var confirmPwd: String = ""
+    //Environment object for navigates to the previous screen
     @Environment(\.presentationMode) var presentationMode
     
     
@@ -97,8 +98,7 @@ struct EditProfileView: View {
     
     //The appearance of user ID
     var userID: some View {
-        //linked to the leoni's part
-        Text("")
+        Text("ID \(userCredentialVM.id)")
             .font(.custom("MontserratAlternates-SemiBold", size: 25))
             .foregroundStyle(.purpleOpacity1)
             .padding(.horizontal, 25)
@@ -133,7 +133,6 @@ struct EditProfileView: View {
     
     //The appearance of new username text field
     var newUsernameField: some View {
-        //I haven't linked them with leonie's part
         ZStack {
             Rectangle()
                 .frame(maxWidth: .infinity)
