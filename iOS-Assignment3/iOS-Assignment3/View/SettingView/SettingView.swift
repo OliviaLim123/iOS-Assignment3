@@ -11,8 +11,8 @@ import PhotosUI
 //A view of setting
 struct SettingView: View {
     
-    @ObservedObject var viewModel = ProfileViewModel.shared
-    @StateObject var loginVM = UserCredentialViewModel()
+    @ObservedObject var profileVM = ProfileViewModel.shared
+    @StateObject var userCredentialVM = UserCredentialViewModel()
     //State variables to handle the display mode function
     @State private var darkMode: Bool = false
     @State private var currentMode: ColorScheme = .light
@@ -44,7 +44,7 @@ struct SettingView: View {
     
     //The appearance of profile picture
     var profilePicture: some View {
-        Image(uiImage: viewModel.avatarImage ?? UIImage(resource: .defaultAvatar))
+        Image(uiImage: profileVM.avatarImage ?? UIImage(resource: .defaultAvatar))
             .resizable()
             .aspectRatio(contentMode: .fill)
             .frame(width: 150,height: 150)
@@ -56,12 +56,12 @@ struct SettingView: View {
     var profileInfo: some View {
         HStack{
             //will be linked with leonie's part
-            Text("ID\(Int.random(in: 0...100))")
+            Text("ID\(userCredentialVM.id)")
                 .font(.custom("MontserratAlternates-SemiBold", size: 25))
                 .foregroundStyle(.purpleOpacity1)
                 .padding(.horizontal, 25)
             //will be linked with leonie's part
-            Text("\(loginVM.username)")
+            Text("\(userCredentialVM.username)")
                 .font(.custom("MontserratAlternates-SemiBold", size: 25))
                 .foregroundStyle(.purpleOpacity1)
         }

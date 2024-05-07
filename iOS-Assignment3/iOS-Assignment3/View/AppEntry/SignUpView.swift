@@ -193,6 +193,8 @@ struct SignUpView: View {
                             isCreatedAccount = true // Navigate to LoginView
                             showPasswordMismatchError = false
                             showUsernameError = false
+                            // Generate the ID automatically
+                            userCredentialVM.saveID()
                         } else {
                             showPasswordMismatchError = true
                         }

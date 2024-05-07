@@ -11,8 +11,9 @@ import PhotosUI
 //A view of my profile screen
 struct MyProfileView: View {
     
-    @ObservedObject var viewModel = ProfileViewModel.shared
+    @ObservedObject var profileVM = ProfileViewModel.shared
     @StateObject var userCredentialVM = UserCredentialViewModel()
+    @State var isSecureField: Bool = true
     
     //The body of view:
     //Represent how the profile looks like
@@ -42,7 +43,7 @@ struct MyProfileView: View {
     
     //The appearance of profile picture
     var profilePicture: some View {
-        Image(uiImage: viewModel.avatarImage ?? UIImage(resource: .defaultAvatar))
+        Image(uiImage: profileVM.avatarImage ?? UIImage(resource: .defaultAvatar))
             .resizable()
             .aspectRatio(contentMode: .fill)
             .frame(width: 150,height: 150)
@@ -53,7 +54,7 @@ struct MyProfileView: View {
     //The appearance of user ID
     var userID: some View {
         //linked with leonie's part
-        Text("ID001")
+        Text("ID\(userCredentialVM.id)")
             .font(.custom("MontserratAlternates-SemiBold", size: 25))
             .foregroundStyle(.purpleOpacity1)
             .padding(.horizontal, 25)
@@ -107,14 +108,21 @@ struct MyProfileView: View {
                 .foregroundStyle(.purple2)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
                 .padding(.horizontal)
-            HStack{
+            HStack {
                 Image(systemName: "lock.circle.fill")
                     .foregroundStyle(.black)
                     .font(.title2)
-                //should be linked with the leonie part
-                Text("\(userCredentialVM.password)")
-                    .font(.custom("MontserratAlternates-SemiBold", size: 15))
-                    .foregroundStyle(.black)
+                if isSecureField {
+                    securePassField
+                        //Restrict the user to modify this password
+                        .disabled(true)
+                } else {
+                    normalPassField
+                }
+            }
+            .overlay(alignment: .trailing){
+                eyeIcon
+                    .padding(.trailing, 40)
             }
             .padding(.leading, 40)
         }
@@ -141,6 +149,33 @@ struct MyProfileView: View {
                 .font(.custom("MontserratAlternates-SemiBold", size: 20))
                 .foregroundStyle(.black)
         }
+    }
+    
+    //The appearance when the password is unseen by the user
+    var securePassField: some View {
+        SecureField("Old password", text: $userCredentialVM.password)
+            .foregroundColor(.black)
+            .frame(height: 55)
+            .frame(maxWidth: .infinity)
+            .clipShape(RoundedRectangle(cornerRadius: 10))
+    }
+    
+    //The appearance when the password can be seen by the user
+    var normalPassField: some View {
+        TextField("Old password", text: $userCredentialVM.password)
+            .foregroundColor(.black)
+            .frame(height: 55)
+            .frame(maxWidth: .infinity)
+            .clipShape(RoundedRectangle(cornerRadius: 10))
+    }
+    
+    //The appearance of eye icon to see the password
+    var eyeIcon: some View {
+        Image(systemName: isSecureField ? "eye.slash" : "eye")
+            .foregroundStyle(.black)
+            .onTapGesture {
+                isSecureField.toggle()
+            }
     }
 }
 

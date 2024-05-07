@@ -13,8 +13,8 @@ class UserCredentialViewModel: ObservableObject {
     //  'AppStorage' is securely storing the username and password of the user
     @AppStorage("username") var username: String = "" //storedUsername - CHANGED LATER FOR READABLE
     @AppStorage("password") var password: String = "" //storePassword
-    
-    //  Published variables 
+    @AppStorage("id") var id: Int = 0
+    //  Published variables
     //  - for USER INPUT fileds
     //  - that "binding" to the login/sign-up view
     //  so when refreshed the app, the user credential not show again in the "login", blank
@@ -41,6 +41,14 @@ class UserCredentialViewModel: ObservableObject {
         return usernameTextField == username && passwordTextField == password
     }
     
-    //  ID ?
+    //  Generating the ID automatically from the system
+    func getID() -> Int {
+        return Int.random(in: 0...100)
+    }
     
+    // Save the generated ID into the APP storage
+    // Makes the ID permanent throughout the App
+    func saveID(){
+        id = getID()
+    }
 }

@@ -11,7 +11,8 @@ import PhotosUI
 //A view of edit profile screen
 struct EditProfileView: View {
     
-    @ObservedObject var viewModel = ProfileViewModel.shared
+    @ObservedObject var profileVM = ProfileViewModel.shared
+    @StateObject var userCredentialVM = UserCredentialViewModel()
     //State variable to enable photo picker functionality
     @State private var photoPickerItem: PhotosPickerItem?
     
@@ -46,7 +47,7 @@ struct EditProfileView: View {
                 if let photoPickerItem,
                    let data = try? await photoPickerItem.loadTransferable(type: Data.self){
                     if let image = UIImage(data: data){
-                        viewModel.avatarImage = image
+                        profileVM.avatarImage = image
                     }
                 }
                 photoPickerItem = nil
@@ -63,7 +64,7 @@ struct EditProfileView: View {
     
     //The appearance of profile picture
     var profilePicture: some View {
-        Image(uiImage: viewModel.avatarImage ?? UIImage(resource: .defaultAvatar))
+        Image(uiImage: profileVM.avatarImage ?? UIImage(resource: .defaultAvatar))
             .resizable()
             .aspectRatio(contentMode: .fill)
             .frame(width: 150,height: 150)
@@ -73,7 +74,7 @@ struct EditProfileView: View {
     //The appearance of user ID
     var userID: some View {
         //linked to the leoni's part
-        Text("ID001")
+        Text("")
             .font(.custom("MontserratAlternates-SemiBold", size: 25))
             .foregroundStyle(.purpleOpacity1)
             .padding(.horizontal, 25)
@@ -120,7 +121,7 @@ struct EditProfileView: View {
                 Image(systemName: "person.circle.fill")
                     .foregroundStyle(.black)
                     .font(.title2)
-                TextField("New username", text: $viewModel.username)
+                TextField("New username", text: $profileVM.username)
                     .frame(height: 55)
                     .frame(maxWidth: .infinity)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
@@ -152,7 +153,7 @@ struct EditProfileView: View {
                 Image(systemName: "lock.circle.fill")
                     .foregroundStyle(.black)
                     .font(.title2)
-                SecureTextField(text: $viewModel.password)
+                SecureTextField(text: $profileVM.password)
                     .padding(.trailing, 40)
                     .foregroundColor(.black)
             }
@@ -181,7 +182,7 @@ struct EditProfileView: View {
                 Image(systemName: "lock.circle.fill")
                     .foregroundStyle(.black)
                     .font(.title2)
-                SecureTextField(text: $viewModel.confirmPassword)
+                SecureTextField(text: $profileVM.confirmPassword)
                     .padding(.trailing, 40)
                     .foregroundColor(.black)
             }
