@@ -9,7 +9,7 @@ import SwiftUI
 
 //A view of tab bar
 struct TabBar: View {
-    @State var current = "Map"
+    @State var current: String
     
     //The body of the view:
     //Represent how the tab bar looks like

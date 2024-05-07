@@ -13,13 +13,16 @@ class UserCredentialViewModel: ObservableObject {
     //  'AppStorage' is securely storing the username and password of the user
     @AppStorage("username") var username: String = "" //storedUsername - CHANGED LATER FOR READABLE
     @AppStorage("password") var password: String = "" //storePassword
-    @AppStorage("id") var id: Int = 0
+    @AppStorage("id") var id: Int = 0 //store userID
     //  Published variables
     //  - for USER INPUT fileds
     //  - that "binding" to the login/sign-up view
     //  so when refreshed the app, the user credential not show again in the "login", blank
     @Published var usernameTextField = "" //usernameInput - CHANGED LATER FOR READABLE
     @Published var passwordTextField = ""
+    
+    @Published var newUsername = ""
+    @Published var newPassword = ""
     
     //
     //  Saved the user input to the Appstorage - DELETE LATER or can be changed name to UpdateCredential later to UPDATE THE credential if required
@@ -50,5 +53,11 @@ class UserCredentialViewModel: ObservableObject {
     // Makes the ID permanent throughout the App
     func saveID(){
         id = getID()
+    }
+    
+    // Saving the new username - for EditProfileView
+    func saveNewDetails() {
+        username = newUsername
+        password = newPassword
     }
 }

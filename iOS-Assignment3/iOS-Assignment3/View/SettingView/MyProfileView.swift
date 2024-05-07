@@ -130,9 +130,7 @@ struct MyProfileView: View {
     
     //The appearance and navigation behaviour of the edit button
     var editButton: some View {
-        NavigationLink {
-            EditProfileView()
-        } label: {
+        NavigationLink(destination: EditProfileView()){
             editLabel
         }
     }

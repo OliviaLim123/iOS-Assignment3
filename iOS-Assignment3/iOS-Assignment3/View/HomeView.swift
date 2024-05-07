@@ -19,7 +19,7 @@ struct HomeView: View {
     //Represent how the tab bar looks like and navigates to the specific screen
     var body: some View {
         NavigationStack {
-            TabBar()
+            TabBar(current: "Map")
         }
     }
 }

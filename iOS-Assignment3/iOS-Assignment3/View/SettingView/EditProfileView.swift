@@ -13,45 +13,69 @@ struct EditProfileView: View {
     
     @ObservedObject var profileVM = ProfileViewModel.shared
     @StateObject var userCredentialVM = UserCredentialViewModel()
+    @State var confirmPwd: String = ""
+    @Environment(\.presentationMode) var presentationMode
+    
+    
+    //  STATE FOR FORM VALIDATION - CHECK VALID INPUT
+    @State var isAccountUpdated: Bool = false
+    //  State to track password mismatch
+    @State var showPasswordMismatchError: Bool = false
+    //  State to track username error
+    @State var showUsernameError: Bool = false
+    //  State to track if User not fill all the form
+    @State var showIncompleteFormError: Bool = false
     //State variable to enable photo picker functionality
     @State private var photoPickerItem: PhotosPickerItem?
     
     //The body of view:
     //Represent how the edit profile looks like
     var body: some View {
-        VStack {
-            editProfileTitle
-            Spacer()
-            profilePicture
-            userID
-            PhotosPicker(selection: $photoPickerItem, matching: .images){
-                changePicButton
-            }
-            .padding(.bottom)
-            username
-            newUsernameField
-            password
-            newPassField
-            confirmPass
-            confirmPassField
-            Spacer()
-            Spacer()
-            saveButton
-            Spacer()
-            Spacer()
-            Spacer()
-        }
-        //Changing the picture method using the photo picker
-        .onChange(of: photoPickerItem){ _, _ in
-            Task {
-                if let photoPickerItem,
-                   let data = try? await photoPickerItem.loadTransferable(type: Data.self){
-                    if let image = UIImage(data: data){
-                        profileVM.avatarImage = image
-                    }
+        ZStack {
+            VStack {
+                editProfileTitle
+                Spacer()
+                profilePicture
+                userID
+                PhotosPicker(selection: $photoPickerItem, matching: .images){
+                    changePicButton
                 }
-                photoPickerItem = nil
+                .padding(.bottom)
+                username
+                newUsernameField
+                password
+                newPassField
+                confirmPass
+                confirmPassField
+                // Display form incompleted ERROR
+                incompleteFormError
+                // Display password mismatch ERROR
+                newPasswordError
+                // Display username ERROR
+                newUsernameError
+                Spacer()
+                Spacer()
+                saveButton
+                Spacer()
+                Spacer()
+                Spacer()
             }
+            //Changing the picture method using the photo picker
+            .onChange(of: photoPickerItem){ _, _ in
+                Task {
+                    if let photoPickerItem,
+                       let data = try? await photoPickerItem.loadTransferable(type: Data.self){
+                        if let image = UIImage(data: data){
+                            profileVM.avatarImage = image
+                        }
+                    }
+                    photoPickerItem = nil
+                }
+            }
+        }
+        .navigationDestination(isPresented: $isAccountUpdated) {
+            SettingView()
+                .navigationBarBackButtonHidden(true)
         }
     }
     
@@ -121,7 +145,7 @@ struct EditProfileView: View {
                 Image(systemName: "person.circle.fill")
                     .foregroundStyle(.black)
                     .font(.title2)
-                TextField("New username", text: $profileVM.username)
+                TextField("New username", text: $userCredentialVM.newUsername)
                     .frame(height: 55)
                     .frame(maxWidth: .infinity)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
@@ -153,7 +177,7 @@ struct EditProfileView: View {
                 Image(systemName: "lock.circle.fill")
                     .foregroundStyle(.black)
                     .font(.title2)
-                SecureTextField(text: $profileVM.password)
+                SecureTextField(text: $userCredentialVM.newPassword)
                     .padding(.trailing, 40)
                     .foregroundColor(.black)
             }
@@ -182,7 +206,7 @@ struct EditProfileView: View {
                 Image(systemName: "lock.circle.fill")
                     .foregroundStyle(.black)
                     .font(.title2)
-                SecureTextField(text: $profileVM.confirmPassword)
+                SecureTextField(text: $confirmPwd)
                     .padding(.trailing, 40)
                     .foregroundColor(.black)
             }
@@ -190,30 +214,117 @@ struct EditProfileView: View {
         }
     }
     
-    //The appearance and naviagation behaviour of save button
     var saveButton: some View {
-        NavigationLink {
-            //save button function
-        } label: {
-            saveLabel
+        VStack {
+            Button {
+                if isFormValid() {
+                    if isValidNewUsername() {
+                        if isCheckedNewPassword() {
+                            isAccountUpdated = true
+                            showPasswordMismatchError = false
+                            showUsernameError = false
+                            // Save the new username and password
+                            userCredentialVM.saveNewDetails()
+                            presentationMode.wrappedValue.dismiss()
+                        } else {
+                            showPasswordMismatchError = true
+                        }
+                    } else {
+                        showUsernameError = true
+                    }
+                }
+                
+            } label: {
+                saveLabel
+            }
+            
         }
     }
     
     //The appearance of save button label
     var saveLabel: some View {
-        ZStack{
-            RoundedRectangle(cornerRadius: 25)
+        ZStack {
+            RoundedRectangle(cornerRadius: 30.0)
                 .frame(maxWidth: .infinity)
                 .frame(height: 55)
-                .foregroundStyle(.yellow1)
+                .foregroundStyle(.purple2)
                 .padding(.horizontal)
+                .shadow(color: .black.opacity(0.3), radius: 3, x: -2, y: -2)
+                .shadow(color: .gray.opacity(0.5), radius: 4, x: -4, y: -4)
+            
             Text("SAVE")
-                .font(.custom("MontserratAlternates-SemiBold", size: 20))
-                .foregroundStyle(.black)
+                .font(.custom("MontserratAlternates-SemiBold", size: 23))
+                .foregroundStyle(.royalPurple)
+                .tracking(2.0)
+        }
+    }
+    //  CHECK MATCHED PASSWORD
+    //  & DISPLAY ERROR FOR PASSWORD MISMATCHED
+    var newPasswordError: some View {
+        VStack {
+            // Conditional view for displaying password mismatch error
+            if showPasswordMismatchError {
+                Text("Password is not matching!")
+                    .font(.custom("MontserratAlternates-SemiBold", size: 15))
+                    .foregroundColor(.red)
+                    .padding(.top, 2)
+            }
+        }
+    }
+    
+    
+    //  CHECK INVALID USERNAME
+    var newUsernameError: some View {
+        VStack {
+            if showUsernameError {
+                Text("Username must be more than 3 characters")
+                    .font(.custom("MontserratAlternates-SemiBold", size: 15))
+                    .foregroundColor(.red)
+                //.padding(.top, 2)
+            }
+        }
+    }
+    
+    //  DISPLAY/CHECK ERROR for incompleted form
+    var incompleteFormError: some View {
+        VStack {
+            if showIncompleteFormError {
+                Text("The form is incomplete!")
+                    .font(.custom("MontserratAlternates-SemiBold", size: 15))
+                    .foregroundColor(.red)
+                    .multilineTextAlignment(.center)
+                    .padding(.top, 2)
+            }
+        }
+    }
+    
+    //  FUNCTION TO VALIDATE if the PASSWORD & CONFIRM PWD fields match
+    func isCheckedNewPassword() -> Bool {
+        return userCredentialVM.newPassword == confirmPwd
+    }
+    
+    //  FUNCTION TO CHECKED if the Username is at least 3 characters long
+    func isValidNewUsername() -> Bool {
+        return userCredentialVM.newUsername.count >= 3
+    }
+    
+    //  FUNCTION TO CHECKED IF ANY FILLED FORM IS EMPTY
+    func isFormValid() -> Bool {
+        //  Check if any fill is empty
+        if userCredentialVM.newUsername.isEmpty || userCredentialVM.newPassword.isEmpty || confirmPwd.isEmpty {
+            showIncompleteFormError = true
+            showPasswordMismatchError = false
+            showUsernameError = false
+            return false
+        } else {
+            showIncompleteFormError = false
+            return true
         }
     }
 }
 
 #Preview {
-    EditProfileView()
+    NavigationStack {
+        EditProfileView()
+    }
 }
