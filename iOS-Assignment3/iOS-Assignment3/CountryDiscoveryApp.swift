@@ -12,7 +12,7 @@ struct CountryDiscoveryApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationStack {
-                AppEntry()
+                LaunchScreenView()
             }
         }
     }

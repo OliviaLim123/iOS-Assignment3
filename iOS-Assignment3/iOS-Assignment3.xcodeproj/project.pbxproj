@@ -27,6 +27,7 @@
 		CB4D2B802BDB44BC004FC20C /* CountryDiscoveryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4D2B7F2BDB44BC004FC20C /* CountryDiscoveryApp.swift */; };
 		CB4D2B842BDB44BD004FC20C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB4D2B832BDB44BD004FC20C /* Assets.xcassets */; };
 		CB4D2B872BDB44BD004FC20C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB4D2B862BDB44BD004FC20C /* Preview Assets.xcassets */; };
+		CBADA3E22BEA2DA700496615 /* LaunchScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBADA3E12BEA2DA700496615 /* LaunchScreenView.swift */; };
 		DDC2E1CA2BE8D577001EBC09 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC2E1C92BE8D577001EBC09 /* UserModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +54,7 @@
 		CB4D2B7F2BDB44BC004FC20C /* CountryDiscoveryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDiscoveryApp.swift; sourceTree = "<group>"; };
 		CB4D2B832BDB44BD004FC20C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CB4D2B862BDB44BD004FC20C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		CBADA3E12BEA2DA700496615 /* LaunchScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenView.swift; sourceTree = "<group>"; };
 		DDC2E1C92BE8D577001EBC09 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -70,6 +72,7 @@
 		4941DAA42BE8687B0096E706 /* AppEntry */ = {
 			isa = PBXGroup;
 			children = (
+				CBADA3E12BEA2DA700496615 /* LaunchScreenView.swift */,
 				4941DAA02BE85F0A0096E706 /* AppEntry.swift */,
 				4941DAA52BE885980096E706 /* LoginView.swift */,
 				4941DAA22BE868740096E706 /* SignUpView.swift */,
@@ -258,6 +261,7 @@
 				CB2F364E2BE7AE29005BCE7C /* CountryInfoView.swift in Sources */,
 				CB2F36422BE7ADB9005BCE7C /* HomeView.swift in Sources */,
 				DDC2E1CA2BE8D577001EBC09 /* UserModel.swift in Sources */,
+				CBADA3E22BEA2DA700496615 /* LaunchScreenView.swift in Sources */,
 				CB2F364C2BE7AE19005BCE7C /* TabButton.swift in Sources */,
 				CB1F320E2BE8F24F0002CC14 /* MyProfileView.swift in Sources */,
 				4941DAA12BE85F0A0096E706 /* AppEntry.swift in Sources */,
