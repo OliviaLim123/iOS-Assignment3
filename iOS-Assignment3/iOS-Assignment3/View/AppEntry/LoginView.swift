@@ -67,7 +67,7 @@ struct LoginView: View {
                     .font(.system(size: 28))
                     .foregroundStyle(.purpleOpacity1.opacity(0.7))
                 
-                TextField("Username", text: $loginVM.username)
+                TextField("Username", text: $loginVM.usernameTextField)
                     .font(.custom("MontserratAlternates-SemiBold", size: 20))
                     .foregroundStyle(.purpleOpacity1)
                     .padding()
@@ -118,13 +118,13 @@ struct LoginView: View {
                     .foregroundStyle(.purpleOpacity1.opacity(0.7))
                 
                 if isPwdVisible {
-                    TextField("Password", text: $loginVM.password)
+                    TextField("Password", text: $loginVM.passwordTextField)
                         .font(.custom("MontserratAlternates-SemiBold", size: 20))
                         .foregroundStyle(.purple1)
                         .padding(.leading, 15)
                     
                 } else {
-                    SecureField("Password", text: $loginVM.password)
+                    SecureField("Password", text: $loginVM.passwordTextField)
                         .font(.custom("MontserratAlternates-SemiBold", size: 20))
                         .foregroundStyle(.purple1)
                         .padding(.leading, 15)
@@ -174,7 +174,8 @@ struct LoginView: View {
         VStack {
             Button {
                 if isLoginFormValid() {
-                    isFormValid = true //Navigate to "HomeView"
+                    isFormValid = true
+                    loginVM.login()//Navigate to "HomeView"
                 }
             } label: {
                 
@@ -239,7 +240,7 @@ struct LoginView: View {
     //  FUNCTION
     //  FUNCTION TO VALIDATE THE FORM COMPLETENESS
     func isLoginFormValid() -> Bool {
-        if loginVM.username.isEmpty || loginVM.password.isEmpty {
+        if loginVM.usernameTextField.isEmpty || loginVM.passwordTextField.isEmpty {
             showIncompleteFormError = true
             return false
         } else {

@@ -12,6 +12,7 @@ import PhotosUI
 struct SettingView: View {
     
     @ObservedObject var viewModel = ProfileViewModel.shared
+    @StateObject var loginVM = LoginViewModel()
     //State variables to handle the display mode function
     @State private var darkMode: Bool = false
     @State private var currentMode: ColorScheme = .light
@@ -55,12 +56,12 @@ struct SettingView: View {
     var profileInfo: some View {
         HStack{
             //will be linked with leonie's part
-            Text("ID001")
+            Text("ID\(Int.random(in: 0...100))")
                 .font(.custom("MontserratAlternates-SemiBold", size: 25))
                 .foregroundStyle(.purpleOpacity1)
                 .padding(.horizontal, 25)
             //will be linked with leonie's part
-            Text("Username")
+            Text("\(loginVM.username)")
                 .font(.custom("MontserratAlternates-SemiBold", size: 25))
                 .foregroundStyle(.purpleOpacity1)
         }
