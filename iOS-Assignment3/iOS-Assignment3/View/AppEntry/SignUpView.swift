@@ -80,7 +80,7 @@ struct SignUpView: View {
                     .font(.system(size: 28))
                     .foregroundStyle(.purpleOpacity1.opacity(0.7))
                 
-                TextField("Username", text: $loginVM.username)
+                TextField("Username", text: $loginVM.usernameTextField) // the "usernameTextField" refresh field to blank after turn off the app; otherwise; "username" make the field still keep the previous username, not refresh it.
                     .font(.custom("MontserratAlternates-SemiBold", size: 20))
                     .foregroundStyle(.purpleOpacity1)
                     .padding(.leading, 15)
@@ -108,14 +108,14 @@ struct SignUpView: View {
                     .foregroundStyle(.purpleOpacity1.opacity(0.7))
                 
                 if isPwdVisible {
-                    TextField("Password", text: $loginVM.password)
+                    TextField("Password", text: $loginVM.passwordTextField)
                         .font(.custom("MontserratAlternates-SemiBold", size: 20))
                         .foregroundStyle(.purple1)
                         .padding(.leading, 15)
                     
                     
                 } else {
-                    SecureField("Password", text: $loginVM.password)
+                    SecureField("Password", text: $loginVM.passwordTextField)
                         .font(.custom("MontserratAlternates-SemiBold", size: 20))
                         .foregroundStyle(.purple1)
                         .padding(.leading, 15)
@@ -189,6 +189,7 @@ struct SignUpView: View {
                     if isValidUsername() {
                         if isCheckedPassword() {
                             isCreatedAccount = true
+                            loginVM.signUp()
                             showPasswordMismatchError = false
                             showUsernameError = false
                         } else {
@@ -275,7 +276,7 @@ struct SignUpView: View {
     //  FUNCTION TO CHECKED IF ANY FILLED FORM IS EMPTY
     func isFormValid() -> Bool {
         //  Check if any fill is empty
-        if loginVM.username.isEmpty || loginVM.password.isEmpty || confirmPwd.isEmpty {
+        if loginVM.usernameTextField.isEmpty || loginVM.passwordTextField.isEmpty || confirmPwd.isEmpty {
             showIncompleteFormError = true
             showPasswordMismatchError = false
             showUsernameError = false

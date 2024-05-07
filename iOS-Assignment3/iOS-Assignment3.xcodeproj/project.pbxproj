@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4921245B2BE9BEB800B83AA3 /* UsersModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4921245A2BE9BEB800B83AA3 /* UsersModel.swift */; };
 		4921245D2BE9BF3600B83AA3 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4921245C2BE9BF3600B83AA3 /* LoginViewModel.swift */; };
 		4941DAA12BE85F0A0096E706 /* AppEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4941DAA02BE85F0A0096E706 /* AppEntry.swift */; };
 		4941DAA32BE868740096E706 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4941DAA22BE868740096E706 /* SignUpView.swift */; };
@@ -32,7 +31,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4921245A2BE9BEB800B83AA3 /* UsersModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersModel.swift; sourceTree = "<group>"; };
 		4921245C2BE9BF3600B83AA3 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		4941DAA02BE85F0A0096E706 /* AppEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEntry.swift; sourceTree = "<group>"; };
 		4941DAA22BE868740096E706 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
@@ -175,7 +173,6 @@
 			isa = PBXGroup;
 			children = (
 				DDC2E1C92BE8D577001EBC09 /* UserModel.swift */,
-				4921245A2BE9BEB800B83AA3 /* UsersModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -259,7 +256,6 @@
 				4941DAA32BE868740096E706 /* SignUpView.swift in Sources */,
 				CB2F36442BE7ADC6005BCE7C /* MapView.swift in Sources */,
 				CB2F364E2BE7AE29005BCE7C /* CountryInfoView.swift in Sources */,
-				4921245B2BE9BEB800B83AA3 /* UsersModel.swift in Sources */,
 				CB2F36422BE7ADB9005BCE7C /* HomeView.swift in Sources */,
 				DDC2E1CA2BE8D577001EBC09 /* UserModel.swift in Sources */,
 				CB2F364C2BE7AE19005BCE7C /* TabButton.swift in Sources */,

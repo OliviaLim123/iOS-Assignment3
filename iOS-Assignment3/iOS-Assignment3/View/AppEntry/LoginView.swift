@@ -228,7 +228,7 @@ struct LoginView: View {
     var incompleteFormError: some View {
         VStack() {
             if showIncompleteFormError {
-                Text("Please fill in all fields to create an account.")
+                Text("Please fill in all fields to login.")
                     .font(.custom("MontserratAlternates-SemiBold", size: 20))
                     .foregroundColor(.red)
                     .multilineTextAlignment(.center)
