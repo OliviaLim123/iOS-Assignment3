@@ -40,6 +40,7 @@ struct LoginView: View {
         }
         .navigationDestination(isPresented: $isFormValid) {
             HomeView()
+                .navigationBarBackButtonHidden(true)
         }
     }
     

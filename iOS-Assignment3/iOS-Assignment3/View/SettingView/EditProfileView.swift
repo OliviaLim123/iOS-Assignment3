@@ -125,7 +125,7 @@ struct EditProfileView: View {
                     .frame(maxWidth: .infinity)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                     .padding(.horizontal)
-                    .foregroundColor(.black)
+                    .foregroundStyle(.black)
             }
             .padding(.leading, 40)
         }
