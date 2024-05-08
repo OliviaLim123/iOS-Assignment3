@@ -11,6 +11,9 @@
 		4941DAA12BE85F0A0096E706 /* AppEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4941DAA02BE85F0A0096E706 /* AppEntry.swift */; };
 		4941DAA32BE868740096E706 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4941DAA22BE868740096E706 /* SignUpView.swift */; };
 		4941DAA62BE885980096E706 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4941DAA52BE885980096E706 /* LoginView.swift */; };
+		4967CB412BEB1D3300E12E1B /* LoadingIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4967CB402BEB1D3300E12E1B /* LoadingIndicatorView.swift */; };
+		4967CB482BEB2A0F00E12E1B /* CustomDotIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4967CB472BEB2A0F00E12E1B /* CustomDotIndicator.swift */; };
+		4967CB4F2BEB4E7000E12E1B /* ActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = 4967CB4E2BEB4E7000E12E1B /* ActivityIndicatorView */; };
 		CB1F320C2BE8F21D0002CC14 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1F320B2BE8F21D0002CC14 /* SettingView.swift */; };
 		CB1F320E2BE8F24F0002CC14 /* MyProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1F320D2BE8F24F0002CC14 /* MyProfileView.swift */; };
 		CB1F32102BE8F28E0002CC14 /* SecureTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1F320F2BE8F28E0002CC14 /* SecureTextField.swift */; };
@@ -36,6 +39,8 @@
 		4941DAA02BE85F0A0096E706 /* AppEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEntry.swift; sourceTree = "<group>"; };
 		4941DAA22BE868740096E706 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		4941DAA52BE885980096E706 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		4967CB402BEB1D3300E12E1B /* LoadingIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicatorView.swift; sourceTree = "<group>"; };
+		4967CB472BEB2A0F00E12E1B /* CustomDotIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDotIndicator.swift; sourceTree = "<group>"; };
 		CB1F320B2BE8F21D0002CC14 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		CB1F320D2BE8F24F0002CC14 /* MyProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileView.swift; sourceTree = "<group>"; };
 		CB1F320F2BE8F28E0002CC14 /* SecureTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureTextField.swift; sourceTree = "<group>"; };
@@ -63,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4967CB4F2BEB4E7000E12E1B /* ActivityIndicatorView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,6 +93,16 @@
 				CB2F36492BE7AE0D005BCE7C /* TabBar.swift */,
 			);
 			path = TabView;
+			sourceTree = "<group>";
+		};
+		4967CB462BEB1EBC00E12E1B /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				4967CB402BEB1D3300E12E1B /* LoadingIndicatorView.swift */,
+				4967CB472BEB2A0F00E12E1B /* CustomDotIndicator.swift */,
+				CB1F320F2BE8F28E0002CC14 /* SecureTextField.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		CB1F32122BE8F3650002CC14 /* ViewModel */ = {
@@ -119,7 +135,7 @@
 				CB2F36432BE7ADC6005BCE7C /* MapView.swift */,
 				CB2F36472BE7ADF0005BCE7C /* CountryListView.swift */,
 				CB2F364D2BE7AE29005BCE7C /* CountryInfoView.swift */,
-				CB1F320F2BE8F28E0002CC14 /* SecureTextField.swift */,
+				4967CB462BEB1EBC00E12E1B /* Components */,
 				CB1F32152BE8FCA50002CC14 /* SettingView */,
 			);
 			path = View;
@@ -196,6 +212,9 @@
 			dependencies = (
 			);
 			name = "iOS-Assignment3";
+			packageProductDependencies = (
+				4967CB4E2BEB4E7000E12E1B /* ActivityIndicatorView */,
+			);
 			productName = "iOS-Assignment3";
 			productReference = CB4D2B7C2BDB44BC004FC20C /* iOS-Assignment3.app */;
 			productType = "com.apple.product-type.application";
@@ -224,6 +243,9 @@
 				Base,
 			);
 			mainGroup = CB4D2B732BDB44BC004FC20C;
+			packageReferences = (
+				4967CB4D2BEB4E7000E12E1B /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */,
+			);
 			productRefGroup = CB4D2B7D2BDB44BC004FC20C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -262,7 +284,9 @@
 				CB2F36422BE7ADB9005BCE7C /* HomeView.swift in Sources */,
 				DDC2E1CA2BE8D577001EBC09 /* UserModel.swift in Sources */,
 				CBADA3E22BEA2DA700496615 /* LaunchScreenView.swift in Sources */,
+				4967CB482BEB2A0F00E12E1B /* CustomDotIndicator.swift in Sources */,
 				CB2F364C2BE7AE19005BCE7C /* TabButton.swift in Sources */,
+				4967CB412BEB1D3300E12E1B /* LoadingIndicatorView.swift in Sources */,
 				CB1F320E2BE8F24F0002CC14 /* MyProfileView.swift in Sources */,
 				4941DAA12BE85F0A0096E706 /* AppEntry.swift in Sources */,
 				CB1F32142BE8F37F0002CC14 /* ProfileViewModel.swift in Sources */,
@@ -479,6 +503,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4967CB4D2BEB4E7000E12E1B /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/exyte/ActivityIndicatorView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4967CB4E2BEB4E7000E12E1B /* ActivityIndicatorView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4967CB4D2BEB4E7000E12E1B /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */;
+			productName = ActivityIndicatorView;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CB4D2B742BDB44BC004FC20C /* Project object */;
 }

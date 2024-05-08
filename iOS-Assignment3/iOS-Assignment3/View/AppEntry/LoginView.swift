@@ -49,7 +49,7 @@ struct LoginView: View {
             .padding([.leading, .trailing], 10)
         }
         .navigationDestination(isPresented: $isFormValid) {
-            HomeView()
+            LoadingIndicatorView()
                 .navigationBarBackButtonHidden(true)
         }
     }
@@ -179,7 +179,7 @@ struct LoginView: View {
                     // check is input matched with database of user credentials
                     if (userCredentialVM.validateCredentials()) {
                         
-                        isFormValid = true//Navigate to "HomeView"
+                        isFormValid = true//Navigate to "LoadingIndicatorView" >> then "HomeView"
                         showInvalidCredentialsError = false
                     } else {
                         showInvalidCredentialsError = true
