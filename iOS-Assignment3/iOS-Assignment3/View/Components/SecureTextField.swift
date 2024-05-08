@@ -59,3 +59,21 @@ struct SecureTextField: View {
             }
     }
 }
+
+//  This struct is for preview purpose
+struct SecureTextFieldPreview: View {
+    @State var text: String = ""
+    
+    var body: some View {
+        SecureTextField(text: $text)
+            .padding()
+            .cornerRadius(10.0)
+            .background(.purpleOpacity2)
+            .cornerRadius(10.0)
+            .padding()
+    }
+}
+
+#Preview {
+    SecureTextFieldPreview()
+}

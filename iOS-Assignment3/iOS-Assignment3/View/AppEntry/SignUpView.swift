@@ -55,7 +55,9 @@ struct SignUpView: View {
             .padding([.leading, .trailing], 10)
         }
         .navigationDestination(isPresented: $isCreatedAccount) {
-            AppEntry()
+            //AppEntry()
+            LoadingIndicatorView2(destination: AppEntry()) {}
+                .navigationBarBackButtonHidden(true)
         }
     }
     
