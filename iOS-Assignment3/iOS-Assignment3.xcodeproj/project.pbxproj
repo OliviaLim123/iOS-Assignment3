@@ -13,9 +13,9 @@
 		4941DAA62BE885980096E706 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4941DAA52BE885980096E706 /* LoginView.swift */; };
 		4967CB412BEB1D3300E12E1B /* LoadingIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4967CB402BEB1D3300E12E1B /* LoadingIndicatorView.swift */; };
 		4967CB482BEB2A0F00E12E1B /* CustomDotIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4967CB472BEB2A0F00E12E1B /* CustomDotIndicator.swift */; };
-		4967CB4F2BEB4E7000E12E1B /* ActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = 4967CB4E2BEB4E7000E12E1B /* ActivityIndicatorView */; };
 		4967CB612BEB7D5C00E12E1B /* CustomOpacityDotIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4967CB602BEB7D5C00E12E1B /* CustomOpacityDotIndicator.swift */; };
 		496B5AD22BEBBB98005954AB /* LoadingIndicatorView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496B5AD12BEBBB98005954AB /* LoadingIndicatorView2.swift */; };
+		496B5ADC2BEBCDC1005954AB /* ActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = 496B5ADB2BEBCDC1005954AB /* ActivityIndicatorView */; };
 		CB1F320C2BE8F21D0002CC14 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1F320B2BE8F21D0002CC14 /* SettingView.swift */; };
 		CB1F320E2BE8F24F0002CC14 /* MyProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1F320D2BE8F24F0002CC14 /* MyProfileView.swift */; };
 		CB1F32102BE8F28E0002CC14 /* SecureTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1F320F2BE8F28E0002CC14 /* SecureTextField.swift */; };
@@ -72,7 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4967CB4F2BEB4E7000E12E1B /* ActivityIndicatorView in Frameworks */,
+				496B5ADC2BEBCDC1005954AB /* ActivityIndicatorView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -235,7 +235,7 @@
 			);
 			name = "iOS-Assignment3";
 			packageProductDependencies = (
-				4967CB4E2BEB4E7000E12E1B /* ActivityIndicatorView */,
+				496B5ADB2BEBCDC1005954AB /* ActivityIndicatorView */,
 			);
 			productName = "iOS-Assignment3";
 			productReference = CB4D2B7C2BDB44BC004FC20C /* iOS-Assignment3.app */;
@@ -266,7 +266,7 @@
 			);
 			mainGroup = CB4D2B732BDB44BC004FC20C;
 			packageReferences = (
-				4967CB4D2BEB4E7000E12E1B /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */,
+				496B5ADA2BEBCDC1005954AB /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */,
 			);
 			productRefGroup = CB4D2B7D2BDB44BC004FC20C /* Products */;
 			projectDirPath = "";
@@ -529,7 +529,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		4967CB4D2BEB4E7000E12E1B /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */ = {
+		496B5ADA2BEBCDC1005954AB /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/exyte/ActivityIndicatorView.git";
 			requirement = {
@@ -540,9 +540,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		4967CB4E2BEB4E7000E12E1B /* ActivityIndicatorView */ = {
+		496B5ADB2BEBCDC1005954AB /* ActivityIndicatorView */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 4967CB4D2BEB4E7000E12E1B /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */;
+			package = 496B5ADA2BEBCDC1005954AB /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */;
 			productName = ActivityIndicatorView;
 		};
 /* End XCSwiftPackageProductDependency section */
