@@ -49,7 +49,7 @@ struct LaunchScreenView: View {
     //The appearance of app logo
     var appLogo: some View {
         VStack {
-            Image(.appLogo)
+            Image(.logo)
                 .resizable()
                 .frame(width: 250, height: 250)
             Text("Country Discovery")

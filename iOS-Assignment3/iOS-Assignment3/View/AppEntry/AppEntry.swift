@@ -29,12 +29,12 @@ struct AppEntry: View {
             .tracking(8.0)
             .multilineTextAlignment(.center)
             .padding()
-            .offset(y: 20)
+            .offset(y: -13)
     }
     
     //  APP LOGO
     var AppLogo: some View {
-        Image("appLogo")
+        Image("logo")
             .resizable()
             .scaledToFit()
             .frame(maxWidth: .infinity)
