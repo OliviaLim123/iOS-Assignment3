@@ -75,7 +75,7 @@ struct MyProfileView: View {
             Rectangle()
                 .frame(maxWidth: .infinity)
                 .frame(height: 55)
-                .foregroundStyle(.purple2)
+                .foregroundStyle(.purple3)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
                 .padding(.horizontal)
             HStack{
@@ -104,7 +104,7 @@ struct MyProfileView: View {
             Rectangle()
                 .frame(maxWidth: .infinity)
                 .frame(height: 55)
-                .foregroundStyle(.purple2)
+                .foregroundStyle(.purple3)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
                 .padding(.horizontal)
             HStack {

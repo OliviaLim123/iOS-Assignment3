@@ -111,7 +111,7 @@ struct EditProfileView: View {
             Rectangle()
                 .frame(maxWidth: .infinity)
                 .frame(height: 40)
-                .foregroundStyle(.yellow1)
+                .foregroundStyle(.yellowOpacity1)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
                 .padding(.horizontal)
             HStack {
@@ -137,7 +137,7 @@ struct EditProfileView: View {
             Rectangle()
                 .frame(maxWidth: .infinity)
                 .frame(height: 55)
-                .foregroundStyle(.purple2)
+                .foregroundStyle(.purple3)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
                 .padding(.horizontal)
             HStack{
@@ -169,7 +169,7 @@ struct EditProfileView: View {
             Rectangle()
                 .frame(maxWidth: .infinity)
                 .frame(height: 55)
-                .foregroundStyle(.purple2)
+                .foregroundStyle(.purple3)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
                 .padding(.horizontal)
             HStack{
@@ -198,7 +198,7 @@ struct EditProfileView: View {
             Rectangle()
                 .frame(maxWidth: .infinity)
                 .frame(height: 55)
-                .foregroundStyle(.purple2)
+                .foregroundStyle(.purple3)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
                 .padding(.horizontal)
             HStack{
@@ -246,10 +246,8 @@ struct EditProfileView: View {
             RoundedRectangle(cornerRadius: 30.0)
                 .frame(maxWidth: .infinity)
                 .frame(height: 55)
-                .foregroundStyle(.purple2)
+                .foregroundStyle(.yellow1)
                 .padding(.horizontal)
-                .shadow(color: .black.opacity(0.3), radius: 3, x: -2, y: -2)
-                .shadow(color: .gray.opacity(0.5), radius: 4, x: -4, y: -4)
             
             Text("SAVE")
                 .font(.custom("MontserratAlternates-SemiBold", size: 23))
