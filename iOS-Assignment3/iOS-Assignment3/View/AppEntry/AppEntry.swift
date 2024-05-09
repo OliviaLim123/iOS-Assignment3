@@ -17,6 +17,7 @@ struct AppEntry: View {
                 AppLogo
                 AppEntry
             }
+            .padding(.bottom, -15)
         }
         .navigationBarBackButtonHidden(true)
     }

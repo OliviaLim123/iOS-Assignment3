@@ -30,7 +30,7 @@ struct LoadingIndicatorView: View {
         } // VStack
         .onAppear {
             //  Loading delaye using DispatchQueue
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
                 //  SET loadingComplete to true after the delay
                 loadingComplete = true // True >> Go to HomeView()
             }
@@ -42,8 +42,8 @@ struct LoadingIndicatorView: View {
         
         VStack {
             //  CUSTOM DOT INDICATOR VIEW
-            CustomDotIndicator(imageName: "indicator") // ""
-                .frame(width: 200, height: 200)
+            CustomDotIndicator(imageName: "indicatorIcon") // ""
+                .frame(width: 250, height: 250)
             //.foregroundColor(.pink)
             
             //  [ PACKAGE ] "ActivityIndicatorview" with scaling dots
@@ -52,11 +52,20 @@ struct LoadingIndicatorView: View {
                 type: .scalingDots(count: 3, inset: 2)
             )
             .frame(width: 100, height: 100)
-            .foregroundColor(.purpleOpacity1)
+            .foregroundStyle(RGB_Gradient)
         } // VStack E.
         
     }
 }
+
+//  CUSTOM GRADIENT COLORS
+func customGradient(_ colors: [Color], center: UnitPoint, startRadius: CGFloat, endRadius: CGFloat) -> RadialGradient {
+    return RadialGradient(colors: colors, center: center, startRadius: startRadius, endRadius: endRadius)
+}
+
+let colors: [Color] = [.orange,.pink,.blue,.purple]
+let RGB_Gradient = customGradient(colors, center: .center,startRadius: 10, endRadius: 9) //StartRadius: 10-orange //5-purple
+
 
 #Preview {
     LoadingIndicatorView()

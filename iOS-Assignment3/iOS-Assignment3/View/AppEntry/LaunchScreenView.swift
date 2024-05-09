@@ -55,7 +55,6 @@ struct LaunchScreenView: View {
             Text("Country Discovery")
                 .font(.custom("MontserratAlternates-SemiBold", size: 26))
                 .foregroundStyle(.black.opacity(0.80))
-            
         }
     }
 }
