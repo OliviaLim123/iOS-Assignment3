@@ -33,7 +33,7 @@ struct SecureTextField: View {
     //The appearance when the password is unseen by the user
     var securePassField: some View {
         SecureField("New password", text: $text)
-            .foregroundColor(.black)
+            .foregroundStyle(.purple1)
             .frame(height: 55)
             .frame(maxWidth: .infinity)
             .clipShape(RoundedRectangle(cornerRadius: 10))
@@ -43,7 +43,7 @@ struct SecureTextField: View {
     //The appearance when the password can be seen by the user
     var normalPassField: some View {
         TextField("New password", text: $text)
-            .foregroundColor(.black)
+            .foregroundStyle(.purple1)
             .frame(height: 55)
             .frame(maxWidth: .infinity)
             .clipShape(RoundedRectangle(cornerRadius: 10))
@@ -53,7 +53,7 @@ struct SecureTextField: View {
     //The appearance of eye icon to see the password
     var eyeIcon: some View {
         Image(systemName: isSecureField ? "eye.slash" : "eye")
-            .foregroundStyle(.black)
+            .foregroundStyle(.purpleOpacity1)
             .onTapGesture {
                 isSecureField.toggle()
             }
@@ -68,7 +68,7 @@ struct SecureTextFieldPreview: View {
         SecureTextField(text: $text)
             .padding()
             .cornerRadius(10.0)
-            .background(.purpleOpacity2)
+            .background(.lightPurple.opacity(0.5))
             .cornerRadius(10.0)
             .padding()
     }

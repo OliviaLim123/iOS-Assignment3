@@ -61,6 +61,7 @@ struct EditProfileView: View {
                 Spacer()
                 Spacer()
             }
+            .padding(.bottom, -50)
             //Changing the picture method using the photo picker
             .onChange(of: photoPickerItem){ _, _ in
                 Task {
@@ -83,7 +84,7 @@ struct EditProfileView: View {
     //The appearance of "Edit Profile" title
     var editProfileTitle: some View {
         Text("EDIT PROFILE")
-            .font(.custom("MontserratAlternates-SemiBold", size: 45))
+            .font(.custom("MontserratAlternates-SemiBold", size: 40))
             .foregroundStyle(.purple1)
     }
     
@@ -92,7 +93,7 @@ struct EditProfileView: View {
         Image(uiImage: profileVM.avatarImage ?? UIImage(resource: .defaultAvatar))
             .resizable()
             .aspectRatio(contentMode: .fill)
-            .frame(width: 150,height: 150)
+            .frame(width: 130,height: 130)
             .clipShape(Circle())
     }
     
@@ -112,13 +113,15 @@ struct EditProfileView: View {
                 .frame(maxWidth: .infinity)
                 .frame(height: 40)
                 .foregroundStyle(.yellowOpacity1)
-                .clipShape(RoundedRectangle(cornerRadius: 10))
-                .padding(.horizontal)
+                .cornerRadius(20)
+                .padding(.horizontal, 100)
+            
             HStack {
                 Image(systemName: "photo.fill")
-                    .foregroundColor(.black)
-                Text("Change Profile Picture")
-                    .foregroundStyle(.black)
+                    .foregroundColor(.purple1)
+                Text("Change Avatar")
+                    .font(.custom("MontserratAlternates-SemiBold", size: 15))
+                    .foregroundStyle(.purple1)
             }
         }
     }
@@ -134,24 +137,42 @@ struct EditProfileView: View {
     //The appearance of new username text field
     var newUsernameField: some View {
         ZStack {
-            Rectangle()
-                .frame(maxWidth: .infinity)
-                .frame(height: 55)
-                .foregroundStyle(.purple3)
-                .clipShape(RoundedRectangle(cornerRadius: 10))
-                .padding(.horizontal)
             HStack{
-                Image(systemName: "person.circle.fill")
-                    .foregroundStyle(.black)
-                    .font(.title2)
+                Image(systemName: "person.crop.circle")
+                    .font(.system(size: 28))
+                    .foregroundStyle(.purpleOpacity1.opacity(0.7))
                 TextField("New username", text: $userCredentialVM.newUsername)
-                    .frame(height: 55)
+                    .font(.custom("MontserratAlternates-SemiBold", size: 18))
+                    .frame(height: 40)
                     .frame(maxWidth: .infinity)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
                     .padding(.horizontal)
-                    .foregroundStyle(.black)
+                    .foregroundStyle(.royalPurple)
             }
-            .padding(.leading, 40)
+            //  INNER SHADOW (for TextField)
+            .background{
+                ZStack{
+                    RoundedRectangle(cornerRadius: 10.0)
+                        .frame(maxWidth: .infinity)
+                        .foregroundStyle(.lightPurple.opacity(0.5))
+                        .frame(height: 65)
+                        .padding(.horizontal, -15)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10) // The shape of the overlay should match the element
+                                .stroke(Color.gray, lineWidth: 4) // Border color and width
+                                .blur(radius: 3) // Blur the border to create a soft shadow effect
+                                .offset(x: 0, y: 2) // Offset of the shadow
+                                .mask(
+                                    RoundedRectangle(cornerRadius: 10) // Mask using the same shape as the element
+                                        .fill(
+                                            LinearGradient(gradient: Gradient(colors: [Color.black, Color.clear]), startPoint: .top, endPoint: .bottom)
+                                        )
+                                )
+                                .padding(.horizontal, -15)
+                        )
+                }
+            }
+            .padding()
+            .padding(.horizontal)
         }
     }
     
@@ -166,21 +187,42 @@ struct EditProfileView: View {
     //The appearance of new password text field
     var newPassField: some View {
         ZStack {
-            Rectangle()
-                .frame(maxWidth: .infinity)
-                .frame(height: 55)
-                .foregroundStyle(.purple3)
-                .clipShape(RoundedRectangle(cornerRadius: 10))
-                .padding(.horizontal)
             HStack{
                 Image(systemName: "lock.circle.fill")
-                    .foregroundStyle(.black)
-                    .font(.title2)
+                    .font(.system(size: 28))
+                    .foregroundStyle(.purpleOpacity1.opacity(0.7))
+                
                 SecureTextField(text: $userCredentialVM.newPassword)
-                    .padding(.trailing, 40)
-                    .foregroundColor(.black)
+                    .font(.custom("MontserratAlternates-SemiBold", size: 18))
+                    .frame(height: 40)
+                    .foregroundStyle(.purple1)
+                    .padding(.trailing, 10)
             }
-            .padding(.leading, 40)
+            //  INNER SHADOW (for TextField)
+            .background{
+                ZStack{
+                    RoundedRectangle(cornerRadius: 10.0)
+                        .frame(maxWidth: .infinity)
+                        .foregroundStyle(.lightPurple.opacity(0.5))
+                        .frame(height: 65)
+                        .padding(.horizontal, -15)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10) // The shape of the overlay should match the element
+                                .stroke(Color.gray, lineWidth: 4) // Border color and width
+                                .blur(radius: 3) // Blur the border to create a soft shadow effect
+                                .offset(x: 0, y: 2) // Offset of the shadow
+                                .mask(
+                                    RoundedRectangle(cornerRadius: 10) // Mask using the same shape as the element
+                                        .fill(
+                                            LinearGradient(gradient: Gradient(colors: [Color.black, Color.clear]), startPoint: .top, endPoint: .bottom)
+                                        )
+                                )
+                                .padding(.horizontal, -15)
+                        )
+                }
+            }
+            .padding()
+            .padding(.horizontal)
         }
     }
     
@@ -195,21 +237,42 @@ struct EditProfileView: View {
     //The appreance of confirm password text field
     var confirmPassField: some View {
         ZStack {
-            Rectangle()
-                .frame(maxWidth: .infinity)
-                .frame(height: 55)
-                .foregroundStyle(.purple3)
-                .clipShape(RoundedRectangle(cornerRadius: 10))
-                .padding(.horizontal)
             HStack{
                 Image(systemName: "lock.circle.fill")
-                    .foregroundStyle(.black)
-                    .font(.title2)
+                    .font(.system(size: 28))
+                    .foregroundStyle(.purpleOpacity1.opacity(0.7))
+                
                 SecureTextField(text: $confirmPwd)
-                    .padding(.trailing, 40)
-                    .foregroundColor(.black)
+                    .font(.custom("MontserratAlternates-SemiBold", size: 18))
+                    .foregroundColor(.purple1)
+                    .frame(height: 40)
+                    .padding(.trailing, 10)
             }
-            .padding(.leading, 40)
+            //  INNER SHADOW (for TextField)
+            .background{
+                ZStack{
+                    RoundedRectangle(cornerRadius: 10.0)
+                        .frame(maxWidth: .infinity)
+                        .foregroundStyle(.lightPurple.opacity(0.5))
+                        .frame(height: 65)
+                        .padding(.horizontal, -15)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10) // The shape of the overlay should match the element
+                                .stroke(Color.gray, lineWidth: 4) // Border color and width
+                                .blur(radius: 3) // Blur the border to create a soft shadow effect
+                                .offset(x: 0, y: 2) // Offset of the shadow
+                                .mask(
+                                    RoundedRectangle(cornerRadius: 10) // Mask using the same shape as the element
+                                        .fill(
+                                            LinearGradient(gradient: Gradient(colors: [Color.black, Color.clear]), startPoint: .top, endPoint: .bottom)
+                                        )
+                                )
+                                .padding(.horizontal, -15)
+                        )
+                }
+            }
+            .padding()
+            .padding(.horizontal)
         }
     }
     
@@ -248,11 +311,14 @@ struct EditProfileView: View {
                 .frame(height: 55)
                 .foregroundStyle(.yellow1)
                 .padding(.horizontal)
+                .padding()
+                .shadow(color: .black.opacity(0.3), radius: 3, x: -2, y: -2)
+                .shadow(color: .gray.opacity(0.5), radius: 4, x: -4, y: -4)
             
             Text("SAVE")
                 .font(.custom("MontserratAlternates-SemiBold", size: 23))
                 .foregroundStyle(.royalPurple)
-                .tracking(2.0)
+                .tracking(3.0)
         }
     }
     //  CHECK MATCHED PASSWORD
@@ -291,6 +357,7 @@ struct EditProfileView: View {
                     .foregroundColor(.red)
                     .multilineTextAlignment(.center)
                     .padding(.top, 2)
+                    .padding(.bottom, -15)
             }
         }
     }

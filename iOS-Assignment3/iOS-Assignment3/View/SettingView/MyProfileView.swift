@@ -32,6 +32,7 @@ struct MyProfileView: View {
             Spacer()
             Spacer()
         }
+        .offset(y: 35)
     }
     
     //The appearance of "Profile" Title
@@ -72,21 +73,43 @@ struct MyProfileView: View {
     //The appearance of old username (before changing to the new one)
     var oldUsernameField: some View {
         ZStack(alignment: .leading){
-            Rectangle()
-                .frame(maxWidth: .infinity)
-                .frame(height: 55)
-                .foregroundStyle(.purple3)
-                .clipShape(RoundedRectangle(cornerRadius: 10))
-                .padding(.horizontal)
             HStack{
-                Image(systemName: "person.circle.fill")
-                    .foregroundStyle(.black)
-                    .font(.title2)
+                Image(systemName: "person.crop.circle")
+                    .font(.system(size: 28))
+                    .foregroundStyle(.purpleOpacity1.opacity(0.7))
                 Text("\(userCredentialVM.username)")
-                    .font(.custom("MontserratAlternates-SemiBold", size: 15))
-                    .foregroundStyle(.black)
+                    .font(.custom("MontserratAlternates-SemiBold", size: 20))
+                    .foregroundStyle(.royalPurple)
+                    .tracking(3.0)
+                    .padding()
+                    .padding(.leading, -150)
+                    .frame(maxWidth: .infinity)
+            } //HStack E.
+            //  INNER SHADOW (for TextField)
+            .background{
+                ZStack{
+                    RoundedRectangle(cornerRadius: 10.0)
+                        .frame(maxWidth: .infinity)
+                        .foregroundStyle(.lightPurple.opacity(0.5))
+                        .frame(height: 65)
+                        .padding(.horizontal, -15)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10) // The shape of the overlay should match the element
+                                .stroke(Color.gray, lineWidth: 4) // Border color and width
+                                .blur(radius: 3) // Blur the border to create a soft shadow effect
+                                .offset(x: 0, y: 2) // Offset of the shadow
+                                .mask(
+                                    RoundedRectangle(cornerRadius: 10) // Mask using the same shape as the element
+                                        .fill(
+                                            LinearGradient(gradient: Gradient(colors: [Color.black, Color.clear]), startPoint: .top, endPoint: .bottom)
+                                        )
+                                )
+                                .padding(.horizontal, -15)
+                        )
+                }
             }
-            .padding(.leading, 40)
+            .padding()
+            .padding(.horizontal)
         }
     }
     
@@ -101,19 +124,14 @@ struct MyProfileView: View {
     //The appearance of old password field (before changing to the new one)
     var oldPasswordField: some View {
         ZStack(alignment: .leading){
-            Rectangle()
-                .frame(maxWidth: .infinity)
-                .frame(height: 55)
-                .foregroundStyle(.purple3)
-                .clipShape(RoundedRectangle(cornerRadius: 10))
-                .padding(.horizontal)
             HStack {
                 Image(systemName: "lock.circle.fill")
-                    .foregroundStyle(.black)
-                    .font(.title2)
+                    .font(.system(size: 28))
+                    .foregroundStyle(.purpleOpacity1.opacity(0.7))
+                
                 if isSecureField {
                     securePassField
-                        //Restrict the user to modify this password
+                    //Restrict the user to modify this password
                         .disabled(true)
                 } else {
                     normalPassField
@@ -121,9 +139,33 @@ struct MyProfileView: View {
             }
             .overlay(alignment: .trailing){
                 eyeIcon
-                    .padding(.trailing, 40)
+                    .padding(.trailing, 10)
             }
-            .padding(.leading, 40)
+            //  INNER SHADOW (for TextField)
+            .background{
+                ZStack{
+                    RoundedRectangle(cornerRadius: 10.0)
+                        .frame(maxWidth: .infinity)
+                        .foregroundStyle(.lightPurple.opacity(0.5))
+                        .frame(height: 65)
+                        .padding(.horizontal, -15)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10) // The shape of the overlay should match the element
+                                .stroke(Color.gray, lineWidth: 4) // Border color and width
+                                .blur(radius: 3) // Blur the border to create a soft shadow effect
+                                .offset(x: 0, y: 2) // Offset of the shadow
+                                .mask(
+                                    RoundedRectangle(cornerRadius: 10) // Mask using the same shape as the element
+                                        .fill(
+                                            LinearGradient(gradient: Gradient(colors: [Color.black, Color.clear]), startPoint: .top, endPoint: .bottom)
+                                        )
+                                )
+                                .padding(.horizontal, -15)
+                        )
+                }
+            }
+            .padding()
+            .padding(.horizontal)
         }
     }
     
@@ -134,7 +176,7 @@ struct MyProfileView: View {
         }
     }
     
-    //The appearance of edit button label 
+    //The appearance of edit button label
     var editLabel: some View {
         ZStack{
             RoundedRectangle(cornerRadius: 25)
@@ -142,34 +184,37 @@ struct MyProfileView: View {
                 .frame(height: 55)
                 .foregroundStyle(.yellow1)
                 .padding(.horizontal)
+                .padding()
+                .shadow(color: .black.opacity(0.3), radius: 3, x: -2, y: -2)
+                .shadow(color: .gray.opacity(0.5), radius: 4, x: -4, y: -4)
+            
             Text("EDIT")
                 .font(.custom("MontserratAlternates-SemiBold", size: 20))
-                .foregroundStyle(.black)
+                .tracking(4.0)
+                .foregroundStyle(.royalPurple)
         }
     }
     
     //The appearance when the password is unseen by the user
     var securePassField: some View {
         SecureField("Old password", text: $userCredentialVM.password)
-            .foregroundColor(.black)
-            .frame(height: 55)
+            .foregroundColor(.purple1)
+            .padding(.leading, 15)
             .frame(maxWidth: .infinity)
-            .clipShape(RoundedRectangle(cornerRadius: 10))
     }
     
     //The appearance when the password can be seen by the user
     var normalPassField: some View {
         TextField("Old password", text: $userCredentialVM.password)
-            .foregroundColor(.black)
-            .frame(height: 55)
+            .foregroundStyle(.purple1)
+            .padding(.leading, 15)
             .frame(maxWidth: .infinity)
-            .clipShape(RoundedRectangle(cornerRadius: 10))
     }
     
     //The appearance of eye icon to see the password
     var eyeIcon: some View {
         Image(systemName: isSecureField ? "eye.slash" : "eye")
-            .foregroundStyle(.black)
+            .foregroundStyle(.purpleOpacity1)
             .onTapGesture {
                 isSecureField.toggle()
             }

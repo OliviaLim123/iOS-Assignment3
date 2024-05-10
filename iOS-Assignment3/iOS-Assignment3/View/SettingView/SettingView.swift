@@ -32,6 +32,7 @@ struct SettingView: View {
             Spacer()
             Spacer()
         }
+        .offset(y: 60)
         .preferredColorScheme(isDarkMode ? .dark : .light)
     }
     
@@ -179,7 +180,11 @@ struct SettingView: View {
                 .frame(maxWidth: .infinity)
                 .frame(height: 55)
                 .foregroundStyle(.purple2)
+                .padding()
                 .padding(.horizontal)
+                .shadow(color: .black.opacity(0.3), radius: 3, x: -2, y: -2)
+                .shadow(color: .gray.opacity(0.5), radius: 4, x: -4, y: -4)
+            
             Text("LOG OUT")
                 .font(.custom("MontserratAlternates-SemiBold", size: 20))
                 .foregroundStyle(.black)
