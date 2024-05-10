@@ -32,7 +32,7 @@ struct SettingView: View {
             Spacer()
             Spacer()
         }
-        .offset(y: 60)
+        .offset(y: 25)
         .preferredColorScheme(isDarkMode ? .dark : .light)
     }
     
@@ -148,7 +148,7 @@ struct SettingView: View {
                 .frame(maxWidth: .infinity)
                 .frame(height: 45)
                 .foregroundStyle(.yellowOpacity1)
-                .clipShape(RoundedRectangle(cornerRadius: 10))
+                .cornerRadius(10)
                 .padding(.horizontal)
             HStack{
                 Image(systemName: "heart")
@@ -187,7 +187,8 @@ struct SettingView: View {
             
             Text("LOG OUT")
                 .font(.custom("MontserratAlternates-SemiBold", size: 20))
-                .foregroundStyle(.black)
+                .foregroundStyle(.royalPurple)
+                .tracking(3.0)
         }
     }
 }
