@@ -35,6 +35,7 @@ struct LoginView: View {
                 Spacer()
                 welcomeTitle
                 Spacer()
+                
                 userNameField
                 passwordField
                 
