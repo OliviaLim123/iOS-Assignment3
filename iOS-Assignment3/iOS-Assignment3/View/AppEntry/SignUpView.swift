@@ -88,11 +88,11 @@ struct SignUpView: View {
             HStack {
                 Image(systemName: "person.crop.circle")
                     .font(.system(size: 28))
-                    .foregroundStyle(.purpleOpacity1.opacity(0.7))
+                    .foregroundStyle(.darkPurpleOp.opacity(0.7))
                 
                 TextField("Username", text: $userCredentialVM.usernameTextField) // the "usernameTextField" refresh field to blank after turn off the app; otherwise; "username" make the field still keep the previous username, not refresh it.
                     .font(.custom("MontserratAlternates-SemiBold", size: 20))
-                    .foregroundStyle(.purpleOpacity1)
+                    .foregroundStyle(.darkPurpleOp)
                     .padding(.leading, 15)
                     .frame(maxWidth: .infinity)
                     .cornerRadius(10.0)
@@ -132,19 +132,19 @@ struct SignUpView: View {
             HStack {
                 Image(systemName: "lock.circle.fill")
                     .font(.system(size: 28))
-                    .foregroundStyle(.purpleOpacity1.opacity(0.7))
+                    .foregroundStyle(.darkPurpleOp.opacity(0.7))
                 
                 if isPwdVisible {
                     TextField("Password", text: $userCredentialVM.passwordTextField)
                         .font(.custom("MontserratAlternates-SemiBold", size: 20))
-                        .foregroundStyle(.purple1)
+                        .foregroundStyle(.darkPurple)
                         .padding(.leading, 15)
                     
                     
                 } else {
                     SecureField("Password", text: $userCredentialVM.passwordTextField)
                         .font(.custom("MontserratAlternates-SemiBold", size: 20))
-                        .foregroundStyle(.purple1)
+                        .foregroundStyle(.darkPurple)
                         .padding(.leading, 15)
                 }
                 
@@ -152,7 +152,7 @@ struct SignUpView: View {
                 } label: {
                     Image(systemName: isPwdVisible ? "eye.fill" : "eye.slash.fill")
                         .font(.system(size: 20))
-                        .foregroundStyle(.purpleOpacity1.opacity(0.7))
+                        .foregroundStyle(.darkPurpleOp.opacity(0.7))
                 }
                 .padding(.trailing, 2)
                 .onLongPressGesture(minimumDuration: .infinity, pressing: { pressing in self.isPwdVisible = pressing}, perform: {})
@@ -192,19 +192,19 @@ struct SignUpView: View {
             HStack {
                 Image(systemName: "lock.circle.fill")
                     .font(.system(size: 28))
-                    .foregroundStyle(.purpleOpacity1.opacity(0.7))
+                    .foregroundStyle(.darkPurpleOp.opacity(0.7))
                 
                 if isPwdVisible {
                     TextField("Confirm Password", text: $confirmPwd)
                         .font(.custom("MontserratAlternates-SemiBold", size: 20))
-                        .foregroundStyle(.purple1)
+                        .foregroundStyle(.darkPurple)
                         .padding(.leading, 15)
                     
                     
                 } else {
                     SecureField("Confirm Password", text: $confirmPwd)
                         .font(.custom("MontserratAlternates-SemiBold", size: 20))
-                        .foregroundStyle(.purple1)
+                        .foregroundStyle(.darkPurple)
                         .padding(.leading, 15)
                 }
                 
@@ -212,7 +212,7 @@ struct SignUpView: View {
                 } label: {
                     Image(systemName: isPwdVisible ? "eye.fill" : "eye.slash.fill")
                         .font(.system(size: 20))
-                        .foregroundStyle(.purpleOpacity1.opacity(0.7))
+                        .foregroundStyle(.darkPurpleOp.opacity(0.7))
                 }
                 .padding(.trailing, 2)
                 .onLongPressGesture(minimumDuration: .infinity, pressing: { pressing in self.isPwdVisible = pressing}, perform: {})
@@ -281,7 +281,7 @@ struct SignUpView: View {
             RoundedRectangle(cornerRadius: 30.0)
                 .frame(maxWidth: .infinity)
                 .frame(height: 60)
-                .foregroundStyle(.purple2)
+                .foregroundStyle(.lightPurpleCustom)
                 .padding(.horizontal, 25)
                 .shadow(color: .black.opacity(0.3), radius: 3, x: -2, y: -2)
                 .shadow(color: .gray.opacity(0.5), radius: 4, x: -4, y: -4)

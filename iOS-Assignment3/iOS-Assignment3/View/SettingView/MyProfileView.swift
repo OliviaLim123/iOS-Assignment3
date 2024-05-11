@@ -39,7 +39,7 @@ struct MyProfileView: View {
     var profileTitle: some View {
         Text("PROFILE")
             .font(.custom("MontserratAlternates-SemiBold", size: 50))
-            .foregroundStyle(.purple1)
+            .foregroundStyle(.darkPurple)
     }
     
     //The appearance of profile picture
@@ -57,7 +57,7 @@ struct MyProfileView: View {
         //linked with leonie's part
         Text("ID\(userCredentialVM.id)")
             .font(.custom("MontserratAlternates-SemiBold", size: 25))
-            .foregroundStyle(.purpleOpacity1)
+            .foregroundStyle(.darkPurpleOp)
             .padding(.horizontal, 25)
             .padding(.bottom)
     }
@@ -76,10 +76,10 @@ struct MyProfileView: View {
             HStack{
                 Image(systemName: "person.crop.circle")
                     .font(.system(size: 28))
-                    .foregroundStyle(.purpleOpacity1.opacity(0.7))
+                    .foregroundStyle(.darkPurpleOp.opacity(0.7))
                 Text("\(userCredentialVM.username)")
                     .font(.custom("MontserratAlternates-SemiBold", size: 20))
-                    .foregroundStyle(.purpleOpacity1)
+                    .foregroundStyle(.darkPurpleOp)
                     .tracking(3.0)
                     .padding()
                     .padding(.leading, -150)
@@ -127,7 +127,7 @@ struct MyProfileView: View {
             HStack {
                 Image(systemName: "lock.circle.fill")
                     .font(.system(size: 28))
-                    .foregroundStyle(.purpleOpacity1.opacity(0.7))
+                    .foregroundStyle(.darkPurpleOp.opacity(0.7))
                 
                 if isSecureField {
                     securePassField
@@ -182,7 +182,7 @@ struct MyProfileView: View {
             RoundedRectangle(cornerRadius: 25)
                 .frame(maxWidth: .infinity)
                 .frame(height: 55)
-                .foregroundStyle(.purple2)
+                .foregroundStyle(.lightPurpleCustom)
                 .padding(.horizontal)
                 .padding()
                 .shadow(color: .black.opacity(0.3), radius: 3, x: -2, y: -2)
@@ -198,7 +198,7 @@ struct MyProfileView: View {
     //The appearance when the password is unseen by the user
     var securePassField: some View {
         SecureField("Old password", text: $userCredentialVM.password)
-            .foregroundColor(.purple1)
+            .foregroundColor(.darkPurple)
             .padding(.leading, 15)
             .frame(maxWidth: .infinity)
     }
@@ -206,7 +206,7 @@ struct MyProfileView: View {
     //The appearance when the password can be seen by the user
     var normalPassField: some View {
         TextField("Old password", text: $userCredentialVM.password)
-            .foregroundStyle(.purple1)
+            .foregroundStyle(.darkPurple)
             .padding(.leading, 15)
             .frame(maxWidth: .infinity)
     }
@@ -214,7 +214,7 @@ struct MyProfileView: View {
     //The appearance of eye icon to see the password
     var eyeIcon: some View {
         Image(systemName: isSecureField ? "eye.slash" : "eye")
-            .foregroundStyle(.purpleOpacity1)
+            .foregroundStyle(.darkPurpleOp)
             .onTapGesture {
                 isSecureField.toggle()
             }

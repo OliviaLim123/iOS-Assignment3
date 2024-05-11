@@ -65,6 +65,6 @@ struct CustomDotLoading: View {
 }
 
 #Preview {
-    CustomOpacityDotIndicator(count: 3, inset: 2, imageName: "indicator")
+    CustomOpacityDotIndicator(count: 3, inset: 2, imageName: "indicatorIcon2")
         .frame(width: 300, height: 100)
 }

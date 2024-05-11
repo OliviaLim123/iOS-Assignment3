@@ -12,7 +12,7 @@ struct FavCountryView: View {
         VStack {
             Text("FAVOURITE COUNTRY!")
                 .font(.custom("MontserratAlternates-SemiBold", size: 45))
-                .foregroundStyle(.purple1)
+                .foregroundStyle(.darkPurple)
                 .multilineTextAlignment(.center)
             Spacer()
             Text("PUT THE MAP HERE")

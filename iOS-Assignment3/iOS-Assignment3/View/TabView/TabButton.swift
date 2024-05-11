@@ -39,7 +39,7 @@ struct TabButton: View {
         }
         .padding(.vertical, 10)
         .padding(.horizontal)
-        .background(Color.purpleOpacity2.opacity(selected == title ? 1.0 : 0))
+        .background(Color.lightPurpleOp.opacity(selected == title ? 1.0 : 0))
         .clipShape(Capsule())
     }
 }

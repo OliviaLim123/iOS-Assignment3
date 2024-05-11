@@ -85,7 +85,7 @@ struct EditProfileView: View {
     var editProfileTitle: some View {
         Text("EDIT PROFILE")
             .font(.custom("MontserratAlternates-SemiBold", size: 40))
-            .foregroundStyle(.purple1)
+            .foregroundStyle(.darkPurple)
     }
     
     //The appearance of profile picture
@@ -101,7 +101,7 @@ struct EditProfileView: View {
     var userID: some View {
         Text("ID \(userCredentialVM.id)")
             .font(.custom("MontserratAlternates-SemiBold", size: 25))
-            .foregroundStyle(.purpleOpacity1)
+            .foregroundStyle(.darkPurpleOp)
             .padding(.horizontal, 25)
             .padding(.bottom)
     }
@@ -112,7 +112,7 @@ struct EditProfileView: View {
             Rectangle()
                 .frame(maxWidth: .infinity)
                 .frame(height: 40)
-                .foregroundStyle(.yellow1)
+                .foregroundStyle(.yellowCustom)
                 .cornerRadius(20)
                 .padding(.horizontal, 100)
             
@@ -140,7 +140,7 @@ struct EditProfileView: View {
             HStack{
                 Image(systemName: "person.crop.circle")
                     .font(.system(size: 28))
-                    .foregroundStyle(.purpleOpacity1.opacity(0.7))
+                    .foregroundStyle(.darkPurpleOp.opacity(0.7))
                 TextField("New username", text: $userCredentialVM.newUsername)
                     .font(.custom("MontserratAlternates-SemiBold", size: 18))
                     .frame(height: 40)
@@ -190,12 +190,12 @@ struct EditProfileView: View {
             HStack{
                 Image(systemName: "lock.circle.fill")
                     .font(.system(size: 28))
-                    .foregroundStyle(.purpleOpacity1.opacity(0.7))
+                    .foregroundStyle(.darkPurpleOp.opacity(0.7))
                 
                 SecureTextField(text: $userCredentialVM.newPassword)
                     .font(.custom("MontserratAlternates-SemiBold", size: 18))
                     .frame(height: 40)
-                    .foregroundStyle(.purple1)
+                    .foregroundStyle(.darkPurple)
                     .padding(.trailing, 10)
             }
             //  INNER SHADOW (for TextField)
@@ -240,11 +240,11 @@ struct EditProfileView: View {
             HStack{
                 Image(systemName: "lock.circle.fill")
                     .font(.system(size: 28))
-                    .foregroundStyle(.purpleOpacity1.opacity(0.7))
+                    .foregroundStyle(.darkPurpleOp.opacity(0.7))
                 
                 SecureTextField(text: $confirmPwd)
                     .font(.custom("MontserratAlternates-SemiBold", size: 18))
-                    .foregroundColor(.purple1)
+                    .foregroundColor(.darkPurple)
                     .frame(height: 40)
                     .padding(.trailing, 10)
             }
@@ -309,7 +309,7 @@ struct EditProfileView: View {
             RoundedRectangle(cornerRadius: 30.0)
                 .frame(maxWidth: .infinity)
                 .frame(height: 55)
-                .foregroundStyle(.yellow1)
+                .foregroundStyle(.yellowCustom)
                 .padding(.horizontal)
                 .padding()
                 .shadow(color: .black.opacity(0.3), radius: 3, x: -2, y: -2)

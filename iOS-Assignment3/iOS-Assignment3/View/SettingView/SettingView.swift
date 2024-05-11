@@ -40,7 +40,7 @@ struct SettingView: View {
     var settingTitle: some View {
         Text("SETTING")
             .font(.custom("MontserratAlternates-SemiBold", size: 50))
-            .foregroundStyle(.purple1)
+            .foregroundStyle(.darkPurple)
     }
     
     //The appearance of profile picture
@@ -58,11 +58,11 @@ struct SettingView: View {
         HStack{
             Text("ID\(userCredentialVM.id)")
                 .font(.custom("MontserratAlternates-SemiBold", size: 25))
-                .foregroundStyle(.purpleOpacity1)
+                .foregroundStyle(.darkPurpleOp)
                 .padding(.horizontal, 25)
             Text("\(userCredentialVM.username)")
                 .font(.custom("MontserratAlternates-SemiBold", size: 25))
-                .foregroundStyle(.purpleOpacity1)
+                .foregroundStyle(.darkPurpleOp)
         }
     }
     
@@ -82,7 +82,7 @@ struct SettingView: View {
             Rectangle()
                 .frame(maxWidth: .infinity)
                 .frame(height: 45)
-                .foregroundStyle(.yellowOpacity1)
+                .foregroundStyle(.yellowOpacity)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
                 .padding(.horizontal)
             HStack{
@@ -105,7 +105,7 @@ struct SettingView: View {
             Rectangle()
                 .frame(maxWidth: .infinity)
                 .frame(height: 45)
-                .foregroundStyle(.yellowOpacity1)
+                .foregroundStyle(.yellowOpacity)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
                 .padding(.horizontal)
             HStack{
@@ -147,7 +147,7 @@ struct SettingView: View {
             Rectangle()
                 .frame(maxWidth: .infinity)
                 .frame(height: 45)
-                .foregroundStyle(.yellowOpacity1)
+                .foregroundStyle(.yellowOpacity)
                 .cornerRadius(10)
                 .padding(.horizontal)
             HStack{
@@ -179,7 +179,7 @@ struct SettingView: View {
             RoundedRectangle(cornerRadius: 25)
                 .frame(maxWidth: .infinity)
                 .frame(height: 55)
-                .foregroundStyle(.purple2)
+                .foregroundStyle(.lightPurpleCustom)
                 .padding()
                 .padding(.horizontal)
                 .shadow(color: .black.opacity(0.3), radius: 3, x: -2, y: -2)

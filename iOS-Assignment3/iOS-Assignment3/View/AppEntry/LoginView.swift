@@ -69,11 +69,11 @@ struct LoginView: View {
             HStack {
                 Image(systemName: "person.crop.circle")
                     .font(.system(size: 28))
-                    .foregroundStyle(.purpleOpacity1.opacity(0.7))
+                    .foregroundStyle(.darkPurpleOp.opacity(0.7))
                 
                 TextField("Username", text: $userCredentialVM.usernameTextField)
                     .font(.custom("MontserratAlternates-SemiBold", size: 20))
-                    .foregroundStyle(.purpleOpacity1)
+                    .foregroundStyle(.darkPurpleOp)
                     .padding()
                     .frame(maxWidth: .infinity)
                     .cornerRadius(10.0)
@@ -119,18 +119,18 @@ struct LoginView: View {
             HStack {
                 Image(systemName: "lock.circle.fill")
                     .font(.system(size: 28))
-                    .foregroundStyle(.purpleOpacity1.opacity(0.7))
+                    .foregroundStyle(.darkPurpleOp.opacity(0.7))
                 
                 if isPwdVisible {
                     TextField("Password", text: $userCredentialVM.passwordTextField)
                         .font(.custom("MontserratAlternates-SemiBold", size: 20))
-                        .foregroundStyle(.purple1)
+                        .foregroundStyle(.darkPurple)
                         .padding(.leading, 15)
                     
                 } else {
                     SecureField("Password", text: $userCredentialVM.passwordTextField)
                         .font(.custom("MontserratAlternates-SemiBold", size: 20))
-                        .foregroundStyle(.purple1)
+                        .foregroundStyle(.darkPurple)
                         .padding(.leading, 15)
                 }
                 
@@ -139,7 +139,7 @@ struct LoginView: View {
                 } label: {
                     Image(systemName: isPwdVisible ? "eye.fill" : "eye.slash.fill")
                         .font(.system(size: 20))
-                        .foregroundStyle(.purpleOpacity1.opacity(0.7))
+                        .foregroundStyle(.darkPurpleOp.opacity(0.7))
                 }
                 .padding(.trailing)
                 .onLongPressGesture(minimumDuration: .infinity, pressing: { pressing in self.isPwdVisible = pressing}, perform: {}) //this one Press to hold
@@ -194,7 +194,7 @@ struct LoginView: View {
                     RoundedRectangle(cornerRadius: 30.0)
                         .frame(maxWidth: .infinity)
                         .frame(height: 55)
-                        .foregroundStyle(.purple2)
+                        .foregroundStyle(.lightPurpleCustom)
                         .padding(.horizontal)
                         .shadow(color: .black.opacity(0.3), radius: 3, x: -2, y: -2)
                         .shadow(color: .gray.opacity(0.5), radius: 4, x: -4, y: -4)
