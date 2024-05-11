@@ -103,7 +103,7 @@ struct SignUpView: View {
                 ZStack{
                     RoundedRectangle(cornerRadius: 10.0)
                         .frame(maxWidth: .infinity)
-                        .foregroundStyle(.lightPurple.opacity(0.5))
+                        .foregroundStyle(.lightPurple)
                         .frame(height: 65)
                         .padding(.horizontal, -15)
                         .overlay(
@@ -163,7 +163,7 @@ struct SignUpView: View {
                 ZStack{
                     RoundedRectangle(cornerRadius: 10.0)
                         .frame(maxWidth: .infinity)
-                        .foregroundStyle(.lightPurple.opacity(0.5))
+                        .foregroundStyle(.lightPurple)
                         .frame(height: 65)
                         .padding(.horizontal, -15)
                         .overlay(
@@ -223,7 +223,7 @@ struct SignUpView: View {
                 ZStack{
                     RoundedRectangle(cornerRadius: 10.0)
                         .frame(maxWidth: .infinity)
-                        .foregroundStyle(.lightPurple.opacity(0.5))
+                        .foregroundStyle(.lightPurple)
                         .frame(height: 65)
                         .padding(.horizontal, -15)
                         .overlay(

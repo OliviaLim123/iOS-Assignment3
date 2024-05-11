@@ -112,16 +112,16 @@ struct EditProfileView: View {
             Rectangle()
                 .frame(maxWidth: .infinity)
                 .frame(height: 40)
-                .foregroundStyle(.yellowOpacity1)
+                .foregroundStyle(.yellow1)
                 .cornerRadius(20)
                 .padding(.horizontal, 100)
             
             HStack {
                 Image(systemName: "photo.fill")
-                    .foregroundColor(.purple1)
+                    .foregroundColor(.royalPurple)
                 Text("Change Avatar")
                     .font(.custom("MontserratAlternates-SemiBold", size: 15))
-                    .foregroundStyle(.purple1)
+                    .foregroundStyle(.royalPurple)
             }
         }
     }
@@ -153,7 +153,7 @@ struct EditProfileView: View {
                 ZStack{
                     RoundedRectangle(cornerRadius: 10.0)
                         .frame(maxWidth: .infinity)
-                        .foregroundStyle(.lightPurple.opacity(0.5))
+                        .foregroundStyle(.lightPurple)
                         .frame(height: 65)
                         .padding(.horizontal, -15)
                         .overlay(
@@ -203,7 +203,7 @@ struct EditProfileView: View {
                 ZStack{
                     RoundedRectangle(cornerRadius: 10.0)
                         .frame(maxWidth: .infinity)
-                        .foregroundStyle(.lightPurple.opacity(0.5))
+                        .foregroundStyle(.lightPurple)
                         .frame(height: 65)
                         .padding(.horizontal, -15)
                         .overlay(
@@ -253,7 +253,7 @@ struct EditProfileView: View {
                 ZStack{
                     RoundedRectangle(cornerRadius: 10.0)
                         .frame(maxWidth: .infinity)
-                        .foregroundStyle(.lightPurple.opacity(0.5))
+                        .foregroundStyle(.lightPurple)
                         .frame(height: 65)
                         .padding(.horizontal, -15)
                         .overlay(

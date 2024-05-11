@@ -79,7 +79,7 @@ struct MyProfileView: View {
                     .foregroundStyle(.purpleOpacity1.opacity(0.7))
                 Text("\(userCredentialVM.username)")
                     .font(.custom("MontserratAlternates-SemiBold", size: 20))
-                    .foregroundStyle(.royalPurple)
+                    .foregroundStyle(.purpleOpacity1)
                     .tracking(3.0)
                     .padding()
                     .padding(.leading, -150)
@@ -90,7 +90,7 @@ struct MyProfileView: View {
                 ZStack{
                     RoundedRectangle(cornerRadius: 10.0)
                         .frame(maxWidth: .infinity)
-                        .foregroundStyle(.lightPurple.opacity(0.5))
+                        .foregroundStyle(.lightPurple)
                         .frame(height: 65)
                         .padding(.horizontal, -15)
                         .overlay(
@@ -146,7 +146,7 @@ struct MyProfileView: View {
                 ZStack{
                     RoundedRectangle(cornerRadius: 10.0)
                         .frame(maxWidth: .infinity)
-                        .foregroundStyle(.lightPurple.opacity(0.5))
+                        .foregroundStyle(.lightPurple)
                         .frame(height: 65)
                         .padding(.horizontal, -15)
                         .overlay(
@@ -182,7 +182,7 @@ struct MyProfileView: View {
             RoundedRectangle(cornerRadius: 25)
                 .frame(maxWidth: .infinity)
                 .frame(height: 55)
-                .foregroundStyle(.yellow1)
+                .foregroundStyle(.purple2)
                 .padding(.horizontal)
                 .padding()
                 .shadow(color: .black.opacity(0.3), radius: 3, x: -2, y: -2)
