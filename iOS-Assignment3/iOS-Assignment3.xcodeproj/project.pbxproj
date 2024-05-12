@@ -33,6 +33,9 @@
 		CB4D2B842BDB44BD004FC20C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB4D2B832BDB44BD004FC20C /* Assets.xcassets */; };
 		CB4D2B872BDB44BD004FC20C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB4D2B862BDB44BD004FC20C /* Preview Assets.xcassets */; };
 		CBADA3E22BEA2DA700496615 /* LaunchScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBADA3E12BEA2DA700496615 /* LaunchScreenView.swift */; };
+		DD74DE0F2BEE182900FF4F8D /* CountryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD74DE0E2BEE182900FF4F8D /* CountryModel.swift */; };
+		DD74DE132BEE18DE00FF4F8D /* CountryAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD74DE122BEE18DE00FF4F8D /* CountryAPIManager.swift */; };
+		DD74DE152BEE206200FF4F8D /* AppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD74DE142BEE206200FF4F8D /* AppViewModel.swift */; };
 		DDC2E1CA2BE8D577001EBC09 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC2E1C92BE8D577001EBC09 /* UserModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -64,6 +67,9 @@
 		CB4D2B832BDB44BD004FC20C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CB4D2B862BDB44BD004FC20C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CBADA3E12BEA2DA700496615 /* LaunchScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenView.swift; sourceTree = "<group>"; };
+		DD74DE0E2BEE182900FF4F8D /* CountryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryModel.swift; sourceTree = "<group>"; };
+		DD74DE122BEE18DE00FF4F8D /* CountryAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryAPIManager.swift; sourceTree = "<group>"; };
+		DD74DE142BEE206200FF4F8D /* AppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewModel.swift; sourceTree = "<group>"; };
 		DDC2E1C92BE8D577001EBC09 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -130,8 +136,10 @@
 		CB1F32122BE8F3650002CC14 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				DD74DE102BEE189200FF4F8D /* Side Function */,
 				CB1F32132BE8F37F0002CC14 /* ProfileViewModel.swift */,
 				4921245C2BE9BF3600B83AA3 /* UserCredentialViewModel.swift */,
+				DD74DE142BEE206200FF4F8D /* AppViewModel.swift */,
 			);
 			name = ViewModel;
 			path = Model/ViewModel;
@@ -210,10 +218,19 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		DD74DE102BEE189200FF4F8D /* Side Function */ = {
+			isa = PBXGroup;
+			children = (
+				DD74DE122BEE18DE00FF4F8D /* CountryAPIManager.swift */,
+			);
+			path = "Side Function";
+			sourceTree = "<group>";
+		};
 		DDC2E1C82BE8D552001EBC09 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				DDC2E1C92BE8D577001EBC09 /* UserModel.swift */,
+				DD74DE0E2BEE182900FF4F8D /* CountryModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -297,6 +314,7 @@
 			files = (
 				CB1F32102BE8F28E0002CC14 /* SecureTextField.swift in Sources */,
 				CB1F32172BE9075C0002CC14 /* FavCountryView.swift in Sources */,
+				DD74DE0F2BEE182900FF4F8D /* CountryModel.swift in Sources */,
 				CB2F36522BE7AE4A005BCE7C /* EditProfileView.swift in Sources */,
 				CB4D2B802BDB44BC004FC20C /* CountryDiscoveryApp.swift in Sources */,
 				496B5AD22BEBBB98005954AB /* LoadingIndicatorView2.swift in Sources */,
@@ -310,11 +328,13 @@
 				CBADA3E22BEA2DA700496615 /* LaunchScreenView.swift in Sources */,
 				4967CB482BEB2A0F00E12E1B /* CustomDotIndicator.swift in Sources */,
 				CB2F364C2BE7AE19005BCE7C /* TabButton.swift in Sources */,
+				DD74DE152BEE206200FF4F8D /* AppViewModel.swift in Sources */,
 				4967CB412BEB1D3300E12E1B /* LoadingIndicatorView.swift in Sources */,
 				CB1F320E2BE8F24F0002CC14 /* MyProfileView.swift in Sources */,
 				4941DAA12BE85F0A0096E706 /* AppEntry.swift in Sources */,
 				CB1F32142BE8F37F0002CC14 /* ProfileViewModel.swift in Sources */,
 				4941DAA62BE885980096E706 /* LoginView.swift in Sources */,
+				DD74DE132BEE18DE00FF4F8D /* CountryAPIManager.swift in Sources */,
 				CB2F36482BE7ADF0005BCE7C /* CountryListView.swift in Sources */,
 				4921245D2BE9BF3600B83AA3 /* UserCredentialViewModel.swift in Sources */,
 				CB2F364A2BE7AE0D005BCE7C /* TabBar.swift in Sources */,

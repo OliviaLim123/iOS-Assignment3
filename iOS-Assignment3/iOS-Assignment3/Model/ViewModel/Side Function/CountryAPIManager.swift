@@ -19,15 +19,16 @@ class CountryManager: ObservableObject{
         self.viewModel = AppViewModel.shared;
     }
     
-    let url = "https://restcountries.com/v3.1/all?fields=name,currencies,capital,region,subregion,languages,latlng,borders,flags,population";
-    
     func fetchAllCountries(){
-        performRequest(urlString: self.url);
+        let allURL = "https://restcountries.com/v3.1/all?fields=name,currencies,capital,region,subregion,languages,latlng,borders,flags,population";
         
-        if let safeData = self.countriesList{
-            viewModel.displayList = safeData;
-        }
+        performRequest(urlString: allURL);
+    }
+    
+    func fetchCountryByName(countryName: String){
+        let URL_byName = "https://restcountries.com/v3.1/name/\(countryName)/?fields=name,currencies,capital,region,subregion,languages,latlng,borders,flags,population";
         
+        performRequest(urlString: URL_byName);
     }
     
     //  FUNCTION to send FETCHING Request to API

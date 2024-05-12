@@ -46,6 +46,4 @@ struct Country:  Decodable, Identifiable {
         case borders;
         case population;
     };
-    
-    
 }

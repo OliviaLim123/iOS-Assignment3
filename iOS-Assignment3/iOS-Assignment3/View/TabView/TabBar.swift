@@ -10,11 +10,12 @@ import SwiftUI
 //A view of tab bar
 struct TabBar: View {
     @State var current: String
+    @State var viewModel = AppViewModel.shared;
     
     //The body of the view:
     //Represent how the tab bar looks like
     var body: some View {
-        ZStack(alignment: Alignment(horizontal: .leading, vertical: .bottom)){
+        VStack(){
             tabView
             tabButton
         }
