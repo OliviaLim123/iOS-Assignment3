@@ -13,11 +13,10 @@ import SwiftUI
 //------------------------------------------------------//
 class CountryManager: ObservableObject{
     @Published var countriesList: [Country]?;
-    @State var viewModel: AppViewModel;
+    @Published var country: Country?;
     
-    init(){
-        self.viewModel = AppViewModel.shared;
-    }
+    static let countryAPI = CountryManager();
+    
     
     func fetchAllCountries(){
         let allURL = "https://restcountries.com/v3.1/all?fields=name,currencies,capital,region,subregion,languages,latlng,borders,flags,population";
@@ -26,9 +25,19 @@ class CountryManager: ObservableObject{
     }
     
     func fetchCountryByName(countryName: String){
-        let URL_byName = "https://restcountries.com/v3.1/name/\(countryName)/?fields=name,currencies,capital,region,subregion,languages,latlng,borders,flags,population";
+        let URL_byName = "https://restcountries.com/v3.1/name/\(countryName)?fields=name,currencies,capital,region,subregion,languages,latlng,borders,flags,population";
+        
+        print(URL_byName);
         
         performRequest(urlString: URL_byName);
+    }
+    
+    func fetchCountryByCode(countryCode: String){
+        let URL_byCode = "https://restcountries.com/v3.1/alpha/\(countryCode)?fields=name,currencies,capital,region,subregion,languages,latlng,borders,flags,population";
+        
+        print(URL_byCode);
+        
+        performRequestByCode(urlString: URL_byCode);
     }
     
     //  FUNCTION to send FETCHING Request to API
@@ -48,6 +57,22 @@ class CountryManager: ObservableObject{
         }
     }
     
+    func performRequestByCode(urlString: String) {
+        if let url = URL(string: urlString) {
+            let session = URLSession(configuration: .default)
+            let task = session.dataTask(with: url) { (data, response, error) in
+                if let error = error {
+                    print(error)
+                    return
+                }
+                if let safeData = data {
+                    self.parseJSONByCode(countryData: safeData)
+                }
+            }
+            task.resume()
+        }
+    }
+    
     //  FUNCTION to PARSE Data from API to Object
     func parseJSON(countryData: Data) {
         
@@ -56,6 +81,20 @@ class CountryManager: ObservableObject{
             let decodedData = try decoder.decode([Country].self, from: countryData)
             DispatchQueue.main.async {
                 self.countriesList = decodedData;
+            }
+        } catch {
+            print("Error:");
+            print(error)
+        }
+    }
+    
+    func parseJSONByCode(countryData: Data) {
+        
+        let decoder = JSONDecoder()
+        do {
+            let decodedData = try decoder.decode(Country.self, from: countryData)
+            DispatchQueue.main.async {
+                self.country = decodedData;
             }
         } catch {
             print("Error:");

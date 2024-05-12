@@ -30,7 +30,7 @@ struct TabBar: View {
             CountryListView()
                 .tag("List")
             
-            CountryInfoView()
+            CountryInfoView(countryCode: "chn")
                 .tag("Info")
             
             SettingView()

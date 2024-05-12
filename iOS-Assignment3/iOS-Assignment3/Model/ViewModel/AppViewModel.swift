@@ -18,7 +18,7 @@ let emptyCountry = Country(flags: Flag(png: ""),
                            population: 0)
 
 class AppViewModel: ObservableObject{
-    @Published var displayList: [Country] = [];
+    @Published var borderList: [Country] = [];
     @Published var selectedCountry: Country = emptyCountry;
     
     static let shared = AppViewModel();

@@ -90,7 +90,6 @@ struct CountryListView: View {
             
             
         }
-        .padding(.bottom)
         .onAppear(){
             countryAPI.fetchAllCountries();
         }
@@ -98,7 +97,6 @@ struct CountryListView: View {
             if let safeCountryData = countryData{
                 displayList = safeCountryData;
                 print(displayList[0].name.common)
-                viewModel.displayList = safeCountryData;
             }
         }
     }
