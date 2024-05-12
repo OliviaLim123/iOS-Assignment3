@@ -15,7 +15,7 @@ struct TabBar: View {
     //The body of the view:
     //Represent how the tab bar looks like
     var body: some View {
-        VStack(spacing: -20){
+        VStack{
             tabView
             tabButton
         }
@@ -28,9 +28,11 @@ struct TabBar: View {
                 .tag("Map")
             
             CountryListView(viewModel: self.viewModel, countryAPI: CountryManager())
+                .defaultScrollAnchor(.top)
                 .tag("List")
             
             CountryInfoView(countryCode: self.viewModel.selectedCountry)
+                .defaultScrollAnchor(.top)
                 .tag("Info")
             
             SettingView()

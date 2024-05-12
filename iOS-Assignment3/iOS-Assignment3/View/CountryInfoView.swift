@@ -35,6 +35,7 @@ struct CountryInfoView: View {
             //  WELCOME PART
             HStack {
                 Text("Welcome to \(selectedCountry.name.common)!")
+                    .foregroundStyle(.darkPurple)
                     .font(.custom("MontserratAlternates-SemiBold", size: 24))
                     .tracking(1)
                 
@@ -74,7 +75,7 @@ struct CountryInfoView: View {
                             Color.gray;
                         }
                         .padding([.bottom, .horizontal])
-                        .frame(width: 170, height: 110)
+                        .frame(width: 170, height: 100)
                     }
                     .background(
                         //  INFO BOX BACKGROUND
@@ -337,7 +338,7 @@ struct CountryInfoView: View {
                     selectedCountry = safeCountry;
                 }
             }
-        }
+        };
     }
 }
 
