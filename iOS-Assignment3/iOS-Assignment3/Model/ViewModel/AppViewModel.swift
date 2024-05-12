@@ -15,12 +15,10 @@ let emptyCountry = Country(flags: Flag(png: ""),
                            languages: [:],
                            latlng: [],
                            borders: [],
-                           population: 0)
+                           population: 0,
+                           cca3: "NULL");
 
 class AppViewModel: ObservableObject{
-    @Published var borderList: [Country] = [];
-    @Published var selectedCountry: Country = emptyCountry;
-    
-    static let shared = AppViewModel();
-    
+    @Published var currentTab: String = "Map"
+    @Published var selectedCountry: String = "";
 }

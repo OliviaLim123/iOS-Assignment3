@@ -19,23 +19,19 @@ class CountryManager: ObservableObject{
     
     
     func fetchAllCountries(){
-        let allURL = "https://restcountries.com/v3.1/all?fields=name,currencies,capital,region,subregion,languages,latlng,borders,flags,population";
+        let allURL = "https://restcountries.com/v3.1/all?fields=name,currencies,capital,region,subregion,languages,latlng,borders,flags,population,cca3";
         
         performRequest(urlString: allURL);
     }
     
     func fetchCountryByName(countryName: String){
-        let URL_byName = "https://restcountries.com/v3.1/name/\(countryName)?fields=name,currencies,capital,region,subregion,languages,latlng,borders,flags,population";
-        
-        print(URL_byName);
+        let URL_byName = "https://restcountries.com/v3.1/name/\(countryName)?fields=name,currencies,capital,region,subregion,languages,latlng,borders,flags,population,cca3";
         
         performRequest(urlString: URL_byName);
     }
     
     func fetchCountryByCode(countryCode: String){
-        let URL_byCode = "https://restcountries.com/v3.1/alpha/\(countryCode)?fields=name,currencies,capital,region,subregion,languages,latlng,borders,flags,population";
-        
-        print(URL_byCode);
+        let URL_byCode = "https://restcountries.com/v3.1/alpha/\(countryCode)?fields=name,currencies,capital,region,subregion,languages,latlng,borders,flags,population,cca3";
         
         performRequestByCode(urlString: URL_byCode);
     }

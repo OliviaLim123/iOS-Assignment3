@@ -9,13 +9,13 @@ import SwiftUI
 
 //A view of tab bar
 struct TabBar: View {
-    @State var current: String
-    @State var viewModel = AppViewModel.shared;
+
+    @StateObject var viewModel: AppViewModel;
     
     //The body of the view:
     //Represent how the tab bar looks like
     var body: some View {
-        VStack(){
+        VStack(spacing: -20){
             tabView
             tabButton
         }
@@ -23,14 +23,14 @@ struct TabBar: View {
     
     //Navigation to each screen 
     var tabView: some View {
-        TabView(selection: $current){
+        TabView(selection: $viewModel.currentTab){
             MapView()
                 .tag("Map")
             
-            CountryListView()
+            CountryListView(viewModel: self.viewModel, countryAPI: CountryManager())
                 .tag("List")
             
-            CountryInfoView(countryCode: "chn")
+            CountryInfoView(countryCode: self.viewModel.selectedCountry)
                 .tag("Info")
             
             SettingView()
@@ -42,13 +42,13 @@ struct TabBar: View {
     //The appearance of tab Buttons
     var tabButton: some View {
         HStack(spacing: 0){
-            TabButton(title: "Map", image: "map.fill", selected: $current)
+            TabButton(title: "Map", image: "map.fill", selected: $viewModel.currentTab)
             Spacer(minLength: 0)
-            TabButton(title: "List", image: "list.bullet", selected: $current)
+            TabButton(title: "List", image: "list.bullet", selected: $viewModel.currentTab)
             Spacer(minLength: 0)
-            TabButton(title: "Info", image: "globe", selected: $current)
+            TabButton(title: "Info", image: "globe", selected: $viewModel.currentTab)
             Spacer(minLength: 0)
-            TabButton(title: "Setting", image: "gearshape.fill", selected: $current)
+            TabButton(title: "Setting", image: "gearshape.fill", selected: $viewModel.currentTab)
         }
         .padding(.vertical,12)
         .padding(.horizontal)
@@ -58,6 +58,6 @@ struct TabBar: View {
     }
 }
 #Preview {
-    TabBar(current: "Map")
+    TabBar(viewModel: AppViewModel())
 }
 

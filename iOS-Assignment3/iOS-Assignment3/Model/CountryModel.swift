@@ -32,6 +32,7 @@ struct Country:  Decodable, Identifiable {
     let latlng: [Double];
     let borders: [String];
     let population: Int;
+    let cca3: String;
     
     
     enum CodingKeys: String, CodingKey {
@@ -45,5 +46,6 @@ struct Country:  Decodable, Identifiable {
         case latlng;
         case borders;
         case population;
+        case cca3;
     };
 }

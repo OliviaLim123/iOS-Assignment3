@@ -11,17 +11,10 @@ struct CountryListView: View {
     
     //  PROPERTIES
     //  STATE Properties
-    @State var viewModel = AppViewModel.shared;
+    @StateObject var viewModel: AppViewModel;
     @State var countryAPI: CountryManager;
     @State private var displayList: [Country] = [];
     @State private var searchString: String = "";
-    
-    var arr = [1,2,3,4,5,6,7,8,9];
-    
-    //  FUNCTIONS
-    init(){
-        countryAPI = CountryManager();
-    }
     
     var body: some View {
         
@@ -84,7 +77,11 @@ struct CountryListView: View {
                         .fill(.sweetCorn)
                         .opacity(0.55))
                 //  PADDING Around Button
-                .padding(.vertical, 3);
+                .padding(.vertical, 3)
+                .onTapGesture {
+                    viewModel.selectedCountry = country.cca3;
+                    viewModel.currentTab = "Info"
+                };
                 
             }
             
@@ -96,7 +93,6 @@ struct CountryListView: View {
         .onReceive(countryAPI.$countriesList) { countryData in
             if let safeCountryData = countryData{
                 displayList = safeCountryData;
-                print(displayList[0].name.common)
             }
         }
     }
@@ -144,5 +140,5 @@ struct CountryListView: View {
 }
 
 #Preview {
-    CountryListView()
+    CountryListView(viewModel: AppViewModel(), countryAPI: CountryManager())
 }
