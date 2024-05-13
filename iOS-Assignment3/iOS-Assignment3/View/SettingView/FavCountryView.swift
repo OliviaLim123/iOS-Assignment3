@@ -32,9 +32,7 @@ struct FavCountryView: View {
                 .font(.custom("MontserratAlternates-SemiBold", size: 45))
                 .foregroundStyle(.darkPurple)
                 .multilineTextAlignment(.center)
-            Spacer()
-            Text("PUT THE MAP HERE")
-            Spacer()
+
             
             VStack{
                 //  LIST TITLE

@@ -31,7 +31,6 @@ class AppViewModel: ObservableObject{
     
     //  MAP KIT Properties
     @Published var mapCameraPosition: MapCameraPosition
-    
     let defaultCoordinates: CLLocationCoordinate2D
     let geocoder = CLGeocoder()
     
@@ -40,7 +39,7 @@ class AppViewModel: ObservableObject{
         userFavList = userCredentialVM.loadFavCountriesArray();
         
         //  INIT MAP View Properties
-        self.defaultCoordinates = CLLocationCoordinate2D(latitude: Double.random(in: -90...90), longitude: Double.random(in: -180...180))
+        self.defaultCoordinates = CLLocationCoordinate2D(latitude: 16.16666666, longitude: 107.83333333)
         self.mapCameraPosition = MapCameraPosition.camera(MapCamera(centerCoordinate: defaultCoordinates, distance: 10000000))
         
         //  DEBUG
