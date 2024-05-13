@@ -128,14 +128,8 @@ struct CountryInfoView: View {
                     
                     //  MAP Part
                     VStack{
-                        //  HStack To Stretch Info Box to fill empty space
-                        HStack{
-                            Spacer()
-                        }
                         
                         mapView(country: self.selectedCountry);
-                        
-                        Spacer()
                     }   //  Info Box VStack
                     .background(
                         //  INFO BOX BACKGROUND
@@ -187,7 +181,7 @@ struct CountryInfoView: View {
                                     .font(.system(size: 16))
                                     .tracking(0)
                             }
-                            .padding(.bottom, 10)
+                            .padding(.bottom)
                             
                         }
                     }   //  SECOND BOX VStack
@@ -244,7 +238,7 @@ struct CountryInfoView: View {
                                     .font(.system(size: 16))
                                     .tracking(0)
                             }
-                            .padding(.bottom, 10)
+                            .padding(.bottom)
                             
                         }
                     }   //  SECOND BOX VStack
@@ -413,10 +407,10 @@ struct CountryInfoView: View {
         @State var region = MKCoordinateRegion (center: CLLocationCoordinate2D (latitude: country.latlng[0], longitude: country.latlng[1]), span: MKCoordinateSpan(latitudeDelta: 20, longitudeDelta: 20));
         
         return Map(coordinateRegion: $region, annotationItems: [country]) { country in
-            MapMarker(coordinate: CLLocationCoordinate2D(latitude: country.latlng[0], longitude: country.latlng[1]), tint: .red)
+            MapMarker(coordinate: CLLocationCoordinate2D(latitude: country.latlng[0], longitude: country.latlng[1]), tint: .mint)
         }
-        .mapStyle(.hybrid)
-        .padding(.horizontal, 10)
+        .mapStyle(.standard(elevation: .realistic))
+        .padding(10)
     }
     
 }

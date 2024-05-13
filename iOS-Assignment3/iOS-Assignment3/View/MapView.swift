@@ -54,7 +54,7 @@ struct MapView: View {
                         }
                     }
                 }
-                .mapStyle(.hybrid(elevation: .flat))
+                .mapStyle(.standard(elevation: .realistic))
                 .onTapGesture { tap in
                     if let tapCoordinate = mapReader.convert(tap, from: .local) {
                         Task {
