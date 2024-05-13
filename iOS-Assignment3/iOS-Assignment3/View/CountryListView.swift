@@ -15,6 +15,15 @@ struct CountryListView: View {
     @State var countryAPI: CountryManager;
     @State private var displayList: [Country] = [];
     @State private var searchString: String = "";
+    var filteredList: [Country] {
+        if searchString.isEmpty {
+            return displayList
+        } else {
+            return displayList.filter { country in
+                country.name.common.localizedCaseInsensitiveContains(searchString)
+            }
+        }
+    }
     
     var body: some View {
         
@@ -43,7 +52,7 @@ struct CountryListView: View {
     var countryListView: some View{
         ScrollView {
             
-            ForEach(displayList){country in
+            ForEach(filteredList){country in
                 HStack{
                     AsyncImage(url: URL(string: country.flags.png)){ image in
                         image.resizable();
