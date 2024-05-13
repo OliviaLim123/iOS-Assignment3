@@ -6,6 +6,9 @@
 //
 
 import Foundation
+import MapKit
+import SwiftUI
+
 let emptyCountry = Country(flags: Flag(png: ""),
                            name: Name(common: "", official: ""),
                            currencies: [:],
@@ -13,7 +16,7 @@ let emptyCountry = Country(flags: Flag(png: ""),
                            region: "",
                            subregion: "",
                            languages: [:],
-                           latlng: [],
+                           latlng: [0,0],
                            borders: [],
                            population: 0,
                            cca3: "NULL");
@@ -26,9 +29,22 @@ class AppViewModel: ObservableObject{
     @Published var selectedCountry: String = "";
     @Published var userFavList: [String] = [];
     
+    //  MAP KIT Properties
+    @Published var mapCameraPosition: MapCameraPosition
+    
+    let defaultCoordinates: CLLocationCoordinate2D
+    let geocoder = CLGeocoder()
+    
     init(){
+        //  APP View Model Properties
         userFavList = userCredentialVM.loadFavCountriesArray();
-        print(userFavList);
+        
+        //  INIT MAP View Properties
+        self.defaultCoordinates = CLLocationCoordinate2D(latitude: Double.random(in: -90...90), longitude: Double.random(in: -180...180))
+        self.mapCameraPosition = MapCameraPosition.camera(MapCamera(centerCoordinate: defaultCoordinates, distance: 10000000))
+        
+        //  DEBUG
+//        print(self.userFavList);
     }
     
     func isInFavList(countryCode: String) -> Bool{

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct CountryInfoView: View {
     //  PROPERTIES
@@ -42,7 +43,7 @@ struct CountryInfoView: View {
                     Text("Welcome to \(selectedCountry.name.common)!")
                         .foregroundStyle(.royalPurple)
                         .font(.custom("MontserratAlternates-SemiBold", size: 24))
-                    .tracking(1)
+                        .tracking(1)
                     
                     Text("\(selectedCountry.name.official)")
                         .foregroundStyle(.darkPurpleOp)
@@ -93,7 +94,7 @@ struct CountryInfoView: View {
             
         }
     }
-
+    
     
     var countryInfo: some View{
         ScrollView {
@@ -126,6 +127,21 @@ struct CountryInfoView: View {
                     Spacer();
                     
                     //  MAP Part
+                    VStack{
+                        //  HStack To Stretch Info Box to fill empty space
+                        HStack{
+                            Spacer()
+                        }
+                        
+                        mapView(country: self.selectedCountry);
+                        
+                        Spacer()
+                    }   //  Info Box VStack
+                    .background(
+                        //  INFO BOX BACKGROUND
+                        RoundedRectangle(cornerRadius: 10)
+                            .fill(.sweetCorn.opacity(0.5))
+                    );
                     
                     
                 }
@@ -135,6 +151,11 @@ struct CountryInfoView: View {
                 HStack(alignment: .top){
                     
                     VStack{
+                        //  HStack To Stretch Info Box to fill empty space
+                        HStack{
+                            Spacer()
+                        }
+                        
                         //  REGION
                         VStack(alignment: .leading){
                             //  TITLES
@@ -181,6 +202,11 @@ struct CountryInfoView: View {
                     
                     //  CAPITAL & POPULATION Box
                     VStack{
+                        //  HStack To Stretch Info Box to fill empty space
+                        HStack{
+                            Spacer()
+                        }
+                        
                         //  CAPITAL
                         VStack(alignment: .leading){
                             //  TITLES
@@ -198,7 +224,7 @@ struct CountryInfoView: View {
                                             Text("\(cap)")
                                                 .font(.system(size: 16))
                                                 .tracking(0)
-                                                                                    
+                                            
                                         };
                                     }
                                 }
@@ -379,9 +405,22 @@ struct CountryInfoView: View {
                 }
             }
         };
+        
     }
+    
+    //  MAP VIEW
+    func mapView(country: Country) -> some View{
+        @State var region = MKCoordinateRegion (center: CLLocationCoordinate2D (latitude: country.latlng[0], longitude: country.latlng[1]), span: MKCoordinateSpan(latitudeDelta: 20, longitudeDelta: 20));
+        
+        return Map(coordinateRegion: $region, annotationItems: [country]) { country in
+            MapMarker(coordinate: CLLocationCoordinate2D(latitude: country.latlng[0], longitude: country.latlng[1]), tint: .red)
+        }
+        .mapStyle(.hybrid)
+        .padding(.horizontal, 10)
+    }
+    
 }
 
 #Preview {
-    CountryInfoView(countryCode: "USA", viewModel: AppViewModel())
+    CountryInfoView(countryCode: "vnm", viewModel: AppViewModel())
 }

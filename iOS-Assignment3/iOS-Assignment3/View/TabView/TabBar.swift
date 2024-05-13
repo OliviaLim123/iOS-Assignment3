@@ -16,7 +16,7 @@ struct TabBar: View {
     //The body of the view:
     //Represent how the tab bar looks like
     var body: some View {
-        VStack{
+        VStack(spacing: 0){
             tabView
             tabButton
         }
@@ -25,7 +25,7 @@ struct TabBar: View {
     //Navigation to each screen 
     var tabView: some View {
         TabView(selection: $viewModel.currentTab){
-            MapView()
+            MapView(appVM: self.viewModel)
                 .tag("Map")
             
             CountryListView(viewModel: self.viewModel, countryAPI: CountryManager())
@@ -59,6 +59,7 @@ struct TabBar: View {
         .background(.mauve.opacity(0.3))
         .clipShape(Capsule())
         .padding(.horizontal, 25)
+        .padding(.top);
     }
 }
 #Preview {

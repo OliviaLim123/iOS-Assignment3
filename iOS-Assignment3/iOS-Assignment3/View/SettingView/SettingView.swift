@@ -41,7 +41,6 @@ struct SettingView: View {
             Spacer()
             Spacer()
         }
-        .offset(y: 25)
         .preferredColorScheme(isDarkMode ? .dark : .light)
     }
     

@@ -40,47 +40,55 @@ struct FavCountryView: View {
                 //  LIST TITLE
                 
                 //  COUNTRIES LIST
-                ScrollView {
-                    ForEach(self.displayList){country in
-                        HStack{
-                            AsyncImage(url: URL(string: country.flags.png)){ image in
-                                image.resizable();
-                            } placeholder: {
-                                Color.gray;
+                if(!appVM.userFavList.isEmpty) {
+                    ScrollView {
+                        ForEach(self.displayList){country in
+                            HStack{
+                                AsyncImage(url: URL(string: country.flags.png)){ image in
+                                    image.resizable();
+                                } placeholder: {
+                                    Color.gray;
+                                }
+                                .border(.gray)
+                                .frame(width: 55, height: 38)
+                                
+                                Text("\(country.name.common)")
+                                    .font(.custom("MontserratAlternates-SemiBold", size: 20))
+                                    .tracking(2)
+                                    .foregroundStyle(.textColour)
+                                    .padding(.horizontal, 10);
+                                
+                                Spacer();
+                                
+                                //  HEART Button
+                                heartButton(country: country);
                             }
-                            .border(.gray)
-                            .frame(width: 55, height: 38)
-                            
-                            Text("\(country.name.common)")
-                                .font(.custom("MontserratAlternates-SemiBold", size: 20))
-                                .tracking(2)
-                                .foregroundStyle(.textColour)
-                                .padding(.horizontal, 10);
-                            
-                            Spacer();
-                            
-                            //  HEART Button
-                            heartButton(country: country);
+                            .padding(.horizontal)
+                            .padding(.vertical, 10)
+                            .background(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .fill(.sweetCorn)
+                                    .opacity(0.55))
+                            //  PADDING Around Button
+                            .padding(.vertical, 3)
+                            .onTapGesture {
+                                //  CHANGE VM Data to switch back to "Country Info View"
+                                appVM.selectedCountry = country.cca3;
+                                appVM.currentTab = "Info";
+                                
+                                //  BACK TO HOME VIEW
+                                presentationMode.wrappedValue.dismiss()
+                            };
                         }
-                        .padding(.horizontal)
-                        .padding(.vertical, 10)
-                        .background(
-                            RoundedRectangle(cornerRadius: 10)
-                                .fill(.sweetCorn)
-                                .opacity(0.55))
-                        //  PADDING Around Button
-                        .padding(.vertical, 3)
-                        .onTapGesture {
-                            //  CHANGE VM Data to switch back to "Country Info View"
-                            appVM.selectedCountry = country.cca3;
-                            appVM.currentTab = "Info";
-                            
-                            //  BACK TO HOME VIEW
-                            presentationMode.wrappedValue.dismiss()
-                        };
                     }
+                    .padding(.horizontal, 20)
                 }
-                .padding(.horizontal, 20);
+                else{
+                    VStack{
+                        Text("It's a bit lonely here...🌨️☔️");
+                        Text("How about adding some countries you love?");
+                    }
+                };
             }
             
             Spacer()
@@ -102,6 +110,8 @@ struct FavCountryView: View {
                 appVM.userFavList.removeAll{
                     $0 == country.cca3
                 };
+                
+                print(appVM.userFavList);
             }
             else{
                 appVM.userFavList.append(country.cca3);
