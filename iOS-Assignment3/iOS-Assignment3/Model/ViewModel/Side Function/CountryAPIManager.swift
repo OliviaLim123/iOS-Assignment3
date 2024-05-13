@@ -36,6 +36,12 @@ class CountryManager: ObservableObject{
         performRequestByCode(urlString: URL_byCode);
     }
     
+    func fetchCountryListByCode(countryCodes: String){
+        let URL_byCode = "https://restcountries.com/v3.1/alpha?codes=\(countryCodes)&fields=name,currencies,capital,region,subregion,languages,latlng,borders,flags,population,cca3";
+        
+        performRequest(urlString: URL_byCode);
+    }
+    
     //  FUNCTION to send FETCHING Request to API
     func performRequest(urlString: String) {
         if let url = URL(string: urlString) {

@@ -13,8 +13,17 @@ struct SettingView: View {
     
     @ObservedObject var profileVM = ProfileViewModel.shared
     @StateObject var userCredentialVM = UserCredentialViewModel()
+    
+    @ObservedObject var appVM: AppViewModel;
+    
     //AppStorage for handling the display mode function
     @AppStorage("isDarkMode") private var isDarkMode = false
+    
+    //  INIT Function
+    init(viewModel: AppViewModel){
+        self.appVM = viewModel;
+    }
+    
     
     //The body of view:
     //Represent how the setting View looks like
@@ -69,7 +78,7 @@ struct SettingView: View {
     //The appearance and navigation behavior of the edit profile button
     var editProfileButton: some View {
         NavigationLink {
-            MyProfileView()
+            MyProfileView(appVM: self.appVM);
         } label: {
             editProfileLabel
         }
@@ -135,7 +144,7 @@ struct SettingView: View {
     //The appearance and navigation behaviour of the favorite country button
     var myFavCountryButton: some View {
         NavigationLink {
-            FavCountryView()
+            FavCountryView(appVM: self.appVM);
         } label: {
             myFavCountryLabel
         }
@@ -195,6 +204,6 @@ struct SettingView: View {
 
 #Preview {
     NavigationStack {
-        SettingView()
+        SettingView(viewModel: AppViewModel())
     }
 }

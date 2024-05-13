@@ -159,9 +159,9 @@
 		CB2F363D2BE7AD5D005BCE7C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4941DAE42BE88B080096E706 /* TabView */,
 				4941DAA42BE8687B0096E706 /* AppEntry */,
 				CB2F36412BE7ADB9005BCE7C /* HomeView.swift */,
-				4941DAE42BE88B080096E706 /* TabView */,
 				CB2F36432BE7ADC6005BCE7C /* MapView.swift */,
 				CB2F36472BE7ADF0005BCE7C /* CountryListView.swift */,
 				CB2F364D2BE7AE29005BCE7C /* CountryInfoView.swift */,

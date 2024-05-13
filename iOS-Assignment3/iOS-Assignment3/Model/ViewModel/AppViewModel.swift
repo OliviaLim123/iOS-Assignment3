@@ -19,6 +19,19 @@ let emptyCountry = Country(flags: Flag(png: ""),
                            cca3: "NULL");
 
 class AppViewModel: ObservableObject{
+    //  PROPERTIES
+    var userCredentialVM = UserCredentialViewModel();
+    
     @Published var currentTab: String = "Map"
     @Published var selectedCountry: String = "";
+    @Published var userFavList: [String] = [];
+    
+    init(){
+        userFavList = userCredentialVM.loadFavCountriesArray();
+        print(userFavList);
+    }
+    
+    func isInFavList(countryCode: String) -> Bool{
+        return userFavList.contains(countryCode);
+    }
 }

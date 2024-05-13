@@ -14,6 +14,8 @@ class UserCredentialViewModel: ObservableObject {
     @AppStorage("username") var username: String = "" //storedUsername - CHANGED LATER FOR READABLE
     @AppStorage("password") var password: String = "" //storePassword
     @AppStorage("id") var id: Int = 0 //store userID
+    @AppStorage("favList") var favList: String = "[]"; //   Store favorite countries
+    
     //  Published variables
     //  - for USER INPUT fileds
     //  - that "binding" to the login/sign-up view
@@ -24,19 +26,15 @@ class UserCredentialViewModel: ObservableObject {
     @Published var newUsername = ""
     @Published var newPassword = ""
     
-    //
-    //  Saved the user input to the Appstorage - DELETE LATER or can be changed name to UpdateCredential later to UPDATE THE credential if required
-//    func login() {
-//        username = usernameTextField
-//        password = passwordTextField
-//    }
-    
     //  FUNCTION to STORE NEW USER credentials after sign-up
     //  Saved the user input to the Appstorage
     func signUp() {
         //  Store input credentials
-        username = usernameTextField
-        password = passwordTextField
+        username = usernameTextField;
+        password = passwordTextField;
+        
+        //  Reset FAV List data
+        self.favList = "[]";
     }
     
     //  FUNCTION to VERIFY CREDENTIAL from storage (to check if the userInput is matched with the information in the Database)
@@ -60,4 +58,30 @@ class UserCredentialViewModel: ObservableObject {
         username = newUsername
         password = newPassword
     }
+    
+    func saveFavCountriesArray(favList: [String]) {
+        do {
+            let data = try JSONEncoder().encode(favList)
+            self.favList = String(data: data, encoding: .utf8)!
+        } catch {
+            print("Error encoding array:", error)
+        }
+    }
+    
+    func loadFavCountriesArray() -> [String]{
+        var array: [String] = [];
+        
+        guard let data = self.favList.data(using: .utf8) else {
+            return [];
+        }
+        
+        do {
+            array = try JSONDecoder().decode([String].self, from: data);
+        } catch {
+            print("Error decoding array:", error)
+        }
+        
+        return array;
+    }
+
 }

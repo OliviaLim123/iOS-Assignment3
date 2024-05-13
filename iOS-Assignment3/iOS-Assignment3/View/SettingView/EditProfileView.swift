@@ -13,6 +13,8 @@ struct EditProfileView: View {
     
     @ObservedObject var profileVM = ProfileViewModel.shared
     @StateObject var userCredentialVM = UserCredentialViewModel()
+    @ObservedObject var appVM: AppViewModel;
+    
     @State var confirmPwd: String = ""
     //Environment object for navigates to the previous screen
     @Environment(\.presentationMode) var presentationMode
@@ -76,7 +78,7 @@ struct EditProfileView: View {
             }
         }
         .navigationDestination(isPresented: $isAccountUpdated) {
-            SettingView()
+            SettingView(viewModel: AppViewModel())
                 .navigationBarBackButtonHidden(true)
         }
     }
@@ -389,6 +391,6 @@ struct EditProfileView: View {
 
 #Preview {
     NavigationStack {
-        EditProfileView()
+        EditProfileView(appVM: AppViewModel())
     }
 }

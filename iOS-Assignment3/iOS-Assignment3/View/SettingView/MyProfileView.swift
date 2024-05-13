@@ -11,8 +11,10 @@ import PhotosUI
 //A view of my profile screen
 struct MyProfileView: View {
     
-    @ObservedObject var profileVM = ProfileViewModel.shared
-    @StateObject var userCredentialVM = UserCredentialViewModel()
+    @ObservedObject var profileVM = ProfileViewModel.shared;
+    @StateObject var userCredentialVM = UserCredentialViewModel();
+    @ObservedObject var appVM: AppViewModel;
+    
     @State var isSecureField: Bool = true
     
     //The body of view:
@@ -171,7 +173,7 @@ struct MyProfileView: View {
     
     //The appearance and navigation behaviour of the edit button
     var editButton: some View {
-        NavigationLink(destination: EditProfileView()){
+        NavigationLink(destination: EditProfileView(appVM: self.appVM)){
             editLabel
         }
     }
@@ -222,5 +224,5 @@ struct MyProfileView: View {
 }
 
 #Preview {
-    MyProfileView()
+    MyProfileView(appVM: AppViewModel());
 }

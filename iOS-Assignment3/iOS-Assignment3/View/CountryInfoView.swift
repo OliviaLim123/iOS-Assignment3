@@ -11,18 +11,21 @@ struct CountryInfoView: View {
     //  PROPERTIES
     @State private var selectedCountry: Country = emptyCountry;
     @ObservedObject private var countryAPI: CountryManager;
+    @ObservedObject var viewModel: AppViewModel;
     
     //  INIT Function to get Country By Country Code
-    init(countryCode: String){
+    init(countryCode: String, viewModel: AppViewModel){
         countryAPI = CountryManager();
+        self.viewModel = viewModel;
         
         //  FETCH API BY CODE
         countryAPI.fetchCountryByCode(countryCode: countryCode);
     }
     
     //  INIT Function to get Country By Name
-    init(countryName: String){
+    init(countryName: String, viewModel: AppViewModel){
         countryAPI = CountryManager();
+        self.viewModel = viewModel;
         
         //  FETCH API BY NAME
         countryAPI.fetchCountryByName(countryName: countryName);
@@ -34,15 +37,22 @@ struct CountryInfoView: View {
             
             //  WELCOME PART
             HStack {
-                Text("Welcome to \(selectedCountry.name.common)!")
-                    .foregroundStyle(.darkPurple)
-                    .font(.custom("MontserratAlternates-SemiBold", size: 24))
+                //  Country Name
+                VStack(alignment: .leading) {
+                    Text("Welcome to \(selectedCountry.name.common)!")
+                        .foregroundStyle(.royalPurple)
+                        .font(.custom("MontserratAlternates-SemiBold", size: 24))
                     .tracking(1)
+                    
+                    Text("\(selectedCountry.name.official)")
+                        .foregroundStyle(.darkPurpleOp)
+                        .font(.custom("MontserratAlternates-SemiBold", size: 16))
+                        .tracking(1)
+                }
                 
-                Spacer()
+                Spacer();
                 
-                Image(systemName: "heart")
-                    .font(.custom("MontserratAlternates-SemiBold", size: 24))
+                heartButton;
             }
             
             //  COUNTRY INFO
@@ -54,6 +64,36 @@ struct CountryInfoView: View {
         }
         .padding(.horizontal)
     }
+    
+    var heartButton: some View{
+        //  BUTTON Image will be "heart.fill" if in FAV List
+        //  BUTTON Image will be "heart" if not in FAV List
+        Button{
+            //  TOGGLE Favorite
+            if(viewModel.isInFavList(countryCode: selectedCountry.cca3)){
+                viewModel.userFavList.removeAll{
+                    $0 == selectedCountry.cca3
+                };
+            }
+            else{
+                viewModel.userFavList.append(selectedCountry.cca3);
+            }
+        } label:{
+            //  TOGGLE Heart Icon
+            if(viewModel.isInFavList(countryCode: selectedCountry.cca3)){
+                Image(systemName: "heart.fill")
+                    .font(.custom("MontserratAlternates-SemiBold", size: 22))
+                    .foregroundStyle(.red);
+            }
+            else{
+                Image(systemName: "heart")
+                    .font(.custom("MontserratAlternates-SemiBold", size: 22))
+                    .foregroundStyle(.black);
+            }
+            
+        }
+    }
+
     
     var countryInfo: some View{
         ScrollView {
@@ -91,7 +131,7 @@ struct CountryInfoView: View {
                 }
                 .padding(.vertical, 5)
                 
-                //  SECOND LINE (REGION and SUB-REGION)
+                //  SECOND LINE (REGION, SUB-REGION and Capital, Population)
                 HStack(alignment: .top){
                     
                     VStack{
@@ -343,5 +383,5 @@ struct CountryInfoView: View {
 }
 
 #Preview {
-    CountryInfoView(countryCode: "ZWE")
+    CountryInfoView(countryCode: "USA", viewModel: AppViewModel())
 }

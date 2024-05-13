@@ -61,15 +61,9 @@ struct CountryListView: View {
                     
                     Spacer();
                     
-                    //  BUTTON Image will be "heart.fill" if in FAV List
-                    //  BUTTON Image will be "heart" if not in FAV List
-                    Button{
-                        
-                    } label:{
-                        Image(systemName: "heart.fill")
-                            .font(.custom("MontserratAlternates-SemiBold", size: 22))
-                            .foregroundStyle(.red);
-                    }                }
+                    //  HEART Button
+                    heartButton(country: country);
+                }
                 .padding(.horizontal)
                 .padding(.vertical, 10)
                 .background(
@@ -85,7 +79,6 @@ struct CountryListView: View {
                 
             }
             
-            
         }
         .onAppear(){
             countryAPI.fetchAllCountries();
@@ -94,6 +87,34 @@ struct CountryListView: View {
             if let safeCountryData = countryData{
                 displayList = safeCountryData;
             }
+        }
+    }
+    
+    //  HEART Button View
+    func heartButton(country: Country) -> some View{
+        //  BUTTON Image will be "heart.fill" if in FAV List
+        //  BUTTON Image will be "heart" if not in FAV List
+        Button{
+            if(viewModel.isInFavList(countryCode: country.cca3)){
+                viewModel.userFavList.removeAll{
+                    $0 == country.cca3
+                };
+            }
+            else{
+                viewModel.userFavList.append(country.cca3);
+            }
+        } label:{
+            if(viewModel.isInFavList(countryCode: country.cca3)){
+                Image(systemName: "heart.fill")
+                    .font(.custom("MontserratAlternates-SemiBold", size: 22))
+                    .foregroundStyle(.red);
+            }
+            else{
+                Image(systemName: "heart")
+                    .font(.custom("MontserratAlternates-SemiBold", size: 22))
+                    .foregroundStyle(.black);
+            }
+            
         }
     }
     

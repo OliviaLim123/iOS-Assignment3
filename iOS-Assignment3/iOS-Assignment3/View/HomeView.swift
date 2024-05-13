@@ -9,21 +9,23 @@ import SwiftUI
 
 //A view of home screen
 struct HomeView: View {
+    @ObservedObject var appVM: AppViewModel;
     
     //Hides the system tab bar across the entire application
-    init(){
+    init(appVM: AppViewModel){
         UITabBar.appearance().isHidden = true
+        self.appVM = appVM;
     }
     
     //The body of the view:
     //Represent how the tab bar looks like and navigates to the specific screen
     var body: some View {
         NavigationStack {
-            TabBar(viewModel: AppViewModel());
+            TabBar(viewModel: self.appVM);
         }
     }
 }
 
 #Preview {
-    HomeView()
+    HomeView(appVM: AppViewModel())
 }
