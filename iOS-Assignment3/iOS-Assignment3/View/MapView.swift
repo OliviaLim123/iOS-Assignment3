@@ -119,19 +119,19 @@ struct MapView: View {
                 Text("Discover")
                     .font(.system(size: 16))
                     .padding(10)
-                    .foregroundStyle(.white)
+                    .foregroundStyle(.royalPurple)
                     .fontWeight(.semibold)
                     .fontDesign(.monospaced)
                     .background(
                         RoundedRectangle(cornerRadius: 5)
-                            .fill(.royalPurple)
+                            .fill(.sweetCorn)
                     )
             }
         }
         .padding()
         .background(
             RoundedRectangle(cornerRadius: 10)
-                .fill(.pinkCustom)
+                .fill(.lightPurple)
         )
         .padding(.horizontal);
     }
