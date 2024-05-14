@@ -21,7 +21,9 @@
 
 
  Warning!
- If you have any problem with the package dependency SPM, go to this link below
+ If you have any problem with the package dependency SPM, go to this link below:
  https://stackoverflow.com/questions/67185817/package-resolved-file-is-corrupted-or-malformed 
+
+ The Package we use for this project: https://github.com/exyte/ActivityIndicatorView
  
  
