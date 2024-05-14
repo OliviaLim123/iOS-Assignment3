@@ -23,7 +23,7 @@ let emptyCountry = Country(flags: Flag(png: ""),
                            cca3: "NULL")
 
 //MAP VIEW MODEL - handling the map in this application
-class MapViewModel: ObservableObject {
+class A: ObservableObject {
     
     //USER CREDENTIAL VIEW MODEL
     var userCredentialVM = UserCredentialViewModel()
