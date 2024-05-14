@@ -146,7 +146,7 @@ struct CountryListView: View {
                 ZStack{
                     RoundedRectangle(cornerRadius: 10.0)
                         .frame(maxWidth: .infinity)
-                        .foregroundStyle(.pinkCustom)
+                        .foregroundStyle(.lightPurple)
                         .frame(height: 50)
                         .padding(.horizontal, -15)
                         .overlay(

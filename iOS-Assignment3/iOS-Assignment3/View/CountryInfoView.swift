@@ -34,19 +34,19 @@ struct CountryInfoView: View {
     
     var body: some View {
         VStack {
-            Text("COUNTRY INFO VIEW - DANIEL PART");
+            //Text("COUNTRY INFO VIEW - DANIEL PART");
             
             //  WELCOME PART
             HStack {
                 //  Country Name
                 VStack(alignment: .leading) {
                     Text("Welcome to \(selectedCountry.name.common)!")
-                        .foregroundStyle(.royalPurple)
+                        .foregroundStyle(.darkPurple)
                         .font(.custom("MontserratAlternates-SemiBold", size: 24))
                         .tracking(1)
                     
                     Text("\(selectedCountry.name.official)")
-                        .foregroundStyle(.darkPurpleOp)
+                        .foregroundStyle(.textColour)
                         .font(.custom("MontserratAlternates-SemiBold", size: 16))
                         .tracking(1)
                 }
@@ -105,6 +105,7 @@ struct CountryInfoView: View {
                     VStack(alignment: .leading){
                         Text("The Flag")
                             .font(.custom("MontserratAlternates-SemiBold", size: 20))
+                            .foregroundStyle(.royalPurple)
                             .tracking(0)
                             .padding(.horizontal)
                             .padding(.top, 10);
@@ -121,7 +122,7 @@ struct CountryInfoView: View {
                     .background(
                         //  INFO BOX BACKGROUND
                         RoundedRectangle(cornerRadius: 10)
-                            .fill(.sweetCorn.opacity(0.5))
+                            .fill(.yellowCustom)
                     );
                     
                     Spacer();
@@ -134,7 +135,7 @@ struct CountryInfoView: View {
                     .background(
                         //  INFO BOX BACKGROUND
                         RoundedRectangle(cornerRadius: 10)
-                            .fill(.sweetCorn.opacity(0.5))
+                            .fill(.yellowCustom)
                     );
                     
                     
@@ -155,6 +156,7 @@ struct CountryInfoView: View {
                             //  TITLES
                             Text("Region")
                                 .font(.custom("MontserratAlternates-SemiBold", size: 20))
+                                .foregroundStyle(.textColour)
                                 .tracking(1)
                                 .padding(.top, 10)
                                 .padding(.bottom, 1);
@@ -164,6 +166,7 @@ struct CountryInfoView: View {
                                 Text("\(selectedCountry.region)")
                                     .font(.system(size: 16))
                                     .tracking(0)
+                                    .foregroundStyle(.textColour)
                             }
                             .fontDesign(.monospaced)
                             
@@ -172,6 +175,7 @@ struct CountryInfoView: View {
                                 //  TITLES
                                 Text("Sub-Region")
                                     .font(.custom("MontserratAlternates-SemiBold", size: 20))
+                                    .foregroundStyle(.textColour)
                                     .tracking(1)
                                     .padding(.top, 5)
                                     .padding(.bottom, 1);
@@ -180,6 +184,7 @@ struct CountryInfoView: View {
                                 Text("\(selectedCountry.subregion)")
                                     .font(.system(size: 16))
                                     .tracking(0)
+                                    .foregroundStyle(.textColour)
                             }
                             .padding(.bottom)
                             
@@ -189,7 +194,7 @@ struct CountryInfoView: View {
                     .background(
                         //  INFO BOX BACKGROUND
                         RoundedRectangle(cornerRadius: 10)
-                            .fill(.mauve.opacity(0.5))
+                            .fill(.lightPurple)
                     )
                     
                     Spacer();
@@ -206,6 +211,7 @@ struct CountryInfoView: View {
                             //  TITLES
                             Text("Capital")
                                 .font(.custom("MontserratAlternates-SemiBold", size: 20))
+                                .foregroundStyle(.textColour)
                                 .tracking(1)
                                 .padding(.top, 10)
                                 .padding(.bottom, 1);
@@ -217,6 +223,7 @@ struct CountryInfoView: View {
                                         HStack {
                                             Text("\(cap)")
                                                 .font(.system(size: 16))
+                                                .foregroundStyle(.textColour)
                                                 .tracking(0)
                                             
                                         };
@@ -230,12 +237,14 @@ struct CountryInfoView: View {
                                 //  TITLES
                                 Text("Population")
                                     .font(.custom("MontserratAlternates-SemiBold", size: 20))
+                                    .foregroundStyle(.textColour)
                                     .tracking(1)
                                     .padding(.top, 5)
                                     .padding(.bottom, 1);
                                 
                                 Text("\(selectedCountry.population)")
                                     .font(.system(size: 16))
+                                    .foregroundStyle(.textColour)
                                     .tracking(0)
                             }
                             .padding(.bottom)
@@ -246,7 +255,7 @@ struct CountryInfoView: View {
                     .background(
                         //  INFO BOX BACKGROUND
                         RoundedRectangle(cornerRadius: 10)
-                            .fill(.mauve.opacity(0.5))
+                            .fill(.lightPurple)
                     )
                     
                 }   //  SECOND LINE HStack
@@ -258,6 +267,7 @@ struct CountryInfoView: View {
                     VStack {
                         Text("More Info")
                             .font(.custom("MontserratAlternates-SemiBold", size: 20))
+                            .foregroundStyle(.royalPurple)
                             .tracking(1)
                             .padding(.top, 10)
                             .padding(.bottom, 1);
@@ -270,6 +280,7 @@ struct CountryInfoView: View {
                         VStack(alignment: .leading){
                             Text("Currency")
                                 .font(.custom("MontserratAlternates-SemiBold", size: 20))
+                                .foregroundStyle(.textColour)
                                 .tracking(1)
                                 .padding(.top, 10)
                                 .padding(.bottom, 1);
@@ -282,12 +293,14 @@ struct CountryInfoView: View {
                                         HStack{
                                             Text("\(currency.value.name)")
                                                 .font(.system(size: 16))
+                                                .foregroundStyle(.textColour)
                                                 .tracking(0);
                                             
                                             Spacer()
                                             
                                             Text("(\(currency.value.symbol))")
                                                 .font(.system(size: 20))
+                                                .foregroundStyle(.textColour)
                                                 .tracking(0)
                                         }
                                     }
@@ -303,7 +316,7 @@ struct CountryInfoView: View {
                         .background(
                             //  INFO BOX BACKGROUND
                             RoundedRectangle(cornerRadius: 10)
-                                .fill(.mauve.opacity(0.5))
+                                .fill(.lightPurple)
                         )
                         
                         Spacer();
@@ -314,6 +327,7 @@ struct CountryInfoView: View {
                             VStack(alignment: .leading){
                                 Text("Borders")
                                     .font(.custom("MontserratAlternates-SemiBold", size: 20))
+                                    .foregroundStyle(.textColour)
                                     .tracking(1)
                                     .padding(.top, 10)
                                     .padding(.bottom, 1);
@@ -323,6 +337,7 @@ struct CountryInfoView: View {
                                     ForEach(selectedCountry.borders, id: \.self){ neighborCountry in
                                         HStack{
                                             Text("\(neighborCountry)")
+                                                .foregroundStyle(.textColour)
                                                 .padding(.bottom, 5);
                                             
                                             Spacer();
@@ -340,7 +355,7 @@ struct CountryInfoView: View {
                             .background(
                                 //  INFO BOX BACKGROUND
                                 RoundedRectangle(cornerRadius: 10)
-                                    .fill(.mauve.opacity(0.5))
+                                    .fill(.lightPurple)
                             )
                             
                             Spacer()
@@ -349,6 +364,7 @@ struct CountryInfoView: View {
                             VStack(alignment: .leading){
                                 Text("Language")
                                     .font(.custom("MontserratAlternates-SemiBold", size: 20))
+                                    .foregroundStyle(.textColour)
                                     .tracking(1)
                                     .padding(.top, 10)
                                     .padding(.bottom, 1);
@@ -359,6 +375,7 @@ struct CountryInfoView: View {
                                     ForEach(selectedCountry.languages.sorted(by: { $0.key < $1.key }), id: \.key) { lang in
                                         HStack{
                                             Text("\(lang.value)")
+                                                .foregroundStyle(.textColour)
                                                 .padding(.bottom, 5);
                                             
                                             Spacer();
@@ -376,7 +393,7 @@ struct CountryInfoView: View {
                             .background(
                                 //  INFO BOX BACKGROUND
                                 RoundedRectangle(cornerRadius: 10)
-                                    .fill(.mauve.opacity(0.5))
+                                    .fill(.lightPurple)
                             )
                         }
                     }
@@ -388,7 +405,7 @@ struct CountryInfoView: View {
                 .background(
                     //  INFO BOX BACKGROUND
                     RoundedRectangle(cornerRadius: 10)
-                        .fill(.sweetCorn.opacity(0.4))
+                        .fill(.yellowCustom)
                 )
                 
                 Spacer();
