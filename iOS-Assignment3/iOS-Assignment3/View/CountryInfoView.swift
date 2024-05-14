@@ -75,9 +75,16 @@ struct CountryInfoView: View {
                 viewModel.userFavList.removeAll{
                     $0 == selectedCountry.cca3
                 };
+                
+                //  SAVE FAV LIST TO APP STORAGE
+                viewModel.saveFavList();
             }
             else{
                 viewModel.userFavList.append(selectedCountry.cca3);
+                
+                //  SAVE FAV LIST TO APP STORAGE
+
+                viewModel.saveFavList();
             }
         } label:{
             //  TOGGLE Heart Icon

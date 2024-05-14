@@ -108,9 +108,15 @@ struct CountryListView: View {
                 viewModel.userFavList.removeAll{
                     $0 == country.cca3
                 };
+                
+                //  SAVE FAV LIST TO APP STORAGE
+                viewModel.saveFavList();
             }
             else{
                 viewModel.userFavList.append(country.cca3);
+                
+                //  SAVE FAV LIST TO APP STORAGE
+                viewModel.saveFavList();
             }
         } label:{
             if(viewModel.isInFavList(countryCode: country.cca3)){

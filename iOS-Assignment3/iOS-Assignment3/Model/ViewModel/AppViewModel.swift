@@ -46,6 +46,10 @@ class AppViewModel: ObservableObject{
 //        print(self.userFavList);
     }
     
+    func saveFavList(){
+        userCredentialVM.saveFavCountriesArray(favList: userFavList);
+    }
+    
     func isInFavList(countryCode: String) -> Bool{
         return userFavList.contains(countryCode);
     }
