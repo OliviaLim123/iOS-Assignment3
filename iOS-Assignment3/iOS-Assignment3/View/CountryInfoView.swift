@@ -16,20 +16,20 @@ struct CountryInfoView: View {
     
     //OBSERVED OBJECT for country manager and map view model
     @ObservedObject private var countryAPI: CountryManager
-    @ObservedObject var mapViewVM: MapViewModel
+    @ObservedObject var appVM: AppViewModel
     
     //INIT Function to get Country By Country Code
-    init(countryCode: String, viewModel: MapViewModel) {
+    init(countryCode: String, viewModel: AppViewModel) {
         countryAPI = CountryManager()
-        self.mapViewVM = viewModel
+        self.appVM = viewModel
         //FETCH API BY CODE
         countryAPI.fetchCountryByCode(countryCode: countryCode)
     }
     
     //Another INIT Function to get Country By Name
-    init(countryName: String, viewModel: MapViewModel) {
+    init(countryName: String, viewModel: AppViewModel) {
         countryAPI = CountryManager()
-        self.mapViewVM = viewModel
+        self.appVM = viewModel
         //FETCH API BY NAME
         countryAPI.fetchCountryByName(countryName: countryName)
     }
@@ -65,20 +65,20 @@ struct CountryInfoView: View {
         //BUTTON Image will be "heart" if not in FAV List
         Button {
             //TOGGLE Favorite
-            if (mapViewVM.isInFavList(countryCode: selectedCountry.cca3)) {
-                mapViewVM.userFavList.removeAll{
+            if (appVM.isInFavList(countryCode: selectedCountry.cca3)) {
+                appVM.userFavList.removeAll{
                     $0 == selectedCountry.cca3
                 }
                 //SAVE favourite list to APP STORAGE
-                mapViewVM.saveFavList()
+                appVM.saveFavList()
             } else {
-                mapViewVM.userFavList.append(selectedCountry.cca3)
+                appVM.userFavList.append(selectedCountry.cca3)
                 //SAVE favourite list to APP STORAGE
-                mapViewVM.saveFavList()
+                appVM.saveFavList()
             }
         } label: {
             //TOGGLE Heart Icon
-            if(mapViewVM.isInFavList(countryCode: selectedCountry.cca3)) {
+            if(appVM.isInFavList(countryCode: selectedCountry.cca3)) {
                 Image(systemName: "heart.fill")
                     .font(.custom("MontserratAlternates-SemiBold", size: 22))
                     .foregroundStyle(.red);
@@ -377,15 +377,32 @@ struct CountryInfoView: View {
     
     //METHOD for MAP VIEW
     func mapView(country: Country) -> some View {
+        //GET Country Lat and Lng Data to Display MAP View
         @State var region = MKCoordinateRegion (center: CLLocationCoordinate2D (latitude: country.latlng[0], longitude: country.latlng[1]), span: MKCoordinateSpan(latitudeDelta: 20, longitudeDelta: 20))
-        return Map(coordinateRegion: $region, annotationItems: [country]) { country in
-            MapMarker(coordinate: CLLocationCoordinate2D(latitude: country.latlng[0], longitude: country.latlng[1]), tint: .mint)
+        
+        //SET Map View PROPERTIES based on Lat and Long data above
+        let countryCoordinates: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: country.latlng[0], longitude: country.latlng[1])
+        @State var mapCameraPosition: MapCameraPosition = MapCameraPosition.camera(MapCamera(centerCoordinate: countryCoordinates, distance: 3500000))
+        
+        return MapReader { mapReader in
+            Map(position: $mapCameraPosition) {
+                
+                //  GET Country Location
+                let location =  CLLocationCoordinate2D(latitude: country.latlng[0], longitude: country.latlng[1])
+                
+                Annotation("\(country.name.common)", coordinate: location){
+                    Image(systemName: "mappin.and.ellipse")
+                        .font(.system(size: 32))
+                        .fontWeight(.regular)
+                        .foregroundStyle(Color.pink)
+                        .offset(y: -10);
+                }
+            }
+            .mapStyle(.standard(elevation: .realistic))
         }
-        .mapStyle(.standard(elevation: .realistic))
-        .padding(10)
     }
 }
 
 #Preview {
-    CountryInfoView(countryCode: "vnm", viewModel: MapViewModel())
+    CountryInfoView(countryCode: "vnm", viewModel: AppViewModel())
 }

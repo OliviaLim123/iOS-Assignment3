@@ -14,13 +14,13 @@ struct SettingView: View {
     @ObservedObject var profileVM = ProfileViewModel.shared
     @StateObject var userCredentialVM = UserCredentialViewModel()
     
-    @ObservedObject var appVM: MapViewModel;
+    @ObservedObject var appVM: AppViewModel;
     
     //AppStorage for handling the display mode function
     @AppStorage("isDarkMode") private var isDarkMode = false
     
     //  INIT Function
-    init(viewModel: MapViewModel){
+    init(viewModel: AppViewModel){
         self.appVM = viewModel;
     }
     
@@ -203,6 +203,6 @@ struct SettingView: View {
 
 #Preview {
     NavigationStack {
-        SettingView(viewModel: MapViewModel())
+        SettingView(viewModel: AppViewModel())
     }
 }

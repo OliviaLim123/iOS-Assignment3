@@ -35,7 +35,7 @@
 		CBADA3E22BEA2DA700496615 /* LaunchScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBADA3E12BEA2DA700496615 /* LaunchScreenView.swift */; };
 		DD74DE0F2BEE182900FF4F8D /* CountryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD74DE0E2BEE182900FF4F8D /* CountryModel.swift */; };
 		DD74DE132BEE18DE00FF4F8D /* CountryAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD74DE122BEE18DE00FF4F8D /* CountryAPIManager.swift */; };
-		DD74DE152BEE206200FF4F8D /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD74DE142BEE206200FF4F8D /* MapViewModel.swift */; };
+		DD74DE152BEE206200FF4F8D /* AppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD74DE142BEE206200FF4F8D /* AppViewModel.swift */; };
 		DDC2E1CA2BE8D577001EBC09 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC2E1C92BE8D577001EBC09 /* UserModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -69,7 +69,7 @@
 		CBADA3E12BEA2DA700496615 /* LaunchScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenView.swift; sourceTree = "<group>"; };
 		DD74DE0E2BEE182900FF4F8D /* CountryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryModel.swift; sourceTree = "<group>"; };
 		DD74DE122BEE18DE00FF4F8D /* CountryAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryAPIManager.swift; sourceTree = "<group>"; };
-		DD74DE142BEE206200FF4F8D /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
+		DD74DE142BEE206200FF4F8D /* AppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewModel.swift; sourceTree = "<group>"; };
 		DDC2E1C92BE8D577001EBC09 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -139,7 +139,7 @@
 				DD74DE102BEE189200FF4F8D /* Side Function */,
 				CB1F32132BE8F37F0002CC14 /* ProfileViewModel.swift */,
 				4921245C2BE9BF3600B83AA3 /* UserCredentialViewModel.swift */,
-				DD74DE142BEE206200FF4F8D /* MapViewModel.swift */,
+				DD74DE142BEE206200FF4F8D /* AppViewModel.swift */,
 			);
 			name = ViewModel;
 			path = Model/ViewModel;
@@ -328,7 +328,7 @@
 				CBADA3E22BEA2DA700496615 /* LaunchScreenView.swift in Sources */,
 				4967CB482BEB2A0F00E12E1B /* CustomDotIndicator.swift in Sources */,
 				CB2F364C2BE7AE19005BCE7C /* TabButton.swift in Sources */,
-				DD74DE152BEE206200FF4F8D /* MapViewModel.swift in Sources */,
+				DD74DE152BEE206200FF4F8D /* AppViewModel.swift in Sources */,
 				4967CB412BEB1D3300E12E1B /* LoadingIndicatorView.swift in Sources */,
 				CB1F320E2BE8F24F0002CC14 /* MyProfileView.swift in Sources */,
 				4941DAA12BE85F0A0096E706 /* AppEntry.swift in Sources */,

@@ -11,10 +11,10 @@ import SwiftUI
 struct HomeView: View {
     
     //OBSERVED OBJECT of map view model
-    @ObservedObject var mapViewVM: MapViewModel
+    @ObservedObject var mapViewVM: AppViewModel
     
     //HIDES the system tab bar across the entire application
-    init(mapViewVM: MapViewModel) {
+    init(mapViewVM: AppViewModel) {
         UITabBar.appearance().isHidden = true
         self.mapViewVM = mapViewVM
     }
@@ -28,5 +28,5 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView(mapViewVM: MapViewModel())
+    HomeView(mapViewVM: AppViewModel())
 }

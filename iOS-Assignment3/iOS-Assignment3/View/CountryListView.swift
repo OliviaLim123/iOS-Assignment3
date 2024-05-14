@@ -11,7 +11,7 @@ import SwiftUI
 struct CountryListView: View {
     
     //STATE OBJECT of map view model
-    @StateObject var mapViewVM: MapViewModel
+    @StateObject var mapViewVM: AppViewModel
     
     //STATE Properties
     @State var countryAPI: CountryManager
@@ -165,5 +165,5 @@ struct CountryListView: View {
 }
 
 #Preview {
-    CountryListView(mapViewVM: MapViewModel(), countryAPI: CountryManager())
+    CountryListView(mapViewVM: AppViewModel(), countryAPI: CountryManager())
 }

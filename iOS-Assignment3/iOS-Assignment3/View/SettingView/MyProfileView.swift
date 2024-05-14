@@ -13,7 +13,7 @@ struct MyProfileView: View {
     
     @ObservedObject var profileVM = ProfileViewModel.shared;
     @StateObject var userCredentialVM = UserCredentialViewModel();
-    @ObservedObject var appVM: MapViewModel;
+    @ObservedObject var appVM: AppViewModel;
     
     @State var isSecureField: Bool = true
     
@@ -224,5 +224,5 @@ struct MyProfileView: View {
 }
 
 #Preview {
-    MyProfileView(appVM: MapViewModel());
+    MyProfileView(appVM: AppViewModel());
 }

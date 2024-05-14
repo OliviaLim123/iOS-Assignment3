@@ -11,7 +11,7 @@ import SwiftUI
 struct TabBar: View {
     
     //PROPERTIES
-    @StateObject var viewModel: MapViewModel
+    @StateObject var viewModel: AppViewModel
     
     //TAB BAR View
     var body: some View {
@@ -25,7 +25,7 @@ struct TabBar: View {
     var tabView: some View {
         TabView(selection: $viewModel.currentTab) {
             //"Map" icon navigates to MAP VIEW
-            MapView(mapViewVM: self.viewModel)
+            MapView(appVM: self.viewModel)
                 .tag("Map")
             //"List" icon navigates to COUNTRY LIST VIEW
             CountryListView(mapViewVM: self.viewModel, countryAPI: CountryManager())
@@ -64,6 +64,6 @@ struct TabBar: View {
 }
 
 #Preview {
-    TabBar(viewModel: MapViewModel())
+    TabBar(viewModel: AppViewModel())
 }
 

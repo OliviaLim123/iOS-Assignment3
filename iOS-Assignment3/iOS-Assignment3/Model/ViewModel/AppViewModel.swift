@@ -23,7 +23,7 @@ let emptyCountry = Country(flags: Flag(png: ""),
                            cca3: "NULL")
 
 //MAP VIEW MODEL - handling the map in this application
-class A: ObservableObject {
+class AppViewModel: ObservableObject {
     
     //USER CREDENTIAL VIEW MODEL
     var userCredentialVM = UserCredentialViewModel()
@@ -36,7 +36,6 @@ class A: ObservableObject {
     //MAP KIT Properties
     @Published var mapCameraPosition: MapCameraPosition
     let defaultCoordinates: CLLocationCoordinate2D
-    let geocoder = CLGeocoder()
     
     //INIT method for MAP VIEW properties
     init() {
