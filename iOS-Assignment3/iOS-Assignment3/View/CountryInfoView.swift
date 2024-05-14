@@ -18,7 +18,7 @@ struct CountryInfoView: View {
     @ObservedObject private var countryAPI: CountryManager
     @ObservedObject var appVM: AppViewModel
     
-    //INIT Function to get Country By Country Code
+    //INIT method to get Country By Country Code
     init(countryCode: String, viewModel: AppViewModel) {
         countryAPI = CountryManager()
         self.appVM = viewModel
@@ -65,7 +65,7 @@ struct CountryInfoView: View {
         //BUTTON Image will be "heart" if not in FAV List
         Button {
             //TOGGLE Favorite
-            if (appVM.isInFavList(countryCode: selectedCountry.cca3)) {
+            if appVM.isInFavList(countryCode: selectedCountry.cca3) {
                 appVM.userFavList.removeAll{
                     $0 == selectedCountry.cca3
                 }
@@ -78,11 +78,11 @@ struct CountryInfoView: View {
             }
         } label: {
             //TOGGLE Heart Icon
-            if(appVM.isInFavList(countryCode: selectedCountry.cca3)) {
+            if appVM.isInFavList(countryCode: selectedCountry.cca3) {
                 Image(systemName: "heart.fill")
                     .font(.custom("MontserratAlternates-SemiBold", size: 22))
                     .foregroundStyle(.red);
-            } else{
+            } else {
                 Image(systemName: "heart")
                     .font(.custom("MontserratAlternates-SemiBold", size: 22))
                     .foregroundStyle(.black);

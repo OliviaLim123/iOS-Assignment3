@@ -7,16 +7,17 @@
 
 import SwiftUI
 
-//A view of secure text field for the password
+//SECURE TEXT FIELD Struct for the password
 struct SecureTextField: View {
     
-    //A state of isSecureField is set to true
+    //STATE property to track the text field is secure or not
     //Means that it is not allowed to see the password
     @State var isSecureField: Bool = true
+    
+    //BINDING property of text
     @Binding var text: String
     
-    //The body of view:
-    //Represent how the text field for the password looks like
+    //SECURE TEXT FIELD VIEW
     var body: some View {
         HStack {
             if isSecureField {
@@ -30,7 +31,7 @@ struct SecureTextField: View {
         }
     }
     
-    //The appearance when the password is unseen by the user
+    //APPEARANCE of unseen the password
     var securePassField: some View {
         SecureField("New password", text: $text)
             .foregroundStyle(.darkPurple)
@@ -40,7 +41,7 @@ struct SecureTextField: View {
             .padding(.horizontal)
     }
     
-    //The appearance when the password can be seen by the user
+    //APPEARANCE of seen password
     var normalPassField: some View {
         TextField("New password", text: $text)
             .foregroundStyle(.darkPurple)
@@ -50,7 +51,7 @@ struct SecureTextField: View {
             .padding(.horizontal)
     }
     
-    //The appearance of eye icon to see the password
+    //APPEARANCE of eye icon to see the password
     var eyeIcon: some View {
         Image(systemName: isSecureField ? "eye.slash" : "eye")
             .foregroundStyle(.darkPurpleOp)
@@ -60,10 +61,13 @@ struct SecureTextField: View {
     }
 }
 
-//  This struct is for preview purpose
+//SECURE TEXT FIELD PREVIEW Struct
 struct SecureTextFieldPreview: View {
+    
+    //STATE property of text
     @State var text: String = ""
     
+    //VIEW of secure text field 
     var body: some View {
         SecureTextField(text: $text)
             .padding()

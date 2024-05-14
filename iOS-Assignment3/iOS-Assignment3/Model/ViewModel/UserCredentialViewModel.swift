@@ -30,7 +30,6 @@ class UserCredentialViewModel: ObservableObject {
         //Store input credentials
         storedUsername = usernameInput
         storedPassword = passwordInput
-        
         //Reset FAV List data
         self.favList = "[]"
     }

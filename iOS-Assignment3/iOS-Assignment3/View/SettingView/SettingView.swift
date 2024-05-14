@@ -8,25 +8,25 @@
 import SwiftUI
 import PhotosUI
 
-//A view of setting
+//SETTING VIEW Struct
 struct SettingView: View {
     
+    //OBSERVED OBEJCT of profile and app view models
     @ObservedObject var profileVM = ProfileViewModel.shared
+    @ObservedObject var appVM: AppViewModel
+    
+    //STATE OBJECT of user credential view model
     @StateObject var userCredentialVM = UserCredentialViewModel()
     
-    @ObservedObject var appVM: AppViewModel;
-    
-    //AppStorage for handling the display mode function
+    //APP STORAGE for handling the display mode function
     @AppStorage("isDarkMode") private var isDarkMode = false
     
-    //  INIT Function
+    //INIT Method for initialise the appVM
     init(viewModel: AppViewModel){
-        self.appVM = viewModel;
+        self.appVM = viewModel
     }
     
-    
-    //The body of view:
-    //Represent how the setting View looks like
+    //SETTING VIEW
     var body: some View {
         VStack{
             settingTitle
@@ -44,14 +44,14 @@ struct SettingView: View {
         .preferredColorScheme(isDarkMode ? .dark : .light)
     }
     
-    //The appearance of "Setting" title
+    //SETTING TITLE Appearance
     var settingTitle: some View {
         Text("SETTING")
             .font(.custom("MontserratAlternates-SemiBold", size: 50))
             .foregroundStyle(.darkPurple)
     }
     
-    //The appearance of profile picture
+    //PROFILE PICTURE Appearance
     var profilePicture: some View {
         Image(uiImage: profileVM.avatarImage ?? UIImage(resource: .defaultAvatar))
             .resizable()
@@ -61,7 +61,7 @@ struct SettingView: View {
             .padding(.bottom)
     }
     
-    //The appearance of ID and username of the user
+    //ID and USERNAME Appearance
     var profileInfo: some View {
         HStack{
             Text("ID\(userCredentialVM.id)")
@@ -74,7 +74,7 @@ struct SettingView: View {
         }
     }
     
-    //The appearance and navigation behavior of the edit profile button
+    //EDIT PROFILE BUTTON - navigates to the MY PROFILE VIEW
     var editProfileButton: some View {
         NavigationLink {
             MyProfileView(appVM: self.appVM);
@@ -84,7 +84,7 @@ struct SettingView: View {
         .padding(.bottom)
     }
    
-    //The appearance of edit profile label for the button
+    //EDIT PROFILE BUTTON Appearance
     var editProfileLabel: some View {
         ZStack(alignment: .leading){
             Rectangle()
@@ -97,7 +97,6 @@ struct SettingView: View {
                 Image(systemName: "square.and.pencil")
                     .foregroundStyle(.black)
                     .font(.title2)
-                    
                 Text("My Profile")
                     .font(.custom("MontserratAlternates-SemiBold", size: 18))
                     .foregroundStyle(.black)
@@ -107,7 +106,7 @@ struct SettingView: View {
         }
     }
     
-    //The appearance of dark mode button
+    //DARK MODE BUTTON Appearance
     var darkModeButton: some View {
         ZStack(alignment: .leading){
             Rectangle()
@@ -132,7 +131,7 @@ struct SettingView: View {
         .padding(.bottom)
     }
     
-    //The appearance of dark mode toggle
+    //DARK MODE TOGGLE Appearance
     var darkModeToggle: some View {
         Toggle("", isOn: $isDarkMode)
             .toggleStyle(SwitchToggleStyle(tint: .purple))
@@ -171,19 +170,18 @@ struct SettingView: View {
         }
     }
     
-    //The appearance and navigation behaviour of log out button
+    //LOG OUT BUTTON - navigates to the APP ENTRY VIEW
     var logOutButton: some View {
         NavigationLink {
-            //Navigates to the AppEntry view
             AppEntry()
         } label: {
             logOutLabel
         }
     }
     
-    //The appearance of log out label for the button
+    //LOG OUT BUTTON Appearance
     var logOutLabel: some View {
-        ZStack{
+        ZStack {
             RoundedRectangle(cornerRadius: 25)
                 .frame(maxWidth: .infinity)
                 .frame(height: 55)
@@ -192,7 +190,6 @@ struct SettingView: View {
                 .padding(.horizontal)
                 .shadow(color: .black.opacity(0.3), radius: 3, x: -2, y: -2)
                 .shadow(color: .gray.opacity(0.5), radius: 4, x: -4, y: -4)
-            
             Text("LOG OUT")
                 .font(.custom("MontserratAlternates-SemiBold", size: 20))
                 .foregroundStyle(.royalPurple)

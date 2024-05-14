@@ -20,7 +20,9 @@ struct TabButton: View {
     //TAB BUTTON View 
     var body: some View {
         Button(action: {
-            withAnimation(.spring()){selected = title}
+            withAnimation(.spring()) {
+                selected = title
+            }
         }) {
             icons
         }

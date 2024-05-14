@@ -28,7 +28,7 @@ struct TabBar: View {
             MapView(appVM: self.viewModel)
                 .tag("Map")
             //"List" icon navigates to COUNTRY LIST VIEW
-            CountryListView(mapViewVM: self.viewModel, countryAPI: CountryManager())
+            CountryListView(appVM: self.viewModel, countryAPI: CountryManager())
                 .defaultScrollAnchor(.top)
                 .tag("List")
             //"Info" icon navigates to COUNTRY INFO VIEW

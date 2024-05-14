@@ -8,31 +8,35 @@
 import SwiftUI
 import PhotosUI
 
-//A view of edit profile screen
+//EDIT PROFILE VIEW Struct
 struct EditProfileView: View {
     
+    //OBSERVED OBJECT of profile and app view models
     @ObservedObject var profileVM = ProfileViewModel.shared
-    @StateObject var userCredentialVM = UserCredentialViewModel()
-    @ObservedObject var appVM: AppViewModel;
+    @ObservedObject var appVM: AppViewModel
     
+    //STATE OBJECT of user credential view model
+    @StateObject var userCredentialVM = UserCredentialViewModel()
+    
+    //STATE property of confirm password
     @State var confirmPwd: String = ""
-    //Environment object for navigates to the previous screen
+    
+    //ENVIRONMENT property - navigates to the previous screen
     @Environment(\.presentationMode) var presentationMode
     
     
-    //  STATE FOR FORM VALIDATION - CHECK VALID INPUT
+    //STATE for form validation - CHECK VALID INPUT
     @State var isAccountUpdated: Bool = false
-    //  State to track password mismatch
+    //STATE to track password mismatch
     @State var showPasswordMismatchError: Bool = false
-    //  State to track username error
+    //STATE to track username error
     @State var showUsernameError: Bool = false
-    //  State to track if User not fill all the form
+    //STATE to track if User not fill all the form
     @State var showIncompleteFormError: Bool = false
-    //State variable to enable photo picker functionality
+    //STATE to enable photo picker functionality
     @State private var photoPickerItem: PhotosPickerItem?
     
-    //The body of view:
-    //Represent how the edit profile looks like
+    //EDIT PROFILE VIEW
     var body: some View {
         ZStack {
             VStack {
@@ -40,7 +44,7 @@ struct EditProfileView: View {
                 Spacer()
                 profilePicture
                 userID
-                PhotosPicker(selection: $photoPickerItem, matching: .images){
+                PhotosPicker(selection: $photoPickerItem, matching: .images) {
                     changePicButton
                 }
                 .padding(.bottom)
@@ -50,11 +54,11 @@ struct EditProfileView: View {
                 newPassField
                 confirmPass
                 confirmPassField
-                // Display form incompleted ERROR
+                //DISPLAY form incompleted ERROR
                 incompleteFormError
-                // Display password mismatch ERROR
+                //DISPLAY password mismatch ERROR
                 newPasswordError
-                // Display username ERROR
+                //DISPLAY username ERROR
                 newUsernameError
                 Spacer()
                 Spacer()
@@ -64,12 +68,12 @@ struct EditProfileView: View {
                 Spacer()
             }
             .padding(.bottom, -50)
-            //Changing the picture method using the photo picker
-            .onChange(of: photoPickerItem){ _, _ in
+            //CHANGING the picture method using the photo picker
+            .onChange(of: photoPickerItem) { _, _ in
                 Task {
                     if let photoPickerItem,
-                       let data = try? await photoPickerItem.loadTransferable(type: Data.self){
-                        if let image = UIImage(data: data){
+                       let data = try? await photoPickerItem.loadTransferable(type: Data.self) {
+                        if let image = UIImage(data: data) {
                             profileVM.avatarImage = image
                         }
                     }
@@ -77,20 +81,21 @@ struct EditProfileView: View {
                 }
             }
         }
+        //NAVIGATES to the SETTING VIEW
         .navigationDestination(isPresented: $isAccountUpdated) {
             SettingView(viewModel: AppViewModel())
                 .navigationBarBackButtonHidden(true)
         }
     }
     
-    //The appearance of "Edit Profile" title
+    //EDIT PROFILE TITLE Appearance
     var editProfileTitle: some View {
         Text("EDIT PROFILE")
             .font(.custom("MontserratAlternates-SemiBold", size: 40))
             .foregroundStyle(.darkPurple)
     }
     
-    //The appearance of profile picture
+    //PROFILE PICTURE Appearance
     var profilePicture: some View {
         Image(uiImage: profileVM.avatarImage ?? UIImage(resource: .defaultAvatar))
             .resizable()
@@ -99,7 +104,7 @@ struct EditProfileView: View {
             .clipShape(Circle())
     }
     
-    //The appearance of user ID
+    //USER ID Appearance
     var userID: some View {
         Text("ID \(userCredentialVM.id)")
             .font(.custom("MontserratAlternates-SemiBold", size: 25))
@@ -108,7 +113,7 @@ struct EditProfileView: View {
             .padding(.bottom)
     }
     
-    //The appearance of change picture button
+    //CHANGE PICTURE BUTTON Appearance
     var changePicButton: some View {
         ZStack {
             Rectangle()
@@ -117,7 +122,6 @@ struct EditProfileView: View {
                 .foregroundStyle(.yellowCustom)
                 .cornerRadius(20)
                 .padding(.horizontal, 100)
-            
             HStack {
                 Image(systemName: "photo.fill")
                     .foregroundColor(.royalPurple)
@@ -128,7 +132,7 @@ struct EditProfileView: View {
         }
     }
     
-    //The appearance of username text
+    //USERNAME TEXT Appearance
     var username: some View {
         Text("Username")
             .font(.custom("MontserratAlternates-SemiBold", size: 20))
@@ -136,10 +140,10 @@ struct EditProfileView: View {
             .padding(.horizontal, 20)
     }
     
-    //The appearance of new username text field
+    //NEW USERNAME FIELD Appearance
     var newUsernameField: some View {
         ZStack {
-            HStack{
+            HStack {
                 Image(systemName: "person.crop.circle")
                     .font(.system(size: 28))
                     .foregroundStyle(.darkPurpleOp.opacity(0.7))
@@ -150,21 +154,26 @@ struct EditProfileView: View {
                     .padding(.horizontal)
                     .foregroundStyle(.darkPurple)
             }
-            //  INNER SHADOW (for TextField)
-            .background{
-                ZStack{
+            //INNER SHADOW (for TextField)
+            .background {
+                ZStack {
                     RoundedRectangle(cornerRadius: 10.0)
                         .frame(maxWidth: .infinity)
                         .foregroundStyle(.lightPurple)
                         .frame(height: 65)
                         .padding(.horizontal, -15)
                         .overlay(
-                            RoundedRectangle(cornerRadius: 10) // The shape of the overlay should match the element
-                                .stroke(Color.gray, lineWidth: 4) // Border color and width
-                                .blur(radius: 3) // Blur the border to create a soft shadow effect
-                                .offset(x: 0, y: 2) // Offset of the shadow
+                            //The shape of the overlay should match the element
+                            RoundedRectangle(cornerRadius: 10)
+                                //Border color and width
+                                .stroke(Color.gray, lineWidth: 4)
+                                //Blur the border to create a soft shadow effect
+                                .blur(radius: 3)
+                                //Offset of the shadow
+                                .offset(x: 0, y: 2)
                                 .mask(
-                                    RoundedRectangle(cornerRadius: 10) // Mask using the same shape as the element
+                                    //Mask using the same shape as the element
+                                    RoundedRectangle(cornerRadius: 10)
                                         .fill(
                                             LinearGradient(gradient: Gradient(colors: [Color.black, Color.clear]), startPoint: .top, endPoint: .bottom)
                                         )
@@ -178,7 +187,7 @@ struct EditProfileView: View {
         }
     }
     
-    //The appearance of password text
+    //PASSWORD TEXT Appearance
     var password: some View {
         Text("Password")
             .font(.custom("MontserratAlternates-SemiBold", size: 20))
@@ -186,21 +195,20 @@ struct EditProfileView: View {
             .padding(.horizontal, 20)
     }
     
-    //The appearance of new password text field
+    //NEW PASSWORD TEXT FIELD Appearance
     var newPassField: some View {
         ZStack {
             HStack{
                 Image(systemName: "lock.circle.fill")
                     .font(.system(size: 28))
                     .foregroundStyle(.darkPurpleOp.opacity(0.7))
-                
                 SecureTextField(text: $userCredentialVM.newPassword)
                     .font(.custom("MontserratAlternates-SemiBold", size: 18))
                     .frame(height: 40)
                     .foregroundStyle(.darkPurple)
                     .padding(.trailing, 10)
             }
-            //  INNER SHADOW (for TextField)
+            //INNER SHADOW (for TextField)
             .background{
                 ZStack{
                     RoundedRectangle(cornerRadius: 10.0)
@@ -209,12 +217,17 @@ struct EditProfileView: View {
                         .frame(height: 65)
                         .padding(.horizontal, -15)
                         .overlay(
-                            RoundedRectangle(cornerRadius: 10) // The shape of the overlay should match the element
-                                .stroke(Color.gray, lineWidth: 4) // Border color and width
-                                .blur(radius: 3) // Blur the border to create a soft shadow effect
-                                .offset(x: 0, y: 2) // Offset of the shadow
+                            //The shape of the overlay should match the element
+                            RoundedRectangle(cornerRadius: 10)
+                                //Border color and width
+                                .stroke(Color.gray, lineWidth: 4)
+                                //Blur the border to create a soft shadow effect
+                                .blur(radius: 3)
+                                //Offset of the shadow
+                                .offset(x: 0, y: 2)
                                 .mask(
-                                    RoundedRectangle(cornerRadius: 10) // Mask using the same shape as the element
+                                    //Mask using the same shape as the element
+                                    RoundedRectangle(cornerRadius: 10)
                                         .fill(
                                             LinearGradient(gradient: Gradient(colors: [Color.black, Color.clear]), startPoint: .top, endPoint: .bottom)
                                         )
@@ -228,7 +241,7 @@ struct EditProfileView: View {
         }
     }
     
-    //The appearance of confirm password
+    //CONFRIM PASSWORD Appearance
     var confirmPass: some View {
         Text("Confirm Password")
             .font(.custom("MontserratAlternates-SemiBold", size: 20))
@@ -236,35 +249,39 @@ struct EditProfileView: View {
             .padding(.horizontal, 20)
     }
     
-    //The appreance of confirm password text field
+    //CONFIRM PASSWORD FIELD Appearance
     var confirmPassField: some View {
         ZStack {
-            HStack{
+            HStack {
                 Image(systemName: "lock.circle.fill")
                     .font(.system(size: 28))
                     .foregroundStyle(.darkPurpleOp.opacity(0.7))
-                
                 SecureTextField(text: $confirmPwd)
                     .font(.custom("MontserratAlternates-SemiBold", size: 18))
                     .foregroundColor(.darkPurple)
                     .frame(height: 40)
                     .padding(.trailing, 10)
             }
-            //  INNER SHADOW (for TextField)
-            .background{
-                ZStack{
+            //INNER SHADOW (for TextField)
+            .background {
+                ZStack {
                     RoundedRectangle(cornerRadius: 10.0)
                         .frame(maxWidth: .infinity)
                         .foregroundStyle(.lightPurple)
                         .frame(height: 65)
                         .padding(.horizontal, -15)
                         .overlay(
-                            RoundedRectangle(cornerRadius: 10) // The shape of the overlay should match the element
-                                .stroke(Color.gray, lineWidth: 4) // Border color and width
-                                .blur(radius: 3) // Blur the border to create a soft shadow effect
-                                .offset(x: 0, y: 2) // Offset of the shadow
+                            //The shape of the overlay should match the element
+                            RoundedRectangle(cornerRadius: 10)
+                                //Border color and width
+                                .stroke(Color.gray, lineWidth: 4)
+                                //Blur the border to create a soft shadow effect
+                                .blur(radius: 3)
+                                //Offset of the shadow
+                                .offset(x: 0, y: 2)
                                 .mask(
-                                    RoundedRectangle(cornerRadius: 10) // Mask using the same shape as the element
+                                    //Mask using the same shape as the element
+                                    RoundedRectangle(cornerRadius: 10)
                                         .fill(
                                             LinearGradient(gradient: Gradient(colors: [Color.black, Color.clear]), startPoint: .top, endPoint: .bottom)
                                         )
@@ -278,6 +295,7 @@ struct EditProfileView: View {
         }
     }
     
+    //SAVE BUTTON - saving the new username and password
     var saveButton: some View {
         VStack {
             Button {
@@ -287,7 +305,7 @@ struct EditProfileView: View {
                             isAccountUpdated = true
                             showPasswordMismatchError = false
                             showUsernameError = false
-                            // Save the new username and password
+                            //SAVE the new username and password
                             userCredentialVM.saveNewDetails()
                             presentationMode.wrappedValue.dismiss()
                         } else {
@@ -297,15 +315,13 @@ struct EditProfileView: View {
                         showUsernameError = true
                     }
                 }
-                
             } label: {
                 saveLabel
             }
-            
         }
     }
     
-    //The appearance of save button label
+    //SAVE BUTTON Appearance
     var saveLabel: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 30.0)
@@ -316,18 +332,17 @@ struct EditProfileView: View {
                 .padding()
                 .shadow(color: .black.opacity(0.3), radius: 3, x: -2, y: -2)
                 .shadow(color: .gray.opacity(0.5), radius: 4, x: -4, y: -4)
-            
             Text("SAVE")
                 .font(.custom("MontserratAlternates-SemiBold", size: 23))
                 .foregroundStyle(.royalPurple)
                 .tracking(3.0)
         }
     }
-    //  CHECK MATCHED PASSWORD
-    //  & DISPLAY ERROR FOR PASSWORD MISMATCHED
+    
+    //CHECK matched new password & DISPLAY error for mismatch password
     var newPasswordError: some View {
         VStack {
-            // Conditional view for displaying password mismatch error
+            //CONDITIONAL view for displaying password mismatch error
             if showPasswordMismatchError {
                 Text("Password is not matching!")
                     .font(.custom("MontserratAlternates-SemiBold", size: 15))
@@ -337,20 +352,18 @@ struct EditProfileView: View {
         }
     }
     
-    
-    //  CHECK INVALID USERNAME
+    //CHECK invalid new username
     var newUsernameError: some View {
         VStack {
             if showUsernameError {
                 Text("Username must be more than 3 characters")
                     .font(.custom("MontserratAlternates-SemiBold", size: 15))
                     .foregroundColor(.red)
-                //.padding(.top, 2)
             }
         }
     }
     
-    //  DISPLAY/CHECK ERROR for incompleted form
+    //DISPLAY/CHECK error for incompleted form
     var incompleteFormError: some View {
         VStack {
             if showIncompleteFormError {
@@ -364,19 +377,19 @@ struct EditProfileView: View {
         }
     }
     
-    //  FUNCTION TO VALIDATE if the PASSWORD & CONFIRM PWD fields match
+    //METHOD to VALIDATE if the NEW PASSWORD & CONFIRM PWD fields match
     func isCheckedNewPassword() -> Bool {
         return userCredentialVM.newPassword == confirmPwd
     }
     
-    //  FUNCTION TO CHECKED if the Username is at least 3 characters long
+    //METHOD to CHECK if the NEW USERNAME is at least 3 characters long
     func isValidNewUsername() -> Bool {
         return userCredentialVM.newUsername.count >= 3
     }
     
-    //  FUNCTION TO CHECKED IF ANY FILLED FORM IS EMPTY
+    //METHOD to CHECK if any filled form IS EMPTY
     func isFormValid() -> Bool {
-        //  Check if any fill is empty
+        //CHECK if any fill is empty
         if userCredentialVM.newUsername.isEmpty || userCredentialVM.newPassword.isEmpty || confirmPwd.isEmpty {
             showIncompleteFormError = true
             showPasswordMismatchError = false

@@ -1,6 +1,6 @@
 //
 //  CountryManager.swift
-//  CountryManager
+//  CountryAPIManager
 //
 //  Created by Daniel on 07/05/2024.
 //
@@ -119,7 +119,7 @@ class CountryManager: ObservableObject {
                     print("Error: \(error)")
                     return
                 }
-                // Check if there's data
+                //Check if there's data
                 if let data = data {
                     do {
                         //Decode the JSON data into a Country object
@@ -137,7 +137,7 @@ class CountryManager: ObservableObject {
                     }
                 }
             }
-            // Start the data task
+            //Start the data task
             task.resume()
         } else {
             print("Invalid URL")

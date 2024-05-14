@@ -11,7 +11,7 @@ import SwiftUI
 struct CountryListView: View {
     
     //STATE OBJECT of map view model
-    @StateObject var mapViewVM: AppViewModel
+    @StateObject var appVM: AppViewModel
     
     //STATE Properties
     @State var countryAPI: CountryManager
@@ -74,8 +74,8 @@ struct CountryListView: View {
                 //PADDING Around Button
                 .padding(.vertical, 3)
                 .onTapGesture {
-                    mapViewVM.selectedCountry = country.cca3
-                    mapViewVM.currentTab = "Info"
+                    appVM.selectedCountry = country.cca3
+                    appVM.currentTab = "Info"
                 }
             }
         }
@@ -94,19 +94,19 @@ struct CountryListView: View {
         //BUTTON Image will be "heart.fill" if in FAV List
         //BUTTON Image will be "heart" if not in FAV List
         Button {
-            if (mapViewVM.isInFavList(countryCode: country.cca3)) {
-                mapViewVM.userFavList.removeAll {
+            if appVM.isInFavList(countryCode: country.cca3) {
+                appVM.userFavList.removeAll {
                     $0 == country.cca3
                 }
                 //SAVE favourite list to APP STORAGE
-                mapViewVM.saveFavList()
+                appVM.saveFavList()
             } else {
-                mapViewVM.userFavList.append(country.cca3)
+                appVM.userFavList.append(country.cca3)
                 //SAVE favourite list to APP STORAGE
-                mapViewVM.saveFavList()
+                appVM.saveFavList()
             }
         } label: {
-            if (mapViewVM.isInFavList(countryCode: country.cca3)) {
+            if appVM.isInFavList(countryCode: country.cca3) {
                 Image(systemName: "heart.fill")
                     .font(.custom("MontserratAlternates-SemiBold", size: 22))
                     .foregroundStyle(.red)
@@ -165,5 +165,5 @@ struct CountryListView: View {
 }
 
 #Preview {
-    CountryListView(mapViewVM: AppViewModel(), countryAPI: CountryManager())
+    CountryListView(appVM: AppViewModel(), countryAPI: CountryManager())
 }

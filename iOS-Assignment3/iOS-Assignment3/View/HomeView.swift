@@ -11,22 +11,23 @@ import SwiftUI
 struct HomeView: View {
     
     //OBSERVED OBJECT of map view model
-    @ObservedObject var mapViewVM: AppViewModel
+    @ObservedObject var appVM: AppViewModel
     
-    //HIDES the system tab bar across the entire application
-    init(mapViewVM: AppViewModel) {
+    //INIT Method to initialse the app view model
+    init(appVM: AppViewModel) {
+        //HIDES the system tab bar across the entire application
         UITabBar.appearance().isHidden = true
-        self.mapViewVM = mapViewVM
+        self.appVM = appVM
     }
     
     //INTEGRATE Tab bar to the HOME VIEW along with the MAP VIEW
     var body: some View {
         NavigationStack {
-            TabBar(viewModel: self.mapViewVM)
+            TabBar(viewModel: self.appVM)
         }
     }
 }
 
 #Preview {
-    HomeView(mapViewVM: AppViewModel())
+    HomeView(appVM: AppViewModel())
 }

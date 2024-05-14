@@ -7,39 +7,45 @@
 
 import SwiftUI
 
-//  A View of Custom Dot Loading Indicator for "LoadingIndicatorView"
+//CUSTOM DOT LOADING INDICATOR for "LoadingIndicatorView" 
 struct CustomDotIndicator: View {
     
+    //STATE PROPERTIES of dot loading appearance
     @State private var scale: CGFloat = 1.0
     @State private var opacity: Double = 1.0
-    var imageName: String? = nil // Optinal imageName parameter
     
+    //OPTIONAL imageName parameter
+    var imageName: String? = nil
     
+    //DOT LOADING INDICATOR VIEW
     var body: some View {
         GeometryReader { geometry in
             Group {
                 if let imageName = imageName, !imageName.isEmpty {
-                    //  Displayed the specified image
+                    //DISPLAY the specified image
                     Image(imageName)
                         .resizable()
                 } else {
-                    //  Display a default Circle Shape
+                    //DISPLAY a default Circle Shape
                     Circle()
                 }
             }
-            .frame(width: geometry.size.width, height: geometry.size.height) //Dynamic size
+            //FRAME with DYNAMIC size
+            .frame(width: geometry.size.width, height: geometry.size.height)
             .scaleEffect(scale)
             .opacity(opacity)
             .onAppear() {
-                //  Apply repeating animation using a Timer
+                //APPLY repeating animation using a Timer
                 withAnimation (
                     Animation.easeInOut(duration: 1.0)
                         .repeatForever(autoreverses: true)
                 ) {
-                    self.scale = 0.8 // Scale down for animation
-                    self.opacity = 0.6 // Adjust transparency
+                    //SCALE DOWN for animation
+                    self.scale = 0.8
+                    //ADJUST transparency
+                    self.opacity = 0.6
                 }
-        }
+            }
         }
     }
 }
