@@ -111,9 +111,15 @@ struct FavCountryView: View {
                 };
                 
                 print(appVM.userFavList);
+                
+                //  Save Fav List to AppStorage
+                appVM.saveFavList();
             }
             else{
                 appVM.userFavList.append(country.cca3);
+                
+                //  Save Fav List to AppStorage
+                appVM.saveFavList();
             }
         } label:{
             if(appVM.isInFavList(countryCode: country.cca3)){

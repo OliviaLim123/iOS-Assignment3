@@ -46,12 +46,14 @@ struct SignUpView: View {
                 confirmPwdLabel
                 confirmPwdField
                 
-                // Display form incompleted ERROR
-                incompleteFormError
-                // Display password mismatch ERROR
-                passwordError
-                // Display username ERROR
-                usernameError
+                VStack(spacing: 0){
+                    // Display form incompleted ERROR
+                    incompleteFormError
+                    // Display password mismatch ERROR
+                    passwordError
+                    // Display username ERROR
+                    usernameError
+                }
                 
                 Spacer()
                 createAccountButton
@@ -350,7 +352,7 @@ struct SignUpView: View {
     
     //  DISPLAY/CHECK ERROR for incompleted form
     var incompleteFormError: some View {
-        VStack {
+        HStack {
             if showIncompleteFormError {
                 Text("Please fill in all fields to create an account.")
                     .font(.custom("MontserratAlternates-SemiBold", size: 20))

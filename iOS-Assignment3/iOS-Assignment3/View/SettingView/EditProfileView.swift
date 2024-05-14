@@ -148,7 +148,7 @@ struct EditProfileView: View {
                     .frame(height: 40)
                     .frame(maxWidth: .infinity)
                     .padding(.horizontal)
-                    .foregroundStyle(.royalPurple)
+                    .foregroundStyle(.darkPurple)
             }
             //  INNER SHADOW (for TextField)
             .background{
