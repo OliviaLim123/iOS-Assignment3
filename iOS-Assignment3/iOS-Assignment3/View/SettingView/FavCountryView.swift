@@ -32,6 +32,7 @@ struct FavCountryView: View {
                 .font(.custom("MontserratAlternates-SemiBold", size: 45))
                 .foregroundStyle(.darkPurple)
                 .multilineTextAlignment(.center)
+                .padding(10)
 
             
             VStack{
