@@ -3,6 +3,9 @@
  Link of Github:
  https://github.com/OliviaLim123/iOS-Assignment3.git 
 
+ Link of the presentation slide:
+ https://docs.google.com/presentation/d/1oHM3qjJaeOipLG5DNBfJIWXZGxYoICedqemViGWtmSU/edit?usp=sharing 
+
  Country Discovery App is an application created for exploring and learning all information about other countries around the world. 
  The features of this application:
  1. Create an account and log in to the application - AppStorage
