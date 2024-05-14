@@ -7,42 +7,41 @@
 
 import SwiftUI
 
-//A view of tab bar
+//TAB BAR Struct
 struct TabBar: View {
-    //  PROPERTIES
-    @StateObject var viewModel: MapViewModel;
     
+    //PROPERTIES
+    @StateObject var viewModel: MapViewModel
     
-    //The body of the view:
-    //Represent how the tab bar looks like
+    //TAB BAR View
     var body: some View {
-        VStack(spacing: 0){
+        VStack(spacing: 0) {
             tabView
             tabButton
         }
     }
     
-    //Navigation to each screen 
+    //TAB VIEW for navigates each icon to its view
     var tabView: some View {
-        TabView(selection: $viewModel.currentTab){
-            MapView(appVM: self.viewModel)
+        TabView(selection: $viewModel.currentTab) {
+            //"Map" icon navigates to MAP VIEW
+            MapView(mapViewVM: self.viewModel)
                 .tag("Map")
-            
-            CountryListView(viewModel: self.viewModel, countryAPI: CountryManager())
+            //"List" icon navigates to COUNTRY LIST VIEW
+            CountryListView(mapViewVM: self.viewModel, countryAPI: CountryManager())
                 .defaultScrollAnchor(.top)
                 .tag("List")
-            
+            //"Info" icon navigates to COUNTRY INFO VIEW
             CountryInfoView(countryCode: self.viewModel.selectedCountry, viewModel: self.viewModel)
                 .defaultScrollAnchor(.top)
                 .tag("Info")
-            
+            //"Setting" icon navigates to SETTING VIEW
             SettingView(viewModel: self.viewModel)
                 .tag("Setting")
-            
         }
     }
     
-    //The appearance of tab Buttons
+    //TAB BUTTON Appearance
     var tabButton: some View {
         HStack(spacing: 0){
             TabButton(title: "Map", image: "map.fill", selected: $viewModel.currentTab)
@@ -50,7 +49,8 @@ struct TabBar: View {
             TabButton(title: "List", image: "list.bullet", selected: $viewModel.currentTab)
             Spacer(minLength: 0)
             TabButton(title: "Info", image: "globe", selected: $viewModel.currentTab)
-                .disabled(viewModel.selectedCountry == "")  //  disable BUTTON if no country is selected
+                //Disable BUTTON if no country is selected
+                .disabled(viewModel.selectedCountry == "")
             Spacer(minLength: 0)
             TabButton(title: "Setting", image: "gearshape.fill", selected: $viewModel.currentTab)
         }
@@ -62,6 +62,7 @@ struct TabBar: View {
         .padding(.top);
     }
 }
+
 #Preview {
     TabBar(viewModel: MapViewModel())
 }

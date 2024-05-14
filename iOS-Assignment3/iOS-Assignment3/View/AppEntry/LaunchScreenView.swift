@@ -7,19 +7,19 @@
 
 import SwiftUI
 
+//LAUNCH SCREEN VIEW Struct
 struct LaunchScreenView: View {
     
-    //A state variable to track whether the view is active
+    //STATE variable to track whether the view is active
     @State private var isActive = false
-    //A state variable to manage the size of the view
+    //STATE variable to manage the size of the view
     @State private var size = 0.8
-    //A state variable to control the opacity of the view
+    //STATE variable to control the opacity of the view
     @State private var opacity = 0.5
     
-    //The body of view:
-    //Represents how the launch screen looks like
+    //LAUNCH SCREEN VIEW
     var body: some View {
-        //Navigates to the AppEntry view after the launch screen
+        //Navigates to the APP ENTRY VIEW after the LAUNCH SCREEN
         if isActive {
             AppEntry()
         } else {
@@ -28,7 +28,7 @@ struct LaunchScreenView: View {
                 .scaleEffect(size)
                 .opacity(opacity)
                 .onAppear {
-                    //Providing the animation to the app logo
+                    //Providing APP LOGO ANIMATION
                     withAnimation(.easeIn(duration: 1.2)) {
                         self.size = 0.9
                         self.opacity = 1.0
@@ -36,7 +36,7 @@ struct LaunchScreenView: View {
                 }
             }
             .onAppear {
-                //Animation to the next view
+                //ANIMATION to the next view
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
                     withAnimation {
                         self.isActive = true
@@ -46,7 +46,7 @@ struct LaunchScreenView: View {
         }
     }
     
-    //The appearance of app logo
+    //APP LOGO Appearance
     var appLogo: some View {
         VStack {
             Image(.logo)

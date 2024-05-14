@@ -7,25 +7,28 @@
 
 import SwiftUI
 
-//A view of tab Button
+//TAB BUTTON Struct
 struct TabButton: View {
+    
+    //PROPERTIES
     var title: String
     var image: String
+    
+    //BINDING Property
     @Binding var selected: String
     
-    //The body of the view:
-    //Represent how each tab button looks like along with the animation
+    //TAB BUTTON View 
     var body: some View {
         Button(action: {
             withAnimation(.spring()){selected = title}
-        }){
+        }) {
             icons
         }
     }
     
-    //The appearance of icons for each tab Button
+    //ICONS View of tab button
     var icons: some View {
-        HStack(spacing: 10){
+        HStack(spacing: 10) {
             Image(systemName: image)
                 .resizable()
                 .renderingMode(.template)

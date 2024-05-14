@@ -7,25 +7,26 @@
 
 import SwiftUI
 
-//A view of home screen
+//HOME VIEW Struct
 struct HomeView: View {
-    @ObservedObject var appVM: MapViewModel;
     
-    //Hides the system tab bar across the entire application
-    init(appVM: MapViewModel){
+    //OBSERVED OBJECT of map view model
+    @ObservedObject var mapViewVM: MapViewModel
+    
+    //HIDES the system tab bar across the entire application
+    init(mapViewVM: MapViewModel) {
         UITabBar.appearance().isHidden = true
-        self.appVM = appVM;
+        self.mapViewVM = mapViewVM
     }
     
-    //The body of the view:
-    //Represent how the tab bar looks like and navigates to the specific screen
+    //INTEGRATE Tab bar to the HOME VIEW along with the MAP VIEW
     var body: some View {
         NavigationStack {
-            TabBar(viewModel: self.appVM);
+            TabBar(viewModel: self.mapViewVM)
         }
     }
 }
 
 #Preview {
-    HomeView(appVM: MapViewModel())
+    HomeView(mapViewVM: MapViewModel())
 }

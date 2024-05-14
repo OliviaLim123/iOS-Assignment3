@@ -7,14 +7,18 @@
 
 import SwiftUI
 
+//COUNTRY LIST VIEW Struct
 struct CountryListView: View {
     
-    //  PROPERTIES
-    //  STATE Properties
-    @StateObject var viewModel: MapViewModel;
-    @State var countryAPI: CountryManager;
-    @State private var displayList: [Country] = [];
-    @State private var searchString: String = "";
+    //STATE OBJECT of map view model
+    @StateObject var mapViewVM: MapViewModel
+    
+    //STATE Properties
+    @State var countryAPI: CountryManager
+    @State private var displayList: [Country] = []
+    @State private var searchString: String = ""
+    
+    //COMPUTED Variable for filtering the list
     var filteredList: [Country] {
         if searchString.isEmpty {
             return displayList
@@ -25,53 +29,41 @@ struct CountryListView: View {
         }
     }
     
+    //COUNTRY LIST VIEW
     var body: some View {
-        
-        //  OUTERMOST VStack
-        VStack{
-//            Text("COUNTRY LIST VIEW - DANIEL PART");
-            
-            //  Search Bar
-            searchBarView;
-            
-            //  LOGO IMAGE
+        VStack {
+            searchBarView
+            //LOGO IMAGE
             Image("logo")
                 .resizable()
                 .frame(width: 80, height: 80)
-                .padding(.vertical, 10);
-            
-            //  LOOPING through country array
-            //  COUNTRIES List
-            countryListView;
-            
-        }   //  OUTERMOST VSTACK
-        .padding(.horizontal, 35);
+                .padding(.vertical, 10)
+            //LOOPING through country array
+            countryListView
+        }
+        .padding(.horizontal, 35)
     }
     
-    //  COUNTRIES List VIEW
-    var countryListView: some View{
+    //COUNTRIES List VIEW - scrolling view
+    var countryListView: some View {
         ScrollView {
-            
-            ForEach(filteredList){country in
-                HStack{
+            ForEach(filteredList) { country in
+                HStack {
                     AsyncImage(url: URL(string: country.flags.png)){ image in
-                        image.resizable();
+                        image.resizable()
                     } placeholder: {
-                        Color.gray;
+                        Color.gray
                     }
                     .border(.gray)
                     .frame(width: 55, height: 38)
-                    
                     Text("\(country.name.common)")
                         .font(.custom("MontserratAlternates-SemiBold", size: 20))
                         .tracking(2)
                         .foregroundStyle(.textColour)
-                        .padding(.horizontal, 10);
-                    
-                    Spacer();
-                    
-                    //  HEART Button
-                    heartButton(country: country);
+                        .padding(.horizontal, 10)
+                    Spacer()
+                    //HEART Button
+                    heartButton(country: country)
                 }
                 .padding(.horizontal)
                 .padding(.vertical, 10)
@@ -79,89 +71,86 @@ struct CountryListView: View {
                     RoundedRectangle(cornerRadius: 10)
                         .fill(.sweetCorn)
                         .opacity(0.55))
-                //  PADDING Around Button
+                //PADDING Around Button
                 .padding(.vertical, 3)
                 .onTapGesture {
-                    viewModel.selectedCountry = country.cca3;
-                    viewModel.currentTab = "Info"
-                };
-                
+                    mapViewVM.selectedCountry = country.cca3
+                    mapViewVM.currentTab = "Info"
+                }
             }
-            
         }
-        .onAppear(){
-            countryAPI.fetchAllCountries();
+        .onAppear() {
+            countryAPI.fetchAllCountries()
         }
         .onReceive(countryAPI.$countriesList) { countryData in
             if let safeCountryData = countryData{
-                displayList = safeCountryData;
+                displayList = safeCountryData
             }
         }
     }
     
-    //  HEART Button View
-    func heartButton(country: Country) -> some View{
-        //  BUTTON Image will be "heart.fill" if in FAV List
-        //  BUTTON Image will be "heart" if not in FAV List
-        Button{
-            if(viewModel.isInFavList(countryCode: country.cca3)){
-                viewModel.userFavList.removeAll{
+    //METHOD for HEART Button View
+    func heartButton(country: Country) -> some View {
+        //BUTTON Image will be "heart.fill" if in FAV List
+        //BUTTON Image will be "heart" if not in FAV List
+        Button {
+            if (mapViewVM.isInFavList(countryCode: country.cca3)) {
+                mapViewVM.userFavList.removeAll {
                     $0 == country.cca3
-                };
-                
-                //  SAVE FAV LIST TO APP STORAGE
-                viewModel.saveFavList();
+                }
+                //SAVE favourite list to APP STORAGE
+                mapViewVM.saveFavList()
+            } else {
+                mapViewVM.userFavList.append(country.cca3)
+                //SAVE favourite list to APP STORAGE
+                mapViewVM.saveFavList()
             }
-            else{
-                viewModel.userFavList.append(country.cca3);
-                
-                //  SAVE FAV LIST TO APP STORAGE
-                viewModel.saveFavList();
-            }
-        } label:{
-            if(viewModel.isInFavList(countryCode: country.cca3)){
+        } label: {
+            if (mapViewVM.isInFavList(countryCode: country.cca3)) {
                 Image(systemName: "heart.fill")
                     .font(.custom("MontserratAlternates-SemiBold", size: 22))
-                    .foregroundStyle(.red);
-            }
-            else{
+                    .foregroundStyle(.red)
+            } else {
                 Image(systemName: "heart")
                     .font(.custom("MontserratAlternates-SemiBold", size: 22))
-                    .foregroundStyle(.black);
+                    .foregroundStyle(.black)
             }
-            
         }
     }
     
-    var searchBarView: some View{
+    //SEARCH BAR VIEW Appearance
+    var searchBarView: some View {
         ZStack {
             HStack {
                 TextField("Search a country", text: $searchString)
                     .font(.custom("MontserratAlternates-SemiBold", size: 20))
                     .foregroundStyle(.textColour)
                     .frame(maxWidth: .infinity)
-                    .cornerRadius(10.0);
-                
+                    .cornerRadius(10.0)
                 Image(systemName: "magnifyingglass")
                     .font(.system(size: 20))
                     .foregroundStyle(.textColour.opacity(0.8))
-                
-            } //HStack
-            //  INNER SHADOW (for TextField)
-            .background{
-                ZStack{
+            }
+            //INNER SHADOW (for Search bar)
+            .background {
+                ZStack {
                     RoundedRectangle(cornerRadius: 10.0)
                         .frame(maxWidth: .infinity)
                         .foregroundStyle(.lightPurple)
                         .frame(height: 50)
                         .padding(.horizontal, -15)
                         .overlay(
-                            RoundedRectangle(cornerRadius: 10) // The shape of the overlay should match the element
-                                .stroke(Color.gray, lineWidth: 4) // Border color and width
-                                .blur(radius: 3) // Blur the border to create a soft shadow effect
-                                .offset(x: 0, y: 2) // Offset of the shadow
+                            //The shape of the overlay should match the element
+                            RoundedRectangle(cornerRadius: 10)
+                                //Border color and width
+                                .stroke(Color.gray, lineWidth: 4)
+                                //Blur the border to create a soft shadow effect
+                                .blur(radius: 3)
+                                //Offset of the shadow
+                                .offset(x: 0, y: 2)
                                 .mask(
-                                    RoundedRectangle(cornerRadius: 10) // Mask using the same shape as the element
+                                    //Mask using the same shape as the element
+                                    RoundedRectangle(cornerRadius: 10)
                                         .fill(
                                             LinearGradient(gradient: Gradient(colors: [Color.black, Color.clear]), startPoint: .top, endPoint: .bottom)
                                         )
@@ -171,10 +160,10 @@ struct CountryListView: View {
                 }
             }
             .padding()
-        }//ZStack S.
+        }
     }
 }
 
 #Preview {
-    CountryListView(viewModel: MapViewModel(), countryAPI: CountryManager())
+    CountryListView(mapViewVM: MapViewModel(), countryAPI: CountryManager())
 }

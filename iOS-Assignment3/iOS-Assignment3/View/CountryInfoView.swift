@@ -8,167 +8,146 @@
 import SwiftUI
 import MapKit
 
+//COUNTRY INFO VIEW Struct
 struct CountryInfoView: View {
-    //  PROPERTIES
-    @State private var selectedCountry: Country = emptyCountry;
-    @ObservedObject private var countryAPI: CountryManager;
-    @ObservedObject var viewModel: MapViewModel;
     
-    //  INIT Function to get Country By Country Code
-    init(countryCode: String, viewModel: MapViewModel){
-        countryAPI = CountryManager();
-        self.viewModel = viewModel;
-        
-        //  FETCH API BY CODE
-        countryAPI.fetchCountryByCode(countryCode: countryCode);
+    //STATE to handle the selected country
+    @State private var selectedCountry: Country = emptyCountry
+    
+    //OBSERVED OBJECT for country manager and map view model
+    @ObservedObject private var countryAPI: CountryManager
+    @ObservedObject var mapViewVM: MapViewModel
+    
+    //INIT Function to get Country By Country Code
+    init(countryCode: String, viewModel: MapViewModel) {
+        countryAPI = CountryManager()
+        self.mapViewVM = viewModel
+        //FETCH API BY CODE
+        countryAPI.fetchCountryByCode(countryCode: countryCode)
     }
     
-    //  INIT Function to get Country By Name
-    init(countryName: String, viewModel: MapViewModel){
-        countryAPI = CountryManager();
-        self.viewModel = viewModel;
-        
-        //  FETCH API BY NAME
-        countryAPI.fetchCountryByName(countryName: countryName);
+    //Another INIT Function to get Country By Name
+    init(countryName: String, viewModel: MapViewModel) {
+        countryAPI = CountryManager()
+        self.mapViewVM = viewModel
+        //FETCH API BY NAME
+        countryAPI.fetchCountryByName(countryName: countryName)
     }
     
+    //COUNTRY INFO VIEW
     var body: some View {
         VStack {
-            //Text("COUNTRY INFO VIEW - DANIEL PART");
-            
-            //  WELCOME PART
+            //WELCOME PART
             HStack {
-                //  Country Name
+                //Country Name
                 VStack(alignment: .leading) {
                     Text("Welcome to \(selectedCountry.name.common)!")
                         .foregroundStyle(.darkPurple)
                         .font(.custom("MontserratAlternates-SemiBold", size: 24))
                         .tracking(1)
-                    
                     Text("\(selectedCountry.name.official)")
                         .foregroundStyle(.textColour)
                         .font(.custom("MontserratAlternates-SemiBold", size: 16))
                         .tracking(1)
                 }
-                
-                Spacer();
-                
-                heartButton;
+                Spacer()
+                heartButton
             }
-            
-            //  COUNTRY INFO
             countryInfo;
-            
             Spacer()
-            
-            
         }
         .padding(.horizontal)
     }
     
-    var heartButton: some View{
-        //  BUTTON Image will be "heart.fill" if in FAV List
-        //  BUTTON Image will be "heart" if not in FAV List
-        Button{
-            //  TOGGLE Favorite
-            if(viewModel.isInFavList(countryCode: selectedCountry.cca3)){
-                viewModel.userFavList.removeAll{
+    //HEART BUTTON VIEW
+    var heartButton: some View {
+        //BUTTON Image will be "heart.fill" if in FAV List
+        //BUTTON Image will be "heart" if not in FAV List
+        Button {
+            //TOGGLE Favorite
+            if (mapViewVM.isInFavList(countryCode: selectedCountry.cca3)) {
+                mapViewVM.userFavList.removeAll{
                     $0 == selectedCountry.cca3
-                };
-                
-                //  SAVE FAV LIST TO APP STORAGE
-                viewModel.saveFavList();
+                }
+                //SAVE favourite list to APP STORAGE
+                mapViewVM.saveFavList()
+            } else {
+                mapViewVM.userFavList.append(selectedCountry.cca3)
+                //SAVE favourite list to APP STORAGE
+                mapViewVM.saveFavList()
             }
-            else{
-                viewModel.userFavList.append(selectedCountry.cca3);
-                
-                //  SAVE FAV LIST TO APP STORAGE
-
-                viewModel.saveFavList();
-            }
-        } label:{
-            //  TOGGLE Heart Icon
-            if(viewModel.isInFavList(countryCode: selectedCountry.cca3)){
+        } label: {
+            //TOGGLE Heart Icon
+            if(mapViewVM.isInFavList(countryCode: selectedCountry.cca3)) {
                 Image(systemName: "heart.fill")
                     .font(.custom("MontserratAlternates-SemiBold", size: 22))
                     .foregroundStyle(.red);
-            }
-            else{
+            } else{
                 Image(systemName: "heart")
                     .font(.custom("MontserratAlternates-SemiBold", size: 22))
                     .foregroundStyle(.black);
             }
-            
         }
     }
     
-    
-    var countryInfo: some View{
+    //COUNTRY INFO Appearance
+    var countryInfo: some View {
         ScrollView {
-            VStack{
-                //  FIRST LINE (FLAG and MAP)
-                HStack{
-                    //  FLAG Part
-                    VStack(alignment: .leading){
+            VStack {
+                //FIRST LINE (FLAG and MAP)
+                HStack {
+                    //COUNTRY FLAG Appearance
+                    VStack(alignment: .leading) {
                         Text("The Flag")
                             .font(.custom("MontserratAlternates-SemiBold", size: 20))
                             .foregroundStyle(.royalPurple)
                             .tracking(0)
                             .padding(.horizontal)
-                            .padding(.top, 10);
-                        
-                        //  FLAG IMG
+                            .padding(.top, 10)
+                        //FLAG IMAGE
                         AsyncImage(url: URL(string: selectedCountry.flags.png)){ image in
-                            image.resizable();
+                            image.resizable()
                         } placeholder: {
-                            Color.gray;
+                            Color.gray
                         }
                         .padding([.bottom, .horizontal])
                         .frame(width: 170, height: 100)
                     }
                     .background(
-                        //  INFO BOX BACKGROUND
+                        //INFO BOX background
                         RoundedRectangle(cornerRadius: 10)
                             .fill(.yellowCustom)
-                    );
-                    
-                    Spacer();
-                    
-                    //  MAP Part
-                    VStack{
-                        
-                        mapView(country: self.selectedCountry);
-                    }   //  Info Box VStack
+                    )
+                    Spacer()
+                    //MAP Appearance
+                    VStack {
+                        mapView(country: self.selectedCountry)
+                    }   
                     .background(
-                        //  INFO BOX BACKGROUND
+                        //INFO BOX background
                         RoundedRectangle(cornerRadius: 10)
                             .fill(.yellowCustom)
-                    );
-                    
-                    
+                    )
                 }
                 .padding(.vertical, 5)
                 
-                //  SECOND LINE (REGION, SUB-REGION and Capital, Population)
-                HStack(alignment: .top){
-                    
-                    VStack{
-                        //  HStack To Stretch Info Box to fill empty space
-                        HStack{
+                //SECOND LINE (REGION, SUB-REGION and Capital, Population)
+                HStack(alignment: .top) {
+                    VStack {
+                        //HStack To Stretch Info Box to fill empty space
+                        HStack {
                             Spacer()
                         }
-                        
-                        //  REGION
-                        VStack(alignment: .leading){
-                            //  TITLES
+                        //REGION Appearance
+                        VStack(alignment: .leading) {
+                            //TITLES Appearance
                             Text("Region")
                                 .font(.custom("MontserratAlternates-SemiBold", size: 20))
                                 .foregroundStyle(.textColour)
                                 .tracking(1)
                                 .padding(.top, 10)
-                                .padding(.bottom, 1);
-                            
-                            //  GET Country Region
+                                .padding(.bottom, 1)
+                            //GET Country Region
                             VStack {
                                 Text("\(selectedCountry.region)")
                                     .font(.system(size: 16))
@@ -176,54 +155,48 @@ struct CountryInfoView: View {
                                     .foregroundStyle(.textColour)
                             }
                             .fontDesign(.monospaced)
-                            
-                            //  SUB-REGION
-                            VStack(alignment: .leading){
-                                //  TITLES
+                            //SUB-REGION Appearance
+                            VStack(alignment: .leading) {
+                                //TITLES Appearance
                                 Text("Sub-Region")
                                     .font(.custom("MontserratAlternates-SemiBold", size: 20))
                                     .foregroundStyle(.textColour)
                                     .tracking(1)
                                     .padding(.top, 5)
-                                    .padding(.bottom, 1);
-                                
-                                //  GET Country Sub-Region
+                                    .padding(.bottom, 1)
+                                //GET Country Sub-Region
                                 Text("\(selectedCountry.subregion)")
                                     .font(.system(size: 16))
                                     .tracking(0)
                                     .foregroundStyle(.textColour)
                             }
                             .padding(.bottom)
-                            
                         }
-                    }   //  SECOND BOX VStack
+                    }
                     .padding(.horizontal)
                     .background(
-                        //  INFO BOX BACKGROUND
+                        //INFO BOX background
                         RoundedRectangle(cornerRadius: 10)
                             .fill(.lightPurple)
                     )
+                    Spacer()
                     
-                    Spacer();
-                    
-                    //  CAPITAL & POPULATION Box
-                    VStack{
-                        //  HStack To Stretch Info Box to fill empty space
-                        HStack{
+                    //CAPITAL & POPULATION Box
+                    VStack {
+                        //HStack To Stretch Info Box to fill empty space
+                        HStack {
                             Spacer()
                         }
-                        
-                        //  CAPITAL
-                        VStack(alignment: .leading){
-                            //  TITLES
+                        //CAPITAL Appearance
+                        VStack(alignment: .leading) {
+                            //TITLES Appearance
                             Text("Capital")
                                 .font(.custom("MontserratAlternates-SemiBold", size: 20))
                                 .foregroundStyle(.textColour)
                                 .tracking(1)
                                 .padding(.top, 10)
-                                .padding(.bottom, 1);
-                            
-                            //  GET Country Capitals
+                                .padding(.bottom, 1)
+                            //GET Country Capitals
                             VStack {
                                 VStack(alignment: .leading) {
                                     ForEach(selectedCountry.capital, id: \.self) { cap in
@@ -232,79 +205,70 @@ struct CountryInfoView: View {
                                                 .font(.system(size: 16))
                                                 .foregroundStyle(.textColour)
                                                 .tracking(0)
-                                            
-                                        };
+                                        }
                                     }
                                 }
                             }
                             .fontDesign(.monospaced)
                             
-                            //  POPULATION
-                            VStack(alignment: .leading){
-                                //  TITLES
+                            //POPULATION Appearance
+                            VStack(alignment: .leading) {
+                                //TITLES Appearance
                                 Text("Population")
                                     .font(.custom("MontserratAlternates-SemiBold", size: 20))
                                     .foregroundStyle(.textColour)
                                     .tracking(1)
                                     .padding(.top, 5)
-                                    .padding(.bottom, 1);
-                                
+                                    .padding(.bottom, 1)
                                 Text("\(selectedCountry.population)")
                                     .font(.system(size: 16))
                                     .foregroundStyle(.textColour)
                                     .tracking(0)
                             }
                             .padding(.bottom)
-                            
                         }
-                    }   //  SECOND BOX VStack
+                    }
                     .padding(.horizontal)
                     .background(
-                        //  INFO BOX BACKGROUND
+                        //INFO BOX background
                         RoundedRectangle(cornerRadius: 10)
                             .fill(.lightPurple)
                     )
-                    
-                }   //  SECOND LINE HStack
+                }
                 .padding(.vertical, 5)
                 
-                //  THIRD LINE (MORE INFO)
+                //THIRD LINE (MORE INFO)
                 VStack{
-                    //  TITLE
+                    //TITLE Appearance
                     VStack {
                         Text("More Info")
                             .font(.custom("MontserratAlternates-SemiBold", size: 20))
                             .foregroundStyle(.royalPurple)
                             .tracking(1)
                             .padding(.top, 10)
-                            .padding(.bottom, 1);
+                            .padding(.bottom, 1)
                     }
-                    .padding(.horizontal);
-                    
-                    //  INFO AREA
-                    VStack{
-                        //  CURRENCY Box
-                        VStack(alignment: .leading){
+                    .padding(.horizontal)
+                    //INFO AREA Appearance
+                    VStack {
+                        //CURRENCY Box Appearance
+                        VStack(alignment: .leading) {
                             Text("Currency")
                                 .font(.custom("MontserratAlternates-SemiBold", size: 20))
                                 .foregroundStyle(.textColour)
                                 .tracking(1)
                                 .padding(.top, 10)
-                                .padding(.bottom, 1);
-                            
-                            //  GET Country Currency
+                                .padding(.bottom, 1)
+                            //GET Country Currency
                             VStack {
                                 ForEach(selectedCountry.currencies.sorted(by: { $0.key < $1.key }), id: \.key) { currency in
                                     VStack(alignment: .leading) {
-                                        
-                                        HStack{
+                                        HStack {
                                             Text("\(currency.value.name)")
                                                 .font(.system(size: 16))
                                                 .foregroundStyle(.textColour)
-                                                .tracking(0);
-                                            
+                                                .tracking(0)
                                             Spacer()
-                                            
                                             Text("(\(currency.value.symbol))")
                                                 .font(.system(size: 20))
                                                 .foregroundStyle(.textColour)
@@ -313,130 +277,113 @@ struct CountryInfoView: View {
                                     }
                                     .padding(.bottom, 5)
                                 }
-                                
                             }
                             .fontDesign(.monospaced)
-                            .padding(.bottom, 5);
-                            
-                        }   //  FIRST BOX VStack
+                            .padding(.bottom, 5)
+                        }
                         .padding(.horizontal)
                         .background(
-                            //  INFO BOX BACKGROUND
+                            //INFO BOX background
                             RoundedRectangle(cornerRadius: 10)
                                 .fill(.lightPurple)
                         )
-                        
-                        Spacer();
-                        
-                        //  BORDER and Language
-                        HStack{
-                            //  BORDER
-                            VStack(alignment: .leading){
+                        Spacer()
+                        //BORDER and Language Appearance
+                        HStack {
+                            //BORDER Appearance
+                            VStack(alignment: .leading) {
                                 Text("Borders")
                                     .font(.custom("MontserratAlternates-SemiBold", size: 20))
                                     .foregroundStyle(.textColour)
                                     .tracking(1)
                                     .padding(.top, 10)
-                                    .padding(.bottom, 1);
-                                
-                                //  GET Country's Border Neighbors
+                                    .padding(.bottom, 1)
+                                //GET Country's Border Neighbors
                                 ScrollView {
-                                    ForEach(selectedCountry.borders, id: \.self){ neighborCountry in
-                                        HStack{
+                                    ForEach(selectedCountry.borders, id: \.self) { neighborCountry in
+                                        HStack {
                                             Text("\(neighborCountry)")
                                                 .foregroundStyle(.textColour)
-                                                .padding(.bottom, 5);
-                                            
-                                            Spacer();
+                                                .padding(.bottom, 5)
+                                            Spacer()
                                         }
                                     }
                                 }
                                 .font(.system(size: 16))
                                 .tracking(0)
                                 .frame(maxWidth: 120, maxHeight: 200)
-                                .padding(.bottom, 5);
-                                
+                                .padding(.bottom, 5)
                             }
                             .fontDesign(.monospaced)
                             .padding(.horizontal)
                             .background(
-                                //  INFO BOX BACKGROUND
+                                //INFO BOX background
                                 RoundedRectangle(cornerRadius: 10)
                                     .fill(.lightPurple)
                             )
-                            
                             Spacer()
-                            
-                            //  LANGUAGE
-                            VStack(alignment: .leading){
+                            //LANGUAGE Appearance
+                            VStack(alignment: .leading) {
                                 Text("Language")
                                     .font(.custom("MontserratAlternates-SemiBold", size: 20))
                                     .foregroundStyle(.textColour)
                                     .tracking(1)
                                     .padding(.top, 10)
-                                    .padding(.bottom, 1);
-                                
-                                //  GET Country's Border Neighbors
+                                    .padding(.bottom, 1)
+                                //GET Country's Border Neighbors
                                 ScrollView {
-                                    //  GET Country Languages
+                                    //GET Country Languages
                                     ForEach(selectedCountry.languages.sorted(by: { $0.key < $1.key }), id: \.key) { lang in
-                                        HStack{
+                                        HStack {
                                             Text("\(lang.value)")
                                                 .foregroundStyle(.textColour)
-                                                .padding(.bottom, 5);
-                                            
-                                            Spacer();
+                                                .padding(.bottom, 5)
+                                            Spacer()
                                         }
                                     }
                                 }
                                 .font(.system(size: 16))
                                 .tracking(0)
                                 .frame(maxHeight: 200)
-                                .padding(.bottom, 5);
-                                
+                                .padding(.bottom, 5)
                             }
                             .fontDesign(.monospaced)
                             .padding(.horizontal)
                             .background(
-                                //  INFO BOX BACKGROUND
+                                //INFO BOX background
                                 RoundedRectangle(cornerRadius: 10)
                                     .fill(.lightPurple)
                             )
                         }
                     }
-                    .padding(.horizontal);
-                    
-                    Spacer();
-                }   //  THIRD LINE VStack
+                    .padding(.horizontal)
+                    Spacer()
+                }
                 .padding(.bottom, 10)
                 .background(
-                    //  INFO BOX BACKGROUND
+                    //INFO BOX background
                     RoundedRectangle(cornerRadius: 10)
                         .fill(.yellowCustom)
                 )
-                
-                Spacer();
-            }   //  OUTERMOST VStack
+                Spacer()
+            }
             .onReceive(countryAPI.$country){countryData in
                 if let safeCountry = countryData{
-                    selectedCountry = safeCountry;
+                    selectedCountry = safeCountry
                 }
             }
-        };
-        
+        }
     }
     
-    //  MAP VIEW
-    func mapView(country: Country) -> some View{
-        @State var region = MKCoordinateRegion (center: CLLocationCoordinate2D (latitude: country.latlng[0], longitude: country.latlng[1]), span: MKCoordinateSpan(latitudeDelta: 20, longitudeDelta: 20));
-        
+    //METHOD for MAP VIEW
+    func mapView(country: Country) -> some View {
+        @State var region = MKCoordinateRegion (center: CLLocationCoordinate2D (latitude: country.latlng[0], longitude: country.latlng[1]), span: MKCoordinateSpan(latitudeDelta: 20, longitudeDelta: 20))
         return Map(coordinateRegion: $region, annotationItems: [country]) { country in
             MapMarker(coordinate: CLLocationCoordinate2D(latitude: country.latlng[0], longitude: country.latlng[1]), tint: .mint)
         }
         .mapStyle(.standard(elevation: .realistic))
         .padding(10)
     }
-    
 }
 
 #Preview {

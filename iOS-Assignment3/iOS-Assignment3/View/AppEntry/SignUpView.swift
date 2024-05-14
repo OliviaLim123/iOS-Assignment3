@@ -7,45 +7,38 @@
 
 import SwiftUI
 
+//SIGN UP VIEW Struct
 struct SignUpView: View {
     
-    //  LOGIN CREDENTIALS
-    //    @State var username: String = ""
-    //    @State var password: String = ""
+    //STATE OBJECT for user credential view
     @StateObject var userCredentialVM = UserCredentialViewModel()
     
-    //  CHECK visibility of the password
+    //STATE PROPERTIES to CHECK visibility of the password
     @State var isPwdVisible: Bool = false
     @State var confirmPwd: String = ""
     
-    
-    //  STATE FOR FORM VALIDATION - CHECK VALID INPUT
+    //STATE for form validation - CHECK VALID INPUT
     @State var isCreatedAccount: Bool = false
-    //  State to track password mismatch
+    //STATE to track password mismatch
     @State var showPasswordMismatchError: Bool = false
-    //  State to track username error
+    //STATE to track username error
     @State var showUsernameError: Bool = false
-    //  State to track if User not fill all the form
+    //STATE to track if User not fill all the form
     @State var showIncompleteFormError: Bool = false
     
-    
-    //  MainView
+    //SIGN UP VIEW
     var body: some View {
         ZStack {
             VStack(spacing: 20) {
                 Spacer()
                 welcomeTitle
                 Spacer()
-                
                 usernameLabel
                 userNameField
-                
                 passwordLabel
                 passwordField
-                
                 confirmPwdLabel
                 confirmPwdField
-                
                 VStack(spacing: 0){
                     // Display form incompleted ERROR
                     incompleteFormError
@@ -54,7 +47,6 @@ struct SignUpView: View {
                     // Display username ERROR
                     usernameError
                 }
-                
                 Spacer()
                 createAccountButton
                 Spacer()
@@ -62,13 +54,12 @@ struct SignUpView: View {
             .padding([.leading, .trailing], 10)
         }
         .navigationDestination(isPresented: $isCreatedAccount) {
-            //AppEntry()
             LoadingIndicatorView2(destination: AppEntry()) {}
                 .navigationBarBackButtonHidden(true)
         }
     }
     
-    //  WELCOME TITLE
+    //WELCOME TITLE Appearance
     var welcomeTitle: some View {
         VStack {
             Text("Register")
@@ -78,43 +69,48 @@ struct SignUpView: View {
         .multilineTextAlignment(.center)
     }
     
-    //  INPUT USERNAME
+    //INPUT USERNAME Appearance
     var userNameField: some View {
         ZStack {
-            //            RoundedRectangle(cornerRadius: 10.0)
-            //                .frame(maxWidth: .infinity)
-            //                .foregroundStyle(.lightPurple.opacity(0.5))
-            //                .frame(height: 65)
-            //                .padding(.horizontal)
-            
+//            RoundedRectangle(cornerRadius: 10.0)
+//                .frame(maxWidth: .infinity)
+//                .foregroundStyle(.lightPurple.opacity(0.5))
+//                .frame(height: 65)
+//                .padding(.horizontal)
             HStack {
                 Image(systemName: "person.crop.circle")
                     .font(.system(size: 28))
                     .foregroundStyle(.darkPurpleOp.opacity(0.7))
-                
-                TextField("Username", text: $userCredentialVM.usernameInput) // the "usernameTextField" refresh field to blank after turn off the app; otherwise; "username" make the field still keep the previous username, not refresh it.
+                //"usernameTextField" refresh field to blank after turn off the app
+                //Otherwise, "username" make the field still keep the previous username, not refresh it.
+                TextField("Username", text: $userCredentialVM.usernameInput)
                     .font(.custom("MontserratAlternates-SemiBold", size: 20))
                     .foregroundStyle(.darkPurpleOp)
                     .padding(.leading, 15)
                     .frame(maxWidth: .infinity)
                     .cornerRadius(10.0)
                 
-            } //HStack
-            //  INNER SHADOW (for TextField)
-            .background{
-                ZStack{
+            }
+            //INNER SHADOW (for TextField)
+            .background {
+                ZStack {
                     RoundedRectangle(cornerRadius: 10.0)
                         .frame(maxWidth: .infinity)
                         .foregroundStyle(.lightPurple)
                         .frame(height: 65)
                         .padding(.horizontal, -15)
                         .overlay(
-                            RoundedRectangle(cornerRadius: 10) // The shape of the overlay should match the element
-                                .stroke(Color.gray, lineWidth: 4) // Border color and width
-                                .blur(radius: 3) // Blur the border to create a soft shadow effect
-                                .offset(x: 0, y: 2) // Offset of the shadow
+                            //The shape of the overlay should match the element
+                            RoundedRectangle(cornerRadius: 10)
+                                //Border color and width
+                                .stroke(Color.gray, lineWidth: 4)
+                                //Blur the border to create a soft shadow effect
+                                .blur(radius: 3)
+                                //Offset of the shadow
+                                .offset(x: 0, y: 2)
                                 .mask(
-                                    RoundedRectangle(cornerRadius: 10) // Mask using the same shape as the element
+                                    //Mask using the same shape as the element
+                                    RoundedRectangle(cornerRadius: 10)
                                         .fill(
                                             LinearGradient(gradient: Gradient(colors: [Color.black, Color.clear]), startPoint: .top, endPoint: .bottom)
                                         )
@@ -125,31 +121,27 @@ struct SignUpView: View {
             }
             .padding()
             .padding(.horizontal)
-        }//ZStack S.
+        }
     }
     
-    //  INPUT PASSWORD
+    //INPUT PASSWORD Appearance
     var passwordField: some View {
         ZStack() {
             HStack {
                 Image(systemName: "lock.circle.fill")
                     .font(.system(size: 28))
                     .foregroundStyle(.darkPurpleOp.opacity(0.7))
-                
                 if isPwdVisible {
                     TextField("Password", text: $userCredentialVM.passwordInput)
                         .font(.custom("MontserratAlternates-SemiBold", size: 20))
                         .foregroundStyle(.darkPurple)
                         .padding(.leading, 15)
-                    
-                    
                 } else {
                     SecureField("Password", text: $userCredentialVM.passwordInput)
                         .font(.custom("MontserratAlternates-SemiBold", size: 20))
                         .foregroundStyle(.darkPurple)
                         .padding(.leading, 15)
                 }
-                
                 Button() {
                 } label: {
                     Image(systemName: isPwdVisible ? "eye.fill" : "eye.slash.fill")
@@ -159,8 +151,8 @@ struct SignUpView: View {
                 .padding(.trailing, 2)
                 .onLongPressGesture(minimumDuration: .infinity, pressing: { pressing in self.isPwdVisible = pressing}, perform: {})
                 
-            } //HStack
-            //  INNER SHADOW (for TextField)
+            }
+            //INNER SHADOW (for TextField)
             .background{
                 ZStack{
                     RoundedRectangle(cornerRadius: 10.0)
@@ -169,12 +161,17 @@ struct SignUpView: View {
                         .frame(height: 65)
                         .padding(.horizontal, -15)
                         .overlay(
-                            RoundedRectangle(cornerRadius: 10) // The shape of the overlay should match the element
-                                .stroke(Color.gray, lineWidth: 4) // Border color and width
-                                .blur(radius: 3) // Blur the border to create a soft shadow effect
-                                .offset(x: 0, y: 2) // Offset of the shadow
+                            //The shape of the overlay should match the element
+                            RoundedRectangle(cornerRadius: 10)
+                                //Border color and width
+                                .stroke(Color.gray, lineWidth: 4)
+                                //Blur the border to create a soft shadow effect
+                                .blur(radius: 3)
+                                //Offset of the shadow
+                                .offset(x: 0, y: 2)
                                 .mask(
-                                    RoundedRectangle(cornerRadius: 10) // Mask using the same shape as the element
+                                    //Mask using the same shape as the element
+                                    RoundedRectangle(cornerRadius: 10)
                                         .fill(
                                             LinearGradient(gradient: Gradient(colors: [Color.black, Color.clear]), startPoint: .top, endPoint: .bottom)
                                         )
@@ -185,31 +182,27 @@ struct SignUpView: View {
             }
             .padding()
             .padding(.horizontal)
-            
-        }//ZStack S.
+        }
     }
     
+    //CONFIRM PASSWORD FIELD Appearance
     var confirmPwdField: some View {
         ZStack() {
             HStack {
                 Image(systemName: "lock.circle.fill")
                     .font(.system(size: 28))
                     .foregroundStyle(.darkPurpleOp.opacity(0.7))
-                
                 if isPwdVisible {
                     TextField("Confirm Password", text: $confirmPwd)
                         .font(.custom("MontserratAlternates-SemiBold", size: 20))
                         .foregroundStyle(.darkPurple)
                         .padding(.leading, 15)
-                    
-                    
                 } else {
                     SecureField("Confirm Password", text: $confirmPwd)
                         .font(.custom("MontserratAlternates-SemiBold", size: 20))
                         .foregroundStyle(.darkPurple)
                         .padding(.leading, 15)
                 }
-                
                 Button() {
                 } label: {
                     Image(systemName: isPwdVisible ? "eye.fill" : "eye.slash.fill")
@@ -219,8 +212,8 @@ struct SignUpView: View {
                 .padding(.trailing, 2)
                 .onLongPressGesture(minimumDuration: .infinity, pressing: { pressing in self.isPwdVisible = pressing}, perform: {})
                 
-            } //HStack
-            //  INNER SHADOW (for TextField)
+            }
+            //INNER SHADOW (for TextField)
             .background{
                 ZStack{
                     RoundedRectangle(cornerRadius: 10.0)
@@ -229,12 +222,17 @@ struct SignUpView: View {
                         .frame(height: 65)
                         .padding(.horizontal, -15)
                         .overlay(
-                            RoundedRectangle(cornerRadius: 10) // The shape of the overlay should match the element
-                                .stroke(Color.gray, lineWidth: 4) // Border color and width
-                                .blur(radius: 3) // Blur the border to create a soft shadow effect
-                                .offset(x: 0, y: 2) // Offset of the shadow
+                            //The shape of the overlay should match the element
+                            RoundedRectangle(cornerRadius: 10)
+                                //Border color and width
+                                .stroke(Color.gray, lineWidth: 4)
+                                //Blur the border to create a soft shadow effect
+                                .blur(radius: 3)
+                                //Offset of the shadow
+                                .offset(x: 0, y: 2)
                                 .mask(
-                                    RoundedRectangle(cornerRadius: 10) // Mask using the same shape as the element
+                                    //Mask using the same shape as the element
+                                    RoundedRectangle(cornerRadius: 10)
                                         .fill(
                                             LinearGradient(gradient: Gradient(colors: [Color.black, Color.clear]), startPoint: .top, endPoint: .bottom)
                                         )
@@ -245,24 +243,23 @@ struct SignUpView: View {
             }
             .padding()
             .padding(.horizontal)
-            
-        }//ZStack S.
+        }
     }
-    
-    
-    //  CREATE ACCOUNT BUTTON
+
+    //CREATE ACCOUNT BUTTON Appearance
     var createAccountButton: some View {
         VStack {
             Button {
                 if isFormValid() {
                     if isValidUsername() {
                         if isCheckedPassword() {
-                            //  STORE NEW CREDENTIAL
+                            //STORE new credentials
                             userCredentialVM.signUp()
-                            isCreatedAccount = true // Navigate to LoginView
+                            //Navigate to LOGIN VIEW
+                            isCreatedAccount = true
                             showPasswordMismatchError = false
                             showUsernameError = false
-                            // Generate the ID automatically
+                            //GENERATE the ID automatically
                             userCredentialVM.saveID()
                         } else {
                             showPasswordMismatchError = true
@@ -271,13 +268,13 @@ struct SignUpView: View {
                         showUsernameError = true
                     }
                 }
-                
             } label: {
                 createAccButton
             }
-        }// VSTACK E.
+        }
     }
     
+    //CREATE ACCOUNT BUTTON label
     var createAccButton: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 30.0)
@@ -287,7 +284,6 @@ struct SignUpView: View {
                 .padding(.horizontal, 25)
                 .shadow(color: .black.opacity(0.3), radius: 3, x: -2, y: -2)
                 .shadow(color: .gray.opacity(0.5), radius: 4, x: -4, y: -4)
-            
             Text("CREATE ACCOUNT")
                 .font(.custom("MontserratAlternates-SemiBold", size: 23))
                 .foregroundStyle(.royalPurple)
@@ -296,8 +292,7 @@ struct SignUpView: View {
         .offset(y: -30)
     }
     
-    //  FIELD LABEL
-    //The appearance of password text
+    //USERNAME label appearance
     var usernameLabel: some View {
         Text("Username")
             .font(.custom("MontserratAlternates-SemiBold", size: 20))
@@ -305,7 +300,7 @@ struct SignUpView: View {
             .padding(.horizontal, 20)
     }
     
-    //The appearance of password text
+    //PASSWORD label appearance
     var passwordLabel: some View {
         Text("Password")
             .font(.custom("MontserratAlternates-SemiBold", size: 20))
@@ -313,7 +308,7 @@ struct SignUpView: View {
             .padding(.horizontal, 20)
     }
     
-    //The appearance of confirm password text
+    //CONFIRM PASSWORD label appearance
     var confirmPwdLabel: some View {
         Text("Confirm Password")
             .font(.custom("MontserratAlternates-SemiBold", size: 20))
@@ -321,13 +316,11 @@ struct SignUpView: View {
             .padding(.horizontal, 20)
     }
     
-    
-    //  ERROR MESSAGE
-    //  CHECK MATCHED PASSWORD
-    //  & DISPLAY ERROR FOR PASSWORD MISMATCHED
+    //ERROR Messgae
+    //CHECK matched password & DISPLAY error for password mismatched
     var passwordError: some View {
         VStack {
-            // Conditional view for displaying password mismatch error
+            //Conditional view for displaying password mismatch error
             if showPasswordMismatchError {
                 Text("Password is not matching!!!")
                     .font(.custom("MontserratAlternates-SemiBold", size: 20))
@@ -336,21 +329,19 @@ struct SignUpView: View {
             }
         }
     }
-    
-    
-    //  CHECK INVALID USERNAME
+
+    //CHECK INVALID username
     var usernameError: some View {
         VStack {
             if showUsernameError {
                 Text("Username must be more than 3 characters")
                     .font(.custom("MontserratAlternates-SemiBold", size: 20))
                     .foregroundColor(.red)
-                //.padding(.top, 2)
             }
         }
     }
     
-    //  DISPLAY/CHECK ERROR for incompleted form
+    //DISPLAY/CHECK ERROR for incompleted form
     var incompleteFormError: some View {
         HStack {
             if showIncompleteFormError {
@@ -363,23 +354,19 @@ struct SignUpView: View {
         }
     }
     
-    
-    //
-    //  FUNCTION
-    //
-    //  FUNCTION TO VALIDATE if the PASSWORD & CONFIRM PWD fields match
+    //METHOD to validate if the PASSWORD & CONFIRM PWD fields match
     func isCheckedPassword() -> Bool {
         return userCredentialVM.passwordInput == confirmPwd
     }
     
-    //  FUNCTION TO CHECKED if the Username is at least 3 characters long
+    //METHOD to check if the Username is at least 3 characters long
     func isValidUsername() -> Bool {
         return userCredentialVM.usernameInput.count >= 3
     }
     
-    //  FUNCTION TO CHECKED IF ANY FILLED FORM IS EMPTY
+    //METHOD to check if filled form IS EMPTY
     func isFormValid() -> Bool {
-        //  Check if any fill is empty
+        //CHECK if any fill is empty
         if userCredentialVM.usernameInput.isEmpty || userCredentialVM.passwordInput.isEmpty || confirmPwd.isEmpty {
             showIncompleteFormError = true
             showPasswordMismatchError = false

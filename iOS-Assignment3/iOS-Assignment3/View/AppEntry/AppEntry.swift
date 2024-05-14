@@ -7,9 +7,10 @@
 
 import SwiftUI
 
-//  MAIN VIEW STRUCTURE
+//APP ENTRY Struct
 struct AppEntry: View {
     
+    //APP ENTRY VIEW
     var body: some View {
         ZStack {
             VStack() {
@@ -22,7 +23,7 @@ struct AppEntry: View {
         .navigationBarBackButtonHidden(true)
     }
     
-    //  APP TITTLE
+    //APP TITTLE Appearance
     var AppTittle: some View {
         Text("Country Discovery")
             .font(.custom("MontserratAlternates-SemiBold", size: 45))
@@ -33,7 +34,7 @@ struct AppEntry: View {
             .offset(y: -13)
     }
     
-    //  APP LOGO
+    //APP LOGO Appearance
     var AppLogo: some View {
         Image("logo")
             .resizable()
@@ -42,23 +43,20 @@ struct AppEntry: View {
             .frame(height: 310)
     }
     
-    //  AppEntry
+    //APP ENTRY Appearance
     var AppEntry: some View {
         VStack(spacing: 30) {
-            
             Text ("Sign in to your account!")
                 .font(.custom("MontserratAlternates-SemiBold", size: 18))
                 .opacity(0.8)
                 .tracking(0.9)
-            
-            //  LOGIN LINK
+            //Navigates to LOGIN VIEW
             NavigationLink {
                 LoginView()
             } label: {
                 LoginButton
             }
-            
-            //  SIGN UP LINK
+            //Navigates to SIGN UP VIEW
             NavigationLink {
                 SignUpView()
             } label : {
@@ -67,11 +65,11 @@ struct AppEntry: View {
                     RegisterLink
                 }
             }
-        } //VStack E.
+        }
         .padding()
     }
     
-    //  LOGIN BUTTON
+    //LOGIN BUTTON Appearance
     var LoginButton: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 30.0)
@@ -81,8 +79,6 @@ struct AppEntry: View {
                 .padding(.horizontal)
                 .shadow(color: .black.opacity(0.3), radius: 3, x: -2, y: -2)
                 .shadow(color: .gray.opacity(0.5), radius: 4, x: -4, y: -4)
-
-            
             Text("LOGIN")
                 .font(.custom("MontserratAlternates-SemiBold", size: 25))
                 .foregroundStyle(.royalPurple)
@@ -90,13 +86,12 @@ struct AppEntry: View {
         }
     }
     
-    // SIGN UP BUTTON
+    //SIGN UP BUTTON Appearance
     var signUpButton: some View {
             Text ("SIGN UP")
                 .font(.custom("MontserratAlternates-SemiBold", size: 25))
                 .foregroundStyle(.royalPurple)
                 .tracking(4.0)
-            
                 .frame(maxWidth: .infinity)
                 .frame(height: 55)
                 .background(.sweetCorn)
@@ -106,12 +101,11 @@ struct AppEntry: View {
                 .shadow(color: .gray.opacity(0.5), radius: 4, x: -4, y: -4)
     }
     
-    //  The View of Register Link to navigate to "SignUp" Page
+    //REGISTER LINK navigates to "SignUp" Screen
     var RegisterLink: some View {
         HStack {
             Text("Don't have account ?")
                 .foregroundStyle(.blackOpacity)
-            
             HStack {
                 Text("Register HERE")
                 Image(systemName: "arrow.turn.right.up")
@@ -121,7 +115,6 @@ struct AppEntry: View {
         .font(.custom("MontserratAlternates-SemiBold", size: 14))
         .padding()
     }
-    
 }
 
 #Preview {
