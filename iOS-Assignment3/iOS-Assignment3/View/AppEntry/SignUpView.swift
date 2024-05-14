@@ -92,7 +92,7 @@ struct SignUpView: View {
                     .font(.system(size: 28))
                     .foregroundStyle(.darkPurpleOp.opacity(0.7))
                 
-                TextField("Username", text: $userCredentialVM.usernameTextField) // the "usernameTextField" refresh field to blank after turn off the app; otherwise; "username" make the field still keep the previous username, not refresh it.
+                TextField("Username", text: $userCredentialVM.usernameInput) // the "usernameTextField" refresh field to blank after turn off the app; otherwise; "username" make the field still keep the previous username, not refresh it.
                     .font(.custom("MontserratAlternates-SemiBold", size: 20))
                     .foregroundStyle(.darkPurpleOp)
                     .padding(.leading, 15)
@@ -137,14 +137,14 @@ struct SignUpView: View {
                     .foregroundStyle(.darkPurpleOp.opacity(0.7))
                 
                 if isPwdVisible {
-                    TextField("Password", text: $userCredentialVM.passwordTextField)
+                    TextField("Password", text: $userCredentialVM.passwordInput)
                         .font(.custom("MontserratAlternates-SemiBold", size: 20))
                         .foregroundStyle(.darkPurple)
                         .padding(.leading, 15)
                     
                     
                 } else {
-                    SecureField("Password", text: $userCredentialVM.passwordTextField)
+                    SecureField("Password", text: $userCredentialVM.passwordInput)
                         .font(.custom("MontserratAlternates-SemiBold", size: 20))
                         .foregroundStyle(.darkPurple)
                         .padding(.leading, 15)
@@ -369,18 +369,18 @@ struct SignUpView: View {
     //
     //  FUNCTION TO VALIDATE if the PASSWORD & CONFIRM PWD fields match
     func isCheckedPassword() -> Bool {
-        return userCredentialVM.passwordTextField == confirmPwd
+        return userCredentialVM.passwordInput == confirmPwd
     }
     
     //  FUNCTION TO CHECKED if the Username is at least 3 characters long
     func isValidUsername() -> Bool {
-        return userCredentialVM.usernameTextField.count >= 3
+        return userCredentialVM.usernameInput.count >= 3
     }
     
     //  FUNCTION TO CHECKED IF ANY FILLED FORM IS EMPTY
     func isFormValid() -> Bool {
         //  Check if any fill is empty
-        if userCredentialVM.usernameTextField.isEmpty || userCredentialVM.passwordTextField.isEmpty || confirmPwd.isEmpty {
+        if userCredentialVM.usernameInput.isEmpty || userCredentialVM.passwordInput.isEmpty || confirmPwd.isEmpty {
             showIncompleteFormError = true
             showPasswordMismatchError = false
             showUsernameError = false

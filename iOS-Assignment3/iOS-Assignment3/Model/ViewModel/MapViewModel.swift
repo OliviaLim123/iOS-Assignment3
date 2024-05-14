@@ -1,14 +1,15 @@
 //
-//  AppViewModel.swift
+//  MapViewModel.swift
 //  iOS-Assignment3
 //
-//  Created by Huynh Phuong Thao Nhi on 10/05/2024.
+//  Created by Daniel on 10/05/2024.
 //
 
 import Foundation
 import MapKit
 import SwiftUI
 
+//PROPERTY of emtpy country
 let emptyCountry = Country(flags: Flag(png: ""),
                            name: Name(common: "", official: ""),
                            currencies: [:],
@@ -19,38 +20,38 @@ let emptyCountry = Country(flags: Flag(png: ""),
                            latlng: [0,0],
                            borders: [],
                            population: 0,
-                           cca3: "NULL");
+                           cca3: "NULL")
 
-class AppViewModel: ObservableObject{
-    //  PROPERTIES
-    var userCredentialVM = UserCredentialViewModel();
+//MAP VIEW MODEL - handling the map in this application
+class MapViewModel: ObservableObject {
     
+    //USER CREDENTIAL VIEW MODEL
+    var userCredentialVM = UserCredentialViewModel()
+    
+    //PUBLISHED Properties
     @Published var currentTab: String = "Map"
-    @Published var selectedCountry: String = "";
-    @Published var userFavList: [String] = [];
+    @Published var selectedCountry: String = ""
+    @Published var userFavList: [String] = []
     
-    //  MAP KIT Properties
+    //MAP KIT Properties
     @Published var mapCameraPosition: MapCameraPosition
     let defaultCoordinates: CLLocationCoordinate2D
     let geocoder = CLGeocoder()
     
-    init(){
-        //  APP View Model Properties
-        userFavList = userCredentialVM.loadFavCountriesArray();
-        
-        //  INIT MAP View Properties
+    //INIT method for MAP VIEW properties
+    init() {
+        userFavList = userCredentialVM.loadFavCountriesArray()
         self.defaultCoordinates = CLLocationCoordinate2D(latitude: 16.16666666, longitude: 107.83333333)
         self.mapCameraPosition = MapCameraPosition.camera(MapCamera(centerCoordinate: defaultCoordinates, distance: 10000000))
-        
-        //  DEBUG
-//        print(self.userFavList);
     }
     
-    func saveFavList(){
-        userCredentialVM.saveFavCountriesArray(favList: userFavList);
+    //METHOD for saving the favourite country list
+    func saveFavList() {
+        userCredentialVM.saveFavCountriesArray(favList: userFavList)
     }
     
-    func isInFavList(countryCode: String) -> Bool{
-        return userFavList.contains(countryCode);
+    //METHOD for checking if the user favourite country is in the list
+    func isInFavList(countryCode: String) -> Bool {
+        return userFavList.contains(countryCode)
     }
 }

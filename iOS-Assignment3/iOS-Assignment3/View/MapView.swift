@@ -10,14 +10,14 @@ import MapKit
 
 struct MapView: View {
     //  PROPERTIES
-    @ObservedObject var appVM: AppViewModel;
+    @ObservedObject var appVM: MapViewModel;
     @State var countryAPI = CountryManager();
     
     @State var countryList: [Country] = [];
     @State var hoveringCountry: Country = emptyCountry;
     @State var isHovering: Bool = false;
     
-    init(appVM: AppViewModel) {
+    init(appVM: MapViewModel) {
         self.appVM = appVM
 
         //  FETCH ALL COUNTRY
@@ -138,5 +138,5 @@ struct MapView: View {
 }
 
 #Preview {
-    MapView(appVM: AppViewModel());
+    MapView(appVM: MapViewModel());
 }

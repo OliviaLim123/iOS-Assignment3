@@ -9,7 +9,7 @@ import SwiftUI
 
 struct FavCountryView: View {
     //  PROPERTIES
-    @ObservedObject private var appVM: AppViewModel;
+    @ObservedObject private var appVM: MapViewModel;
     @ObservedObject private var countryAPI: CountryManager;
     
     @Environment(\.presentationMode) var presentationMode;
@@ -17,7 +17,7 @@ struct FavCountryView: View {
     //  List of Countries to Display
     @State private var displayList: [Country] = [];
 
-    init(appVM: AppViewModel){
+    init(appVM: MapViewModel){
         self.appVM = appVM;
         countryAPI = CountryManager();
         
@@ -138,5 +138,5 @@ struct FavCountryView: View {
 }
 
 #Preview {
-    FavCountryView(appVM: AppViewModel());
+    FavCountryView(appVM: MapViewModel());
 }

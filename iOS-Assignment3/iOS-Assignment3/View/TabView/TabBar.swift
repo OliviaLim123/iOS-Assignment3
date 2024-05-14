@@ -10,7 +10,7 @@ import SwiftUI
 //A view of tab bar
 struct TabBar: View {
     //  PROPERTIES
-    @StateObject var viewModel: AppViewModel;
+    @StateObject var viewModel: MapViewModel;
     
     
     //The body of the view:
@@ -63,6 +63,6 @@ struct TabBar: View {
     }
 }
 #Preview {
-    TabBar(viewModel: AppViewModel())
+    TabBar(viewModel: MapViewModel())
 }
 

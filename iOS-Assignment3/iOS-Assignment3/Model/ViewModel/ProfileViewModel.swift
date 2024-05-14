@@ -7,11 +7,13 @@
 
 import SwiftUI
 
+//PROFILE VIEW MODEL - handling the user profile model
 class ProfileViewModel: ObservableObject {
     
-    //Published properties for handling the profile information
+    //PUBLISHED PROPERTY for handling the profile information
     @Published var avatarImage: UIImage?
     
+    //STATIC PROPERTY
     static let shared = ProfileViewModel()
     
 }

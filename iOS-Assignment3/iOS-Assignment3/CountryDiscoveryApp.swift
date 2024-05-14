@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+//MAIN of country discovery application
 @main
 struct CountryDiscoveryApp: App {
     var body: some Scene {

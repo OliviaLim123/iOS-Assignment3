@@ -14,13 +14,13 @@ struct SettingView: View {
     @ObservedObject var profileVM = ProfileViewModel.shared
     @StateObject var userCredentialVM = UserCredentialViewModel()
     
-    @ObservedObject var appVM: AppViewModel;
+    @ObservedObject var appVM: MapViewModel;
     
     //AppStorage for handling the display mode function
     @AppStorage("isDarkMode") private var isDarkMode = false
     
     //  INIT Function
-    init(viewModel: AppViewModel){
+    init(viewModel: MapViewModel){
         self.appVM = viewModel;
     }
     
@@ -68,7 +68,7 @@ struct SettingView: View {
                 .font(.custom("MontserratAlternates-SemiBold", size: 25))
                 .foregroundStyle(.darkPurpleOp)
                 .padding(.horizontal, 25)
-            Text("\(userCredentialVM.username)")
+            Text("\(userCredentialVM.storedUsername)")
                 .font(.custom("MontserratAlternates-SemiBold", size: 25))
                 .foregroundStyle(.darkPurpleOp)
         }
@@ -203,6 +203,6 @@ struct SettingView: View {
 
 #Preview {
     NavigationStack {
-        SettingView(viewModel: AppViewModel())
+        SettingView(viewModel: MapViewModel())
     }
 }

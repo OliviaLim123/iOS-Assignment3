@@ -22,7 +22,7 @@ struct LoadingIndicatorView: View {
             //  SHOW either "HomeView" page or "LoadingView" Sub-View based on loadingComplete state
             if loadingComplete {
                 //  If loading complete, show "HomeView" page
-                HomeView(appVM: AppViewModel())
+                HomeView(appVM: MapViewModel())
             } else {
                 //  If loading is not complete, show "loadingView" Sub-View
                 LoadingView

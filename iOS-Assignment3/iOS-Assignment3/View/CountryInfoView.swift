@@ -12,10 +12,10 @@ struct CountryInfoView: View {
     //  PROPERTIES
     @State private var selectedCountry: Country = emptyCountry;
     @ObservedObject private var countryAPI: CountryManager;
-    @ObservedObject var viewModel: AppViewModel;
+    @ObservedObject var viewModel: MapViewModel;
     
     //  INIT Function to get Country By Country Code
-    init(countryCode: String, viewModel: AppViewModel){
+    init(countryCode: String, viewModel: MapViewModel){
         countryAPI = CountryManager();
         self.viewModel = viewModel;
         
@@ -24,7 +24,7 @@ struct CountryInfoView: View {
     }
     
     //  INIT Function to get Country By Name
-    init(countryName: String, viewModel: AppViewModel){
+    init(countryName: String, viewModel: MapViewModel){
         countryAPI = CountryManager();
         self.viewModel = viewModel;
         
@@ -440,5 +440,5 @@ struct CountryInfoView: View {
 }
 
 #Preview {
-    CountryInfoView(countryCode: "vnm", viewModel: AppViewModel())
+    CountryInfoView(countryCode: "vnm", viewModel: MapViewModel())
 }

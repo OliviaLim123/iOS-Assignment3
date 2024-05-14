@@ -71,7 +71,7 @@ struct LoginView: View {
                     .font(.system(size: 28))
                     .foregroundStyle(.darkPurpleOp.opacity(0.7))
                 
-                TextField("Username", text: $userCredentialVM.usernameTextField)
+                TextField("Username", text: $userCredentialVM.usernameInput)
                     .font(.custom("MontserratAlternates-SemiBold", size: 20))
                     .foregroundStyle(.darkPurpleOp)
                     .padding()
@@ -122,13 +122,13 @@ struct LoginView: View {
                     .foregroundStyle(.darkPurpleOp.opacity(0.7))
                 
                 if isPwdVisible {
-                    TextField("Password", text: $userCredentialVM.passwordTextField)
+                    TextField("Password", text: $userCredentialVM.passwordInput)
                         .font(.custom("MontserratAlternates-SemiBold", size: 20))
                         .foregroundStyle(.darkPurple)
                         .padding(.leading, 15)
                     
                 } else {
-                    SecureField("Password", text: $userCredentialVM.passwordTextField)
+                    SecureField("Password", text: $userCredentialVM.passwordInput)
                         .font(.custom("MontserratAlternates-SemiBold", size: 20))
                         .foregroundStyle(.darkPurple)
                         .padding(.leading, 15)
@@ -264,7 +264,7 @@ struct LoginView: View {
     //  FUNCTION
     //  FUNCTION TO CHECK if THE FORM is INCOMPLETED
     func isLoginFormValid() -> Bool {
-        if userCredentialVM.usernameTextField.isEmpty || userCredentialVM.passwordTextField.isEmpty {
+        if userCredentialVM.usernameInput.isEmpty || userCredentialVM.passwordInput.isEmpty {
             showIncompleteFormError = true
             return false
         } else {

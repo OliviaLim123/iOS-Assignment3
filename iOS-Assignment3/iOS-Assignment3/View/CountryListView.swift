@@ -11,7 +11,7 @@ struct CountryListView: View {
     
     //  PROPERTIES
     //  STATE Properties
-    @StateObject var viewModel: AppViewModel;
+    @StateObject var viewModel: MapViewModel;
     @State var countryAPI: CountryManager;
     @State private var displayList: [Country] = [];
     @State private var searchString: String = "";
@@ -176,5 +176,5 @@ struct CountryListView: View {
 }
 
 #Preview {
-    CountryListView(viewModel: AppViewModel(), countryAPI: CountryManager())
+    CountryListView(viewModel: MapViewModel(), countryAPI: CountryManager())
 }

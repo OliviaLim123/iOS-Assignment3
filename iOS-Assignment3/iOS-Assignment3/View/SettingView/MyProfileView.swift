@@ -13,7 +13,7 @@ struct MyProfileView: View {
     
     @ObservedObject var profileVM = ProfileViewModel.shared;
     @StateObject var userCredentialVM = UserCredentialViewModel();
-    @ObservedObject var appVM: AppViewModel;
+    @ObservedObject var appVM: MapViewModel;
     
     @State var isSecureField: Bool = true
     
@@ -79,7 +79,7 @@ struct MyProfileView: View {
                 Image(systemName: "person.crop.circle")
                     .font(.system(size: 28))
                     .foregroundStyle(.darkPurpleOp.opacity(0.7))
-                Text("\(userCredentialVM.username)")
+                Text("\(userCredentialVM.storedUsername)")
                     .font(.custom("MontserratAlternates-SemiBold", size: 20))
                     .foregroundStyle(.darkPurpleOp)
                     .tracking(3.0)
@@ -199,7 +199,7 @@ struct MyProfileView: View {
     
     //The appearance when the password is unseen by the user
     var securePassField: some View {
-        SecureField("Old password", text: $userCredentialVM.password)
+        SecureField("Old password", text: $userCredentialVM.storedPassword)
             .foregroundColor(.darkPurple)
             .padding(.leading, 15)
             .frame(maxWidth: .infinity)
@@ -207,7 +207,7 @@ struct MyProfileView: View {
     
     //The appearance when the password can be seen by the user
     var normalPassField: some View {
-        TextField("Old password", text: $userCredentialVM.password)
+        TextField("Old password", text: $userCredentialVM.storedPassword)
             .foregroundStyle(.darkPurple)
             .padding(.leading, 15)
             .frame(maxWidth: .infinity)
@@ -224,5 +224,5 @@ struct MyProfileView: View {
 }
 
 #Preview {
-    MyProfileView(appVM: AppViewModel());
+    MyProfileView(appVM: MapViewModel());
 }
