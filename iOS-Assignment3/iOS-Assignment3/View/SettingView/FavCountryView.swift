@@ -121,7 +121,7 @@ struct FavCountryView: View {
             } else {
                 Image(systemName: "heart")
                     .font(.custom("MontserratAlternates-SemiBold", size: 22))
-                    .foregroundStyle(.black)
+                    .foregroundStyle(.textColour)
             }
         }
     }
