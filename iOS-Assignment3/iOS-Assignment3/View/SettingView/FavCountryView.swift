@@ -70,7 +70,7 @@ struct FavCountryView: View {
                             .padding(.vertical, 3)
                             .onTapGesture {
                                 //CHANGE VM Data to switch back to "Country Info View"
-                                appVM.selectedCountry = country.cca3
+                                appVM.selectedCountryCode = country.cca3
                                 appVM.currentTab = "Info"
                                 //BACK TO HOME VIEW
                                 presentationMode.wrappedValue.dismiss()

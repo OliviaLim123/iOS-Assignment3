@@ -32,7 +32,7 @@ struct TabBar: View {
                 .defaultScrollAnchor(.top)
                 .tag("List")
             //"Info" icon navigates to COUNTRY INFO VIEW
-            CountryInfoView(countryCode: self.viewModel.selectedCountry, viewModel: self.viewModel)
+            CountryInfoView(countryCode: self.viewModel.selectedCountryCode, viewModel: self.viewModel)
                 .defaultScrollAnchor(.top)
                 .tag("Info")
             //"Setting" icon navigates to SETTING VIEW
@@ -50,7 +50,7 @@ struct TabBar: View {
             Spacer(minLength: 0)
             TabButton(title: "Info", image: "globe", selected: $viewModel.currentTab)
                 //Disable BUTTON if no country is selected
-                .disabled(viewModel.selectedCountry == "")
+                .disabled(viewModel.selectedCountryCode == "")
             Spacer(minLength: 0)
             TabButton(title: "Setting", image: "gearshape.fill", selected: $viewModel.currentTab)
         }

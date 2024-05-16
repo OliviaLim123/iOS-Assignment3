@@ -123,7 +123,7 @@ struct MapView: View {
             //DISCOVER Button
             Button {
                 //CHANGE VM Data to switch back to "Country Info View"
-                appVM.selectedCountry = hoveringCountry.cca3
+                appVM.selectedCountryCode = hoveringCountry.cca3
                 appVM.currentTab = "Info"
             } label: {
                 Text("Discover")

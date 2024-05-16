@@ -74,7 +74,7 @@ struct CountryListView: View {
                 //PADDING Around Button
                 .padding(.vertical, 3)
                 .onTapGesture {
-                    appVM.selectedCountry = country.cca3
+                    appVM.selectedCountryCode = country.cca3
                     appVM.currentTab = "Info"
                 }
             }

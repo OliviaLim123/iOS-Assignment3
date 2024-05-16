@@ -13,7 +13,7 @@ struct CountryInfoView: View {
     
     //STATE to handle the selected country
     @State private var selectedCountry: Country = emptyCountry
-    
+        
     //OBSERVED OBJECT for country manager and map view model
     @ObservedObject private var countryAPI: CountryManager
     @ObservedObject var appVM: AppViewModel

@@ -30,7 +30,7 @@ class AppViewModel: ObservableObject {
     
     //PUBLISHED Properties
     @Published var currentTab: String = "Map"
-    @Published var selectedCountry: String = ""
+    @Published var selectedCountryCode: String = ""
     @Published var userFavList: [String] = []
     
     //MAP KIT Properties
