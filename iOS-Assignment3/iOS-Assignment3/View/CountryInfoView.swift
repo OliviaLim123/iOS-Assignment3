@@ -53,7 +53,7 @@ struct CountryInfoView: View {
                 Spacer()
                 heartButton
             }
-            countryInfo;
+            countryInfo
             Spacer()
         }
         .padding(.horizontal)
