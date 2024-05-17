@@ -1,10 +1,3 @@
-//
-//  CountryInfoView.swift
-//  iOS-Assignment3
-//
-//  Created by Daniel
-//
-
 import SwiftUI
 import MapKit
 
@@ -13,7 +6,11 @@ struct CountryInfoView: View {
     
     //STATE to handle the selected country
     @State private var selectedCountry: Country = emptyCountry
-        
+    
+    //STATE for Map region and camera position
+    @State private var region = MKCoordinateRegion()
+    @State private var mapCameraPosition: MapCameraPosition = MapCameraPosition.camera(MapCamera(centerCoordinate: CLLocationCoordinate2D(), distance: 3500000))
+    
     //OBSERVED OBJECT for country manager and map view model
     @ObservedObject private var countryAPI: CountryManager
     @ObservedObject var appVM: AppViewModel
@@ -57,6 +54,19 @@ struct CountryInfoView: View {
             Spacer()
         }
         .padding(.horizontal)
+        .onReceive(countryAPI.$country) { countryData in
+            if let safeCountry = countryData {
+                selectedCountry = safeCountry
+                updateMapRegionAndCamera(for: safeCountry)
+            }
+        }
+    }
+    
+    // Function to update the map region and camera position
+    private func updateMapRegionAndCamera(for country: Country) {
+        region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: country.latlng[0], longitude: country.latlng[1]), span: MKCoordinateSpan(latitudeDelta: 20, longitudeDelta: 20))
+        let countryCoordinates = CLLocationCoordinate2D(latitude: country.latlng[0], longitude: country.latlng[1])
+        mapCameraPosition = MapCameraPosition.camera(MapCamera(centerCoordinate: countryCoordinates, distance: 3500000))
     }
     
     //HEART BUTTON VIEW
@@ -66,7 +76,7 @@ struct CountryInfoView: View {
         Button {
             //TOGGLE Favorite
             if appVM.isInFavList(countryCode: selectedCountry.cca3) {
-                appVM.userFavList.removeAll{
+                appVM.userFavList.removeAll {
                     $0 == selectedCountry.cca3
                 }
                 //SAVE favourite list to APP STORAGE
@@ -81,11 +91,11 @@ struct CountryInfoView: View {
             if appVM.isInFavList(countryCode: selectedCountry.cca3) {
                 Image(systemName: "heart.fill")
                     .font(.custom("MontserratAlternates-SemiBold", size: 22))
-                    .foregroundStyle(.red);
+                    .foregroundStyle(.red)
             } else {
                 Image(systemName: "heart")
                     .font(.custom("MontserratAlternates-SemiBold", size: 22))
-                    .foregroundStyle(.textColour);
+                    .foregroundStyle(.textColour)
             }
         }
     }
@@ -105,7 +115,7 @@ struct CountryInfoView: View {
                             .padding(.horizontal)
                             .padding(.top, 10)
                         //FLAG IMAGE
-                        AsyncImage(url: URL(string: selectedCountry.flags.png)){ image in
+                        AsyncImage(url: URL(string: selectedCountry.flags.png)) { image in
                             image.resizable()
                         } placeholder: {
                             Color.gray
@@ -121,8 +131,8 @@ struct CountryInfoView: View {
                     Spacer()
                     //MAP Appearance
                     VStack {
-                        mapView(country: self.selectedCountry)
-                    }   
+                        mapView(region: $region, mapCameraPosition: $mapCameraPosition, country: selectedCountry)
+                    }
                     .background(
                         //INFO BOX background
                         RoundedRectangle(cornerRadius: 10)
@@ -367,35 +377,22 @@ struct CountryInfoView: View {
                 )
                 Spacer()
             }
-            .onReceive(countryAPI.$country){countryData in
-                if let safeCountry = countryData{
-                    selectedCountry = safeCountry
-                }
-            }
         }
     }
     
     //METHOD for MAP VIEW
-    func mapView(country: Country) -> some View {
+    func mapView(region: Binding<MKCoordinateRegion>, mapCameraPosition: Binding<MapCameraPosition>, country: Country) -> some View {
         //GET Country Lat and Lng Data to Display MAP View
-        @State var region = MKCoordinateRegion (center: CLLocationCoordinate2D (latitude: country.latlng[0], longitude: country.latlng[1]), span: MKCoordinateSpan(latitudeDelta: 20, longitudeDelta: 20))
-        
-        //SET Map View PROPERTIES based on Lat and Long data above
-        let countryCoordinates: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: country.latlng[0], longitude: country.latlng[1])
-        @State var mapCameraPosition: MapCameraPosition = MapCameraPosition.camera(MapCamera(centerCoordinate: countryCoordinates, distance: 3500000))
-        
         return MapReader { mapReader in
-            Map(position: $mapCameraPosition) {
-                
+            Map(position: mapCameraPosition) {
                 //  GET Country Location
                 let location =  CLLocationCoordinate2D(latitude: country.latlng[0], longitude: country.latlng[1])
-                
-                Annotation("\(country.name.common)", coordinate: location){
+                Annotation("\(country.name.common)", coordinate: location) {
                     Image(systemName: "mappin.and.ellipse")
                         .font(.system(size: 32))
                         .fontWeight(.regular)
                         .foregroundStyle(Color.pink)
-                        .offset(y: -10);
+                        .offset(y: -10)
                 }
             }
             .mapStyle(.standard(elevation: .realistic))
