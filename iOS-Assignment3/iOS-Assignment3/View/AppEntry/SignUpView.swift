@@ -345,11 +345,14 @@ struct SignUpView: View {
     var incompleteFormError: some View {
         HStack {
             if showIncompleteFormError {
-                Text("Please fill in all fields to create an account.")
-                    .font(.custom("MontserratAlternates-SemiBold", size: 20))
-                    .foregroundColor(.red)
-                    .multilineTextAlignment(.center)
-                    .padding(.top, 2)
+                VStack {
+                    Text("Please fill in all")
+                    Text("fields to create an account.")
+                }
+                .font(.custom("MontserratAlternates-SemiBold", size: 20))
+                .foregroundColor(.red)
+                .multilineTextAlignment(.center)
+                .padding(.top, 2)
             }
         }
     }
